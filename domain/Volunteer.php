@@ -24,19 +24,19 @@ class Volunteer {
 	private $phone1; 		// primary phone
 	private $phone2; 		// alternate phone
     private $email; 		// e-mail address
-	private $contacts;		// array of emergency contacts: Òname, phone, emailÓ
+	private $contacts;		// array of emergency contacts: Òname:phone:emailÓ
 	private $employment_status;		// ÒemployedÓ, ÒunemployedÓ, ÒretiredÓ
 	private $employment_history;	// array of employees (most recent first): 
 							// Òtitle, company, address, start date, end dateÓ
 	private $convictions;		// prior convictions (ÒnoÓ or ÒyesÓ with explanation)
 	private $background_check;	// ÒauthorizedÓ, ÒunauthorizedÓ, ÒcompletedÓ
-	private $availability; 	// array of day-week pairs; e.g.,ÒMon1Ó, ÒThu4Ó, ÒFIÓ
-	private $schedule;     	// array of scheduled shifts; e.g.,  [ÒMon1Ó, ÒWed2Ó]
-	private $history;      	// array of recent shifts worked; e.g., [Ò11-03-12Ó]
+	private $availability; 	// array of day:week pairs; e.g., [ÒMon:1Ó, ÒThu:4Ó, ÒFIÓ]
+	private $schedule;     	// array of scheduled shifts; e.g.,  [ÒMon:1Ó, ÒWed:2Ó]
+	private $history;      	// array of recent shifts worked; e.g., [Ò11-03-12Ó,"11-05-12"]
 	private $start_date;   	// yy-mm-dd
 	private $end_date;		// yy-mm-dd
 	private $status;       // "active", "away", or "former"
-	private $notes;		// Coordinator's notes to/from this person
+	private $notes;		   // Coordinator's notes to/from this person
 	private $password;     // password for system access
 
         /**
@@ -103,9 +103,42 @@ class Volunteer {
     function get_email(){
         return $this->email;
     }
-    // rest of the getters need to be added...
-    
-    function get_password () {
+    function get_contacts() {
+        return $this->contacts;
+    }
+    function get_employment_status() {
+        return $this->employment_status;
+    }
+    function get_employment_history() {
+        return $this->employment_history;
+    }
+    function get_convictions() {
+        return $this->convictions;
+    }
+    function get_background_check() {
+        return $this->background_check;
+    }
+    function get_availability() {
+        return $this->availability;
+    }
+    function get_schedule() {
+        return $this->schedule;
+    }
+    function get_history() {
+        return $this->history;
+    }
+    function get_start_date() {
+        return $this->start_date;
+    }
+    function get_end_date(){
+        return $this->end_date;
+    }
+	function get_status(){
+        return $this->status;
+    }
+	function get_notes(){
+        return $this->notes;
+    }function get_password () {
         return $this->password;
     }
     //setter functions ... can be added later as needed
