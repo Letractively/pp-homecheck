@@ -55,15 +55,30 @@ class Volunteer {
         $this->phone1 = $phone1;
         $this->phone2 = $phone2;
         $this->email = $email;
-        $this->contacts = explode(',',$contacts);
+        if ($contacts == "") 
+        	$this->contacts = array();
+        else 
+        	$this->contacts = explode(',',$contacts);
         $this->employment_status = $employment_status;
-        $this->employment_history = explode(',',$employment_history);       
+        if ($employment_history == "") 
+        	$this->employment_history = array();
+        else 
+        	$this->employment_history = explode(',',$employment_history);       
         $this->convictions = $convictions;
         $this->background_check = $background_check;
                  
-        $this->availability = explode(',',$availability);
-        $this->schedule = explode(',',$schedule);
-        $this->history = explode(',',$history);
+        if ($availability == "") 
+        	$this->availability = array();
+        else 
+        	$this->availability = explode(',',$availability);
+        if ($schedule == "") 
+        	$this->schedule = array();
+        else 
+        	$this->schedule = explode(',',$schedule);
+        if ($history == "") 
+        	$this->history = array();
+        else 
+        	$this->history = explode(',',$history);
         $this->start_date = $start_date;
         $this->end_date = $end_date;
         $this->status = $status;
