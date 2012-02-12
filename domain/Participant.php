@@ -8,7 +8,8 @@
 */
 
 /*
-* Volunteer class for Homecheck
+* Participant class for Homecheck
+* @author Nicole Erkis
 * @version February 6, 2012
 */
 class Participant {
@@ -57,11 +58,20 @@ class Participant {
 		$this->phone2 = $phone2;
 		$this->email = $email;
 		$this->lives_alone = $lives_alone;
-		$this->contacts = explode(',',$contacts);
+		if ($contacts == "")
+			$this->contacts = array();
+		else
+			$this->contacts = explode(',',$contacts);
 		$this->physician = $physician;
 		$this->lifeline = $lifeline;
-		$this->in_home_services = explode(',',$in_home_services);
-		$this->special_needs = explode(',',$special_needs);
+		if ($in_home_services == "")
+			$this->in_home_services = array();
+		else
+			$this->in_home_services = explode(',',$in_home_services);
+		if ($special_needs == "")
+			$this->special_needs = array();
+		else
+			$this->special_needs = explode(',',$special_needs);
 		$this->hidden_key = $hidden_key;
 		$this->other_key = $other_key;
 		$this->has_car = $has_car;
@@ -71,7 +81,10 @@ class Participant {
 		$this->start_date = $start_date;
 		$this->end_date = $end_date;
 		$this->status = $status;
-		$this->log_entries = explode(',',$log_entries);
+		if ($log_entries == "")
+			$this->log_entries = array();
+		else
+			$this->log_entries = explode(',', $log_entries);
 		$this->notes = $notes;
 	}
 	
