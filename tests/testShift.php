@@ -7,10 +7,10 @@ class testShift extends UnitTestCase {
     	$shift = new Shift("12-02-12", "malcom1234567890", "Monday", "notes");
     	 
     	//testing getter functions
-    	$this->assertTrue($participant->get_yy_mm_dd() == "12-02-12");
-    	$this->assertTrue($participant->get_volunteer_id() == "malcom1234567890");
-    	$this->assertTrue($participant->get_day() == "Monday");
-    	$this->assertTrue($participant->get_notes() == "notes");
+    	$this->assertEqual($shift->get_yy_mm_dd(), "12-02-12");
+    	$this->assertEqual($shift->get_volunteer_id(), "malcom1234567890");
+    	$this->assertEqual($shift->get_day(), "Monday");
+    	$this->assertEqual($shift->get_notes(), "notes");
     	
     	echo ("testShift complete\n");
     }
