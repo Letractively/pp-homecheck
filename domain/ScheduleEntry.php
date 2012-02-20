@@ -22,8 +22,8 @@ class ScheduleEntry {
 	//constructor function
 	function __construct($day_week, $volunteer_id, $notes) {
 		$this->id = $day_week;
-		$this->volunteer_id = volunteer_id;
-		$this->notes = notes;
+		$this->volunteer_id = $volunteer_id;
+		$this->notes = $notes;
 	}
 	
 	

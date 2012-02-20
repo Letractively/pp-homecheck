@@ -31,7 +31,7 @@ class Shift {
 
 	//getter functions
 	function get_yy_mm_dd(){
-		return $this->id;
+		return $this->yy_mm_dd;
 	}
 	function get_volunteer_id(){
 		return $this->volunteer_id;

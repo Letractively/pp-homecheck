@@ -15,13 +15,13 @@
 include_once(dirname(__FILE__).'/../domain/ScheduleEntry.php');
 class testScheduleEntry extends UnitTestCase {
     function testScheduleEntryModule() {     
-    			 //fake participant entry to test
-                 $scheduleA = new ScheduleEntry("Mon:1", "John1112345678", "Good worker!");
+    	//fake participant entry to test
+        $scheduleA = new ScheduleEntry("Mon:1", "John1112345678", "Good worker!");
                  
-                 //testing getter functions
-                 $this->assertTrue($participantA->get_id() == "Mon:1");
-                 $this->assertTrue($participantA->get_volunteer_id() == "John1112345678");
-                 $this->assertTrue($participantA->get_notes() == "Good worker!");
+        //testing getter functions
+        $this->assertEqual($scheduleA->get_id(), "Mon:1");
+        $this->assertEqual($scheduleA->get_volunteer_id(), "John1112345678");
+        $this->assertEqual($scheduleA->get_notes(), "Good worker!");
     }
 }
 ?>
