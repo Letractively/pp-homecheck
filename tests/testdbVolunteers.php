@@ -1,9 +1,8 @@
 <?php
-include_once(dirname(__FILE__).'/../domain/Vounteer.php');
-include_once(dirname(__FILE__).'/../database/dbVounteers.php'); 
+include_once(dirname(__FILE__).'/../domain/Volunteer.php');
+include_once(dirname(__FILE__).'/../database/dbVolunteers.php'); 
 class testdbVolunteers extends UnitTestCase {
 	function testdbVolunteersModule() {
-
 		//Test table creation
 		$this->assertTrue(create_dbVolunteers());
 		
@@ -23,23 +22,23 @@ class testdbVolunteers extends UnitTestCase {
 		$this->assertTrue(insert_dbVolunteers($vol3));
 		
 		//Test Retrieve
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_id (), "John2071234567");
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_first_name (), "John");
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_last_name (), "Smith");
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_address(), "111 Main Street");
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_city (), "Brunswick");
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_state (), "ME");
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_zip(), "04011");
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_phone1 (), 2071234567);
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_phone2 (), null);
-		$this->assertEqual(retrieve_dbPersons($person1->get_id())->get_email(), "name@domain1.com");
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_id (), "John2071234567");
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_first_name (), "John");
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_last_name (), "Smith");
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_address(), "111 Main Street");
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_city (), "Brunswick");
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_state (), "ME");
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_zip(), "04011");
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_phone1 (), 2071234567);
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_phone2 (), null);
+		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_email(), "name@domain1.com");
 		
 		//Test Update
 		$vol2 = new Volunteer("Doe", "Jane", "444 Park", "Topsham", "ME", "11111", 2072345678, "", "jane@doe.com",
                          "Me", "Retired", "Mayor", "None", "Clear", 
                          "T,TH", "A,B,C", "", "03-03-03", "04-04-04", "Active", "None", "password1");
-		$this->assertTrue(update_dbPersons($vol2));
-		$this->assertEqual(retrieve_dbPersons($vol2->get_id())->get_address(), "444 park");
+		$this->assertTrue(update_dbVolunteers($vol2));
+		$this->assertEqual(retrieve_dbVolunteers($vol2->get_id())->get_address(), "444 Park");
 		
 		//Test Delete
 		$this->assertTrue(delete_dbVolunteers($vol1->get_id()));

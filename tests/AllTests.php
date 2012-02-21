@@ -5,7 +5,7 @@
 // require_once(dirname(__FILE__).'/simpletest/autorun.php');
 class AllTests extends GroupTest {
  	  function AllTests() {
- 	  	$this->addTestFile(dirname(__FILE__).'/testdbVolunteers.php');
+ 	  	
         $this->addTestFile(dirname(__FILE__).'/testVolunteer.php');
         $this->addTestFile(dirname(__FILE__).'/testParticipant.php');
         $this->addTestFile(dirname(__FILE__).'/testDailyLog.php');
@@ -14,9 +14,10 @@ class AllTests extends GroupTest {
         $this->addTestFile(dirname(__FILE__).'/testReport.php');
 		$this->addTestFile(dirname(__FILE__).'/testShift.php');
 		$this->addTestFile(dirname(__FILE__).'/testScheduleEntry.php');
+		$this->addTestFile(dirname(__FILE__).'/testdbVolunteers.php');
 		
 		
-        echo ("All tests complete");
+        echo ("\n All tests complete \n");
  	  }
  }
 ?>

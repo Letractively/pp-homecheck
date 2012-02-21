@@ -19,19 +19,19 @@ include_once(dirname(__FILE__).'/dbinfo.php');
 function create_dbVolunteers(){
 	connect();
 	mysql_query("DROP TABLE IF EXISTS dbVolunteers");
-	$results = mysql_query("CREATE TABLE dbVolunteers (id TEXT NOT NULL, last_name TEXT, first_name TEXT, address TEXT, city TEXT, state TEXT, zip TEXT, 
+	$result = mysql_query("CREATE TABLE dbVolunteers (id TEXT NOT NULL, last_name TEXT, first_name TEXT, address TEXT, city TEXT, state TEXT, zip TEXT, 
 							phone1 VARCHAR(12) NOT NULL, phone2 VARCHAR(12), email TEXT, contacts TEXT, employment_status TEXT, employment_history TEXT,
 							convictions TEXT, background_check TEXT, availability TEXT, schedule TEXT, history TEXT, start_date TEXT, end_date TEXT, 
 							status TEXT, notes TEXT, password TEXT)");
 	mysql_close();
 	if(!$result){
-			echo mysql_error."Error creating database dbVolunteers <br>";
+			echo (mysql_error()."Error creating database dbVolunteers. \n");
 			return false;
 	}
 	return true;
 }
 
-function retreive_dbVolunteers($id){
+function retrieve_dbVolunteers($id){
 	connect();
 	$result=mysql_query("SELECT * FROM dbVolunteers WHERE id  = '".$id."'");
 	if(mysql_num_rows($result) !== 1){
@@ -76,10 +76,10 @@ function insert_dbVolunteers($volunteer){
 		connect();
 	}
 	
-	$query = "INSERT INTO dbPersons VALUES ('".
+	$query = "INSERT INTO dbVolunteers VALUES ('".
 				$volunteer->get_id()."','" .
-				$volunteer->get_first_name()."','".
 				$volunteer->get_last_name()."','".
+				$volunteer->get_first_name()."','".
 				$volunteer->get_address()."','".
 				$volunteer->get_city()."','".
 				$volunteer->get_state()."','".
@@ -88,7 +88,7 @@ function insert_dbVolunteers($volunteer){
 				$volunteer->get_phone2()."','".
 				$volunteer->get_email()."','".
 				implode(',',$volunteer->get_contacts())."','".
-				implode(',',$volunteer->get_employment_status())."','".
+				$volunteer->get_employment_status()."','".
 				implode(',',$volunteer->get_employment_history())."','".
 				$volunteer->get_convictions()."','".
 				$volunteer->get_background_check()."','".
@@ -103,7 +103,7 @@ function insert_dbVolunteers($volunteer){
 	            "');";
 	$result = mysql_query($query);
 	if (!$result) {
-		echo (mysql_error(). " unable to insert into dbVolunteers: " . $volunteer->get_id(). "\n");
+		echo (mysql_error(). " Unable to insert into dbVolunteers: " . $volunteer->get_id(). "\n");
 		mysql_close();
 		return false;
 	}
