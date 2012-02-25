@@ -22,6 +22,8 @@ class testScheduleEntry extends UnitTestCase {
         $this->assertEqual($scheduleA->get_id(), "Mon:1");
         $this->assertEqual($scheduleA->get_volunteer_id(), "John1112345678");
         $this->assertEqual($scheduleA->get_notes(), "Good worker!");
+        
+        echo ("testScheduleEntry complete.\n");
     }
 }
 ?>

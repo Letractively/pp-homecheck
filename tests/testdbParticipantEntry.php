@@ -47,6 +47,8 @@ class testdbParticipantEntry extends UnitTestCase {
 		$this->assertTrue(delete_dbParticipantEntry($part2->get_id()));
 		$this->assertTrue(delete_dbParticipantEntry($part3->get_id()));
 	    $this->assertFalse(retrieve_dbParticipantEntry($part2->get_id()));
+	    
+	    echo ("testdbParticipantEntry complete.\n");
 	}
 }
 ?>

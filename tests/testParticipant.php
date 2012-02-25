@@ -6,7 +6,7 @@ class testParticipant extends UnitTestCase {
     	//fake person to test
     	$participant = new Participant("Smith", "John", "14 Way St","Harpswell", "ME", "04079", "(207)111-2345", 
     						"(207)555-5555", "jsmith@aol.com", "no", "contact1,contact2", "physician (207) 555-5555", 
-    						"yes", "service1,service2", "need1,need2", "no", "name, address, phone", "yes--description", 
+    						"yes", "service1,service2", "need1,need2", "no", "name:address:phone", "yes--description", 
     	    				"30-02-30", "completed", "01-01-01", "", "active", "log1,log2", "notes");
     	 
     	//testing getter functions
@@ -36,7 +36,7 @@ class testParticipant extends UnitTestCase {
 		$this->assertEqual($special_needs[0], "need1");
 		$this->assertEqual($special_needs[1], "need2");
     	$this->assertTrue($participant->get_hidden_key() == "no");
-    	$this->assertTrue($participant->get_other_key() == "name, address, phone");
+    	$this->assertTrue($participant->get_other_key() == "name:address:phone");
     	$this->assertTrue($participant->get_has_car() == "yes--description");
     	$this->assertTrue($participant->get_birthday() == "30-02-30");
     	$this->assertTrue($participant->get_background_check() == "completed");
@@ -49,7 +49,7 @@ class testParticipant extends UnitTestCase {
     	$this->assertEqual($log_entries[1], "log2");
       	$this->assertTrue($participant->get_notes() == "notes");
     	 
-    	echo ("testVolunteer complete\n");
+    	echo ("testParticipant complete\n");
     }
 
 
