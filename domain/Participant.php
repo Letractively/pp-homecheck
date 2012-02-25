@@ -13,7 +13,7 @@
 * @version February 6, 2012
 */
 class Participant {
-	private $person_id; 		// id (unique key) = first_name . phone1
+	private $id; 		// id (unique key) = first_name . phone1
 	private $first_name;   		// first name as a string
 	private $last_name;    		// last name as a string
 	private $address;      		// address - string
@@ -24,14 +24,14 @@ class Participant {
 	private $phone2; 	    	// alternate phone
     private $email; 	    	// email address
 	private $lives_alone;  		// ÒyesÓ or ÒnoÓ with name & relationship of housemate
-	private $contacts;			// array of emergency contacts: 
-								// Òname, relationship, phoneÓ
+	private $contacts;			// array of emergency contacts: each one has the form
+								// Òname:relationship:phoneÓ
 	private $physician;			// primary care physician and phone
 	private $lifeline;			// ÒyesÓ, ÒnoÓ, or Òother typeÓ
 	private $in_home_services; 	// array of in-home services being used
 	private $special_needs;		// array of special needs that Volunteers should know
 	private $hidden_key;		// ÒnoÓ or Òyes Ð give locationÓ
-	private $other_key; 		// Òname, address, and phoneÓ of other person with a key
+	private $other_key; 		// Òname:address:and phoneÓ of other person with a key
 	private $has_car;			// ÒnoÓ or Òyes Ð give license plate and descriptionÓ
 	private $birthday;    		// format: yy-mm-dd
 	private $background_check; 	// ÒauthorizedÓ, ÒunauthorizedÓ, ÒcompletedÓ
@@ -47,7 +47,7 @@ class Participant {
 	function __construct($last_name, $first_name, $address, $city, $state, $zip, $phone1, $phone2, $email, 
 	$lives_alone, $contacts, $physician, $lifeline, $in_home_services, $special_needs, $hidden_key, $other_key, 
 	$has_car, $birthday, $background_check, $start_date, $end_date, $status, $log_entries, $notes) {
-		$this->person_id = $first_name . $phone1;
+		$this->id = $first_name . $phone1;
 		$this->last_name = $last_name;
 		$this->first_name = $first_name;
 		$this->address = $address;
@@ -89,8 +89,8 @@ class Participant {
 	}
 	
 	//getter functions
-	function get_person_id() {
-		return $this->person_id;
+	function get_id() {
+		return $this->id;
 	}
 	function get_first_name() {
 		return $this->first_name;

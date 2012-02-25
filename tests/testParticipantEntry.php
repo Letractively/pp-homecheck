@@ -23,6 +23,8 @@ class testParticipantEntry extends UnitTestCase {
                  $this->assertTrue($participantA->get_call_time() == "9:57");
                  $this->assertTrue($participantA->get_result() == "");
                  $this->assertTrue($participantA->get_note() == "Good worker!");
+                 
+                 echo ("testParticipantEntry complete.\n");
     }
 }
 ?>

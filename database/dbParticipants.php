@@ -72,7 +72,8 @@ function insert_dbParticipants ($participant){
 	$participant->get_end_date()."','".
 	$participant->get_status()."','".
 	implode(',',$participant->get_log_entries())."','".
-	$participant->get_notes()."','".
+	$participant->get_notes().
+	"');";
 
 	$result = mysql_query($query);
 	if (!$result) {
