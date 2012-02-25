@@ -24,7 +24,7 @@ class testdbParticipants extends UnitTestCase {
 		$this->assertTrue(insert_dbParticipants($part1));
 		$this->assertTrue(insert_dbParticipants($part2));
 		$this->assertTrue(insert_dbParticipants($part3));
-/*		
+		
 		//test the retrieve function
 		$this->assertEqual(retrieve_dbParticipants($part1->get_id())->get_id (), "John2071234567");
 		$this->assertEqual(retrieve_dbParticipants($part1->get_id())->get_first_name (), "John");
@@ -47,7 +47,7 @@ class testdbParticipants extends UnitTestCase {
 		$this->assertTrue(delete_dbParticipants($part2->get_id()));
 		$this->assertTrue(delete_dbParticipants($part3->get_id()));
 		$this->assertFalse(retrieve_dbParticipants($part1->get_id()));
-*/		
+		
 		echo ("testdbParticipants complete \n");
 	}
 }
