@@ -168,6 +168,9 @@ class Participant {
 		return $this->notes;
 	}
 	
-	//setters later
+	//setters
+	function set_address($address) {
+		$this->address = $address;
+	}
 }
 ?>
