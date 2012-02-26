@@ -23,7 +23,7 @@ class testdbParticipantEntry extends UnitTestCase {
 		
 		//Pseudo-Participants
 		$part1 = new ParticipantEntry("12-02-29", "John1112345678", "9:57", "H", "Wont be here for a week.");
-		$part2 = new ParticipantEntry("12-02-30", "12-02-30Jane1112345678", "8:57", "C", "Had to call contact.");
+		$part2 = new ParticipantEntry("12-02-30", "Jane1112345678", "8:57", "C", "Had to call contact.");
 		$part3 = new ParticipantEntry("12-02-31", "Jenn1112345678", "7:57", "", "Called on time.");
 		
 		//Test Insert

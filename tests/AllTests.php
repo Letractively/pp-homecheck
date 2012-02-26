@@ -14,6 +14,7 @@ class AllTests extends GroupTest {
         $this->addTestFile(dirname(__FILE__).'/testReport.php');
 		$this->addTestFile(dirname(__FILE__).'/testShift.php');
 		$this->addTestFile(dirname(__FILE__).'/testScheduleEntry.php');
+		$this->addTestFile(dirname(__FILE__).'/testdbScheduleEntry.php');
 		$this->addTestFile(dirname(__FILE__).'/testdbVolunteers.php');
 		$this->addTestFile(dirname(__FILE__).'/testdbParticipantEntry.php');
 		$this->addTestFile(dirname(__FILE__).'/testdbParticipants.php');

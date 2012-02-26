@@ -20,8 +20,8 @@ class ScheduleEntry {
 	private $notes;		// notes to/from the coordinator about this schedule
 	
 	//constructor function
-	function __construct($day_week, $volunteer_id, $notes) {
-		$this->id = $day_week;
+	function __construct($id, $volunteer_id, $notes) {
+		$this->id = $id;
 		$this->volunteer_id = $volunteer_id;
 		$this->notes = $notes;
 	}
