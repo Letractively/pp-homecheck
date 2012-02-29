@@ -24,6 +24,7 @@ class Volunteer {
 	private $phone1; 		// primary phone
 	private $phone2; 		// alternate phone
     private $email; 		// e-mail address
+    private $type;			// type of volunteer: "volunteer", "coordinator", or "dispatch"
 	private $contacts;		// array of emergency contacts: Òname:phone:emailÓ
 	private $employment_status;		// ÒemployedÓ, ÒunemployedÓ, ÒretiredÓ
 	private $employment_history;	// array of employees (most recent first): 
@@ -42,7 +43,7 @@ class Volunteer {
         /**
          * constructor for a Volunteer
          */
-    function __construct($last_name, $first_name, $address, $city, $state, $zip, $phone1, $phone2, $email,
+    function __construct($last_name, $first_name, $address, $city, $state, $zip, $phone1, $phone2, $email, $type,
                          $contacts, $employment_status, $employment_history, $convictions, $background_check, 
                          $availability, $schedule, $history, $start_date, $end_date, $status, $notes, $password) {                
         $this->id = $first_name . $phone1; 
@@ -55,6 +56,7 @@ class Volunteer {
         $this->phone1 = $phone1;
         $this->phone2 = $phone2;
         $this->email = $email;
+        $this->type = $type;
         if ($contacts == "") 
         	$this->contacts = array();
         else 
@@ -117,6 +119,9 @@ class Volunteer {
     }
     function get_email(){
         return $this->email;
+    }
+    function get_type(){
+        return $this->type;
     }
     function get_contacts() {
         return $this->contacts;

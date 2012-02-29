@@ -8,18 +8,38 @@ class testdbVolunteers extends UnitTestCase {
 	
 		//Test volunteers
 		$vol1 = new Volunteer("Smith", "John", "111 Main Street", "Brunswick", "ME", "04011", 2071234567, "", "name@domain1.com",
-                         "You", "Employed", "Bowdoin,Bates", "None", "Clear", 
-                         "M,W,F", "1,2,3", "", "01-01-01", "02-02-02", "Active", "Test1", "password");
+                    "volunteer", "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
+        			"retired", "", "","completed", "Wed:1,Fri:5,FI","Wed:1,Fri5","", "08-01-01","", "active", "", "");
 		$vol2 = new Volunteer("Doe", "Jane", "222 Park", "Topsham", "ME", "11111", 2072345678, "", "jane@doe.com",
-                         "Me", "Retired", "Mayor", "None", "Clear", 
-                         "T,TH", "A,B,C", "", "03-03-03", "04-04-04", "Active", "None", "password1");
+                         "volunteer", "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
+        			"retired", "", "","completed", "Wed:2,Fri:4,FI","Wed:2,Fri:4","", "08-01-01","", "active", "", "");
 		$vol3 = new Volunteer("Bar", "Foo", "33 Center Street", "Bowdoinham", "ME", "04011", 2074567890, "", "3@4.com",
-                         "Us", "Employed", "Lobsterman", "None", "Clear", 
-                         "Sat,Sun", "2,4,6", "", "05-05-05", "06-06-06", "Active", "None", "password2");
-		//Test inserts
+                         "volunteer", "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
+        			"retired", "", "","completed", "Wed:3,Fri:1","Wed:3,Fri:1","", "08-01-01","", "active", "", "");
+		$vol4 = new Volunteer("Edison", "Alex", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
+    				"edison.ace@gmail.com", "volunteer",  "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
+        			"retired", "", "","completed", "Wed:4,Fri:2","Wed:4,Fri:2","", "08-01-01","", "active", "", "");
+        $vol5 = new Volunteer("Erkis", "Nicole", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
+    				"nikwik@gmail.com", "volunteer",  "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
+        			"retired", "", "","completed", "Wed:5,Fri:3","Wed:5,Fri:3","", "08-01-01","", "active", "", "");
+        $vol6 = new Volunteer("Martinez", "Ruben", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
+    				"rmartin@bowdoin.edu", "volunteer",  "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
+        			"retired", "", "","completed", "Wed:1,Thu:4,FI","Thu:4","", "08-01-01","", "active", "", "");
+        $vol7 = new Volunteer("Ashe", "Madeleine", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
+    				"madeleine@ashe.com", "coordinator", "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
+        			"retired", "", "","completed", "Wed:2,Thu:5","Thu:5","", "08-01-01","", "active", "", "");
+        $vol8 = new Volunteer("Tucker", "Allen", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
+    				"allen@bowdoin.edu", "dispatch", "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
+        			"retired", "", "","completed", "FI","","", "08-01-01","", "active", "", "");
+        //Test inserts
 		$this->assertTrue(insert_dbVolunteers($vol1));
 		$this->assertTrue(insert_dbVolunteers($vol2));
 		$this->assertTrue(insert_dbVolunteers($vol3));
+		$this->assertTrue(insert_dbVolunteers($vol4));
+		$this->assertTrue(insert_dbVolunteers($vol5));
+		$this->assertTrue(insert_dbVolunteers($vol6));
+		$this->assertTrue(insert_dbVolunteers($vol7));
+		$this->assertTrue(insert_dbVolunteers($vol8));
 		
 		//Test Retrieve
 		$this->assertEqual(retrieve_dbVolunteers($vol1->get_id())->get_id (), "John2071234567");
@@ -35,7 +55,7 @@ class testdbVolunteers extends UnitTestCase {
 		
 		//Test Update
 		$vol2 = new Volunteer("Doe", "Jane", "444 Park", "Topsham", "ME", "11111", 2072345678, "", "jane@doe.com",
-                         "Me", "Retired", "Mayor", "None", "Clear", 
+                         "volunteer", "Me", "Retired", "Mayor", "None", "Clear", 
                          "T,TH", "A,B,C", "", "03-03-03", "04-04-04", "Active", "None", "password1");
 		$this->assertTrue(update_dbVolunteers($vol2));
 		$this->assertEqual(retrieve_dbVolunteers($vol2->get_id())->get_address(), "444 Park");

@@ -12,7 +12,7 @@
 	<head>
 		<meta HTTP-EQUIV="REFRESH" content="2; url=index.php">
 		<title>
-			Logged out of RMH Homeroom
+			Logged out of Homecheck
 		</title>
 		<link rel="stylesheet" href="styles.css" type="text/css" />
 	</head>
@@ -24,7 +24,7 @@
 					session_unset();
 					session_write_close();
 				?>
-				<p>You are now logged out of RMH Homeroom.</p>
+				<p>You are now logged out of Homecheck.</p>
 				<?PHP include('footer.inc');?>
 			</div>
 		</div>
