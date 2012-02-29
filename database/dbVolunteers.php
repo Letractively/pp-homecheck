@@ -20,7 +20,7 @@ function create_dbVolunteers(){
 	connect();
 	mysql_query("DROP TABLE IF EXISTS dbVolunteers");
 	$result = mysql_query("CREATE TABLE dbVolunteers (id TEXT NOT NULL, last_name TEXT, first_name TEXT, address TEXT, city TEXT, state TEXT, zip TEXT, 
-							phone1 VARCHAR(12) NOT NULL, phone2 VARCHAR(12), email TEXT, contacts TEXT, employment_status TEXT, employment_history TEXT,
+							phone1 VARCHAR(12) NOT NULL, phone2 VARCHAR(12), email TEXT, type TEXT, contacts TEXT, employment_status TEXT, employment_history TEXT,
 							convictions TEXT, background_check TEXT, availability TEXT, schedule TEXT, history TEXT, start_date TEXT, end_date TEXT, 
 							status TEXT, notes TEXT, password TEXT)");
 	mysql_close();
@@ -40,7 +40,7 @@ function retrieve_dbVolunteers($id){
 	}
 	$result_row = mysql_fetch_assoc($result);
 	$theVol = new Volunteer($result_row['last_name'], $result_row['first_name'], $result_row['address'], $result_row['city'], $result_row['state'],
-							$result_row['zip'], $result_row['phone1'], $result_row['phone2'], $result_row['email'], $result_row['contacts'], $result_row['employment_status'],
+							$result_row['zip'], $result_row['phone1'], $result_row['phone2'], $result_row['email'], $result_row['type'], $result_row['contacts'], $result_row['employment_status'],
 							$result_row['employment_history'], $result_row['convictions'], $result_row['background_check'], $result_row['availability'],
 							$result_row['schedule'], $result_row['history'], $result_row['start_date'], $result_row['end_date'], $result_row['status'],
 							$result_row['notes'], $result_row['password']);
@@ -54,7 +54,7 @@ function getall_dbVolunteers(){
 	$theVols = array();
 	while($result_row = mysql_fetch_assoc($result)){
 		$theVol = new Volunteer($result_row['last_name'], $result_row['first_name'], $result_row['address'], $result_row['city'], $result_row['state'],
-							$result_row['zip'], $result_row['phone1'], $result_row['phone2'], $result_row['email'], $result_row['contacts'], $result_row['employment_status'],
+							$result_row['zip'], $result_row['phone1'], $result_row['phone2'], $result_row['email'], $result_row['type'], $result_row['contacts'], $result_row['employment_status'],
 							$result_row['employment_history'], $result_row['convictions'], $result_row['background_check'], $result_row['availability'],
 							$result_row['schedule'], $result_row['history'], $result_row['start_date'], $result_row['end_date'], $result_row['status'],
 							$result_row['notes'], $result_row['password']);
@@ -87,6 +87,7 @@ function insert_dbVolunteers($volunteer){
 				$volunteer->get_phone1()."','".
 				$volunteer->get_phone2()."','".
 				$volunteer->get_email()."','".
+				$volunteer->get_type()."','".
 				implode(',',$volunteer->get_contacts())."','".
 				$volunteer->get_employment_status()."','".
 				implode(',',$volunteer->get_employment_history())."','".
