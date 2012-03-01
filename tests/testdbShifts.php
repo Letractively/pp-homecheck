@@ -22,8 +22,8 @@ class testdbShifts extends UnitTestCase {
 		$this->assertTrue(create_dbShifts());
 		
 		$shift1 = new Shift("12-02-29", "Malcom1234567890", "Monday", "Notes1");
-		$shift2 = new Shift("12-02-29", "vacancy", "Wednesday", "Notes2");
-		$shift3 = new Shift("12-02-29", "police", "Friday", "Notes3");
+		$shift2 = new Shift("12-02-28", "vacancy", "Wednesday", "Notes2");
+		$shift3 = new Shift("12-02-27", "police", "Friday", "Notes3");
 		
 		$this->assertTrue(insert_dbShifts($shift1));
 		$this->assertTrue(insert_dbShifts($shift2));

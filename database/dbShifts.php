@@ -58,7 +58,7 @@ function insert_dbShifts($shift){
 
 function retrieve_dbShifts($yy_mm_dd){
 		connect();
-		$query = "SELECT * FROM dbShifts WHERE yy_mm_dd = '".$yy_mm_dd."'";
+		$query = 'SELECT * FROM dbShifts WHERE yy_mm_dd = "'.$yy_mm_dd.'"';
 		$result = mysql_query($query);
 		if ($result==null || mysql_num_rows($result) !== 1) {
 			mysql_close();
@@ -67,7 +67,7 @@ function retrieve_dbShifts($yy_mm_dd){
 		$result_row = mysql_fetch_assoc($result);
 		$theShift = new Shift($result_row['yy_mm_dd'],$result_row['volunteer_id'],$result_row['day'],$result_row['notes']);
 		mysql_close();
-		return $shift;
+		return $theShift;
 }
 
 function update_dbShifts($shift){
