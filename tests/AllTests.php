@@ -18,8 +18,8 @@ class AllTests extends GroupTest {
 		$this->addTestFile(dirname(__FILE__).'/testdbVolunteers.php');
 		$this->addTestFile(dirname(__FILE__).'/testdbParticipantEntry.php');
 		$this->addTestFile(dirname(__FILE__).'/testdbParticipants.php');
+		$this->addTestFile(dirname(__FILE__).'/testdbShifts.php');
 
-		
         echo ("\n All tests complete \n");
  	  }
  }

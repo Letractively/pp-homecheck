@@ -40,7 +40,7 @@ class testdbParticipants extends UnitTestCase {
 		//test the update function
         $part2->set_address("6 Pleasant Street");
         $this->assertTrue(update_dbParticipants($part2));
-        $this->assertEqual(retrieve_dbParticipants($part2->get_id())->get_address (), "6 Pleasant Street");   
+        $this->assertEqual(retrieve_dbParticipants($part2->get_id())->get_address(), "6 Pleasant Street");   
 		
 		//test the delete function
         $this->assertTrue(delete_dbParticipants($part1->get_id()));

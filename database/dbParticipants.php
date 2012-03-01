@@ -102,9 +102,10 @@ function retrieve_dbParticipants ($id) {
 	$result_row['hidden_key'], $result_row['other_key'], $result_row['has_car'],
 	$result_row['birthday'], $result_row['background_check'], $result_row['start_date'], $result_row['end_date'],
 	$result_row['status'], $result_row['log_entries'], $result_row['notes']);
-	//    mysql_close();
+	mysql_close();
 	return $theParticipant;
 }
+
 function getall_participants () {
 	connect();
 	$query = "SELECT * FROM dbParticipants ORDER BY last_name";
@@ -121,7 +122,7 @@ function getall_participants () {
 		$result_row['status'], $result_row['log_entries'], $result_row['notes']);
 		$theParticipants[] = $theParticipant;
 	}
-	//   mysql_close();
+	mysql_close();
 	return $theParticipants;
 }
 
