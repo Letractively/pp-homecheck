@@ -27,7 +27,6 @@ class DailyLog {
 		$this->entry_ids = explode(',',$participant_entry_ids);
 		$this->volunteer_id = $volunteer;
 		$this->note = $notes;
-		echo($this->entry_ids[0]);
 		
 	}
 	

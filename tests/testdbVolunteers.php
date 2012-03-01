@@ -64,6 +64,11 @@ class testdbVolunteers extends UnitTestCase {
 		$this->assertTrue(delete_dbVolunteers($vol1->get_id()));
 		$this->assertTrue(delete_dbVolunteers($vol2->get_id()));
 		$this->assertTrue(delete_dbVolunteers($vol3->get_id()));
+		$this->assertTrue(delete_dbVolunteers($vol4->get_id()));
+		$this->assertTrue(delete_dbVolunteers($vol5->get_id()));
+		$this->assertTrue(delete_dbVolunteers($vol6->get_id()));
+		$this->assertTrue(delete_dbVolunteers($vol7->get_id()));
+		$this->assertTrue(delete_dbVolunteers($vol8->get_id()));
 		$this->assertFalse(retrieve_dbVolunteers($vol2->get_id()));
 		
 		echo ("testdbVolunteers complete \n");
