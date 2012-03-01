@@ -17,7 +17,7 @@ include_once(dirname(__FILE__).'/../domain/Shift.php');
 include_once(dirname(__FILE__).'/../database/dbShifts.php'); 
 
 class testdbShifts extends UnitTestCase {
-	function testdbShiftsEntryModule() {
+	function testdbShiftsModule() {
 
 		$this->assertTrue(create_dbShifts());
 		
