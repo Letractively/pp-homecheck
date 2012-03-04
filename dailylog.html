@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+        <TITLE>Daily Log</TITLE>
+    <style>
+    .box
+    {
+        border:solid black 1px;
+        padding:0px;
+        margin:0px;
+    }
+</style>
+</head>
+
+<BODY BGCOLOR = White>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+<div style=" top: 0; left: 300; position: absolute; z-index: 1; visibility: show;"><font size="4" face="Lato" color="black"><h1>Daily Log</h1></font><br>
+</div>
+<div style=" top: 80; left: 25; position: absolute; z-index: 1; visibility: show;">
+<font size="4" face="arial" color="black">
+Time:<br> <br>
+Participant:<br> <br><br><br><br><br><br><br><br>
+All Participants:
+</font></div>
+<form id="form1" runat="server">
+<div style=" top: 81; left: 170; position: absolute; z-index: 1; visibility: show;">
+        <input class="box" style="width:70px; " /><br /><br /></div>
+<div style=" top: 127; left: 170; position: absolute; z-index: 1; visibility: show;">
+        <input class="box" style="width:155px;" /><br />
+        <SELECT NAME = List1 STYLE = "Width: 155" SIZE = 6>
+                <OPTION Value = Participant A>Participant A</OPTION>
+                <OPTION Value = Participant B>Participant B</OPTION>
+                <OPTION Value = Participant C>Participant C</OPTION>
+        </SELECT> 
+</div>
+
+<div style=" top: 124; left: 400; position: absolute; z-index: 1; visibility: show;">
+<font size="4" face="arial" color="black">
+Result: <br /><br />
+Notes:</div>
+</font>
+
+<br />
+<div style=" top: 124; left: 500; position: absolute; z-index: 1; visibility: show;">
+<select>
+    <option> </option>
+    <option>C</option>
+    <option>H</option>
+    <option>D</option>
+</select> <br /><br />
+<textarea name="comments" cols="25" rows="5">
+Enter Notes Here</textarea><br /><br />
+<input type="submit" value="Submit" />
+    </font></div>
+</form>
+
+
+<form id="form2" runat="server">
+<div style=" top: 322; left: 170; position: absolute; z-index: 1; visibility: show;">
+        <SELECT NAME = List1 STYLE = "Width: 155" SIZE = 6>
+                <OPTION Value = Participant A>Participant A</OPTION>
+                <OPTION Value = Participant B>Participant B</OPTION>
+                <OPTION Value = Participant C>Participant C</OPTION>
+                <OPTION Value = Participant C>Participant D</OPTION>
+                <OPTION Value = Participant C>Participant E</OPTION>
+                <OPTION Value = Participant C>Participant F</OPTION>
+                <OPTION Value = Participant C>Participant G</OPTION>
+                <OPTION Value = Participant C>Participant H</OPTION>
+        </SELECT> <br><br>
+<INPUT TYPE="BUTTON" VALUE="Participant Info & Notes" ONCLICK="window.location.href='http://dummyURL'"> 
+</form>
+
+</div>
+</BODY>
+</HTML>
