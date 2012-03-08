@@ -1,36 +1,21 @@
+<!--
+/*
+ * Copyright 2012 by Alex Edison, Nicole Erkis, Ruben Martinez, and Allen
+ * Tucker.  This program is part of Homecheck, which is free software.  It comes
+ * with absolutely no warranty.  You can redistribute and/or modify it under the
+ * terms of the GNU Public License as published by the Free Software Foundation
+ * (see <http://www.gnu.org/licenses/).
+*/
+-->
 <HTML>     
     <HEAD>  
     <TITLE>Daily Log</TITLE>   
-	<link rel="stylesheet" href="calendarview.css">
-	<STYLE ALIGN="text/css"> 
-        body {
-		    font-family: Trebuchet MS;
-	    }
-	    div.box     {     
-            width:92%;     
-            height:100%;     
-            margin-left: auto;
-			margin-right: auto;  
-			margin-top: 30px; 
-			margin-bottom: 30px;
-			min-width: 1000px;
-			min-height: 800px;
-            background-color:rgb(238,233,233);     
-            border:1px solid black;     
-            /* for IE */     
-            filter:alpha(opacity=100);     
-            /* CSS3 standard */     
-            opacity:1;     
-        }     
-        div.box p     {     
-            margin-left: 2cm;
-			margin-right:2cm;     
-            font-weight:bold;     
-            color:#000000;     
-        }     
+	<link rel="stylesheet" href="styles.css" type="text/css">
+	<link type="text/css" rel="stylesheet" href="data:text/css,">
+	<STYLE TYPE="text/css"> 
 	    select {
  			font-family: Arial, sans-serif;
- 			font-size: 0.8em;
+ 			font-size: 1em;
  	    }
 	    textarea {
 			max-width: 280px;
@@ -88,14 +73,15 @@
        	}
 	</SCRIPT>
     </HEAD>     
-    <BODY BGCOLOR="#87CEFA"> 
-    	<DIV class="box">
-		<LINK HREF='http://fonts.googleapis.com/css?family=Lato' REL='STYLEsheet' ALIGN='text/css'>
+    <BODY> 
+    	<div id="container">
+    	<?PHP include('header.php');?>
+		<div id="content">
 		<?php
 			$connect = mysql_connect("127.0.0.1", "root", "") or die ("Check server connection.");
 			mysql_select_db("pphomecheckdb");
-			$quey1="select * from dbparticipants";
-			$result=mysql_query($quey1) or die(mysql_error());
+			$query1="select * from dbparticipants";
+			$result=mysql_query($query1) or die(mysql_error());
     	?>
         <DIV STYLE=" TOP: 75; LEFT: 100; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <IMG SRC="images/DailyLogLogo.png" WIDTH="70" HEIGHT="88"/>
@@ -167,10 +153,9 @@
         </FORM>
         <DIV STYLE=" TOP: 180; LEFT: 570; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
 	    	<img src="images/vl.png" height="440" width="5"/>
-	</DIV>
-	<div ALIGN="center" STYLE="TOP: 620; POSITION: relative; Z-INDEX: 1; VISIBILITY: show;">
-	<?php include('../footer.inc');?>
-	</div>	
+		</DIV>
+		<br clear="all">
+		<?php include('footer.inc');?>	
         </DIV>     
         </DIV>     
     </BODY>     
