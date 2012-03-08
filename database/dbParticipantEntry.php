@@ -124,11 +124,15 @@ function create_dbParticipantEntry() {
    		return $result;
 	}
 
-	function getall_names($result) {
+	function getall_names() {
 		connect();
-		$status = mysql_query("SELECT * FROM dbParticipantEntry ORDER BY result");
-		mysql_close();
-   		return status;
+		$query = mysql_query("SELECT * FROM dbParticipantEntry ORDER BY result");
+		$partEntries = array();
+		while ($result_row = mysql_fetch_assoc(query)) {
+			$partEntry = new ParticipantEntry($result_row['date'],$result_row['id'],$result_row['call_time'],$result_row['result'], $result_row['note']);
+			$partEntries[] = $partEntry;
+		}
+		return $partEntries;
 	}
 
 ?>
