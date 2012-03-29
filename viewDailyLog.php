@@ -75,7 +75,7 @@
     </HEAD>     
     <BODY> 
     	<div id="container">
-    	<?PHP include('header.php');?>
+    	<?PHP //include('header.php');?>
 		<div id="content">
 		<?php
 			$connect = mysql_connect("127.0.0.1", "root", "") or die ("Check server connection.");
@@ -86,6 +86,7 @@
         <DIV STYLE=" TOP: 75; LEFT: 100; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <IMG SRC="images/DailyLogLogo.png" WIDTH="70" HEIGHT="88"/>
         </DIV>
+        <!--All images with text use Ariel 14pt font-->
 		<DIV STYLE=" TOP: 65; LEFT: 180; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <IMG SRC="images/DailyLog.png"/>
         </DIV>
@@ -155,7 +156,7 @@
 	    	<img src="images/vl.png" height="440" width="5"/>
 		</DIV>
 		<br clear="all">
-		<?php include('footer.inc');?>	
+		<?PHP //include('footer.inc');?>	
         </DIV>     
         </DIV>     
     </BODY>     
