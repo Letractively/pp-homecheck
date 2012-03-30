@@ -62,7 +62,7 @@ h1 {padding-left: 0px; padding-right:165px;}
 
 		//This line gives us the path to the html pages in question, useful if the server isn't installed @ root.
 		$path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']),strpos(strrev($_SERVER['SCRIPT_NAME']),'/')));
-
+        $today = date("y-m-d");
 		//they're logged in and session variables are set.
 		echo('<a href="'.$path.'index.php">home</a>');
 		if ($_SESSION['access_level']==0) // guests
@@ -70,7 +70,7 @@ h1 {padding-left: 0px; padding-right:165px;}
 		
 		if($_SESSION['access_level']>=1) // volunteers, coordinator, dispatcher 
 		{
-		    echo('<a href="'.$path.'viewDailyLog.php?id='.$_SESSION['_area'].'"> | daily log</a>');
+		    echo('<a href="'.$path.'dailyLog.php?date='.$today.'"> | daily log</a>');
 		    echo('<a href="'.$path.'help.php?helpPage='.$current_page.'" target="_BLANK"> | help</a>');
 		}
 	    if($_SESSION['access_level']==2) { // coordinator only
