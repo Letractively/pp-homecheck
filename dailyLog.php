@@ -1,4 +1,4 @@
-<!--
+<?PHP
 /*
  * Copyright 2012 by Alex Edison, Nicole Erkis, Ruben Martinez, and Allen
  * Tucker.  This program is part of Homecheck, which is free software.  It comes
@@ -6,12 +6,16 @@
  * terms of the GNU Public License as published by the Free Software Foundation
  * (see <http://www.gnu.org/licenses/).
 */
--->
+	session_start();
+	session_cache_expire(30);
+	include_once('database/dbParticipants.php');
+	$date = $_GET["date"]; 
+?>
 <HTML>     
     <HEAD>  
     <TITLE>Daily Log</TITLE>   
-	<link rel="stylesheet" href="styles.css" type="text/css">
-	<link type="text/css" rel="stylesheet" href="data:text/css,">
+	<LINK rel="stylesheet" href="styles.css" type="text/css">
+	<LINK type="text/css" rel="stylesheet" href="data:text/css,">
 	<STYLE TYPE="text/css"> 
 	    select {
  			font-family: Arial, sans-serif;
@@ -74,14 +78,13 @@
 	</SCRIPT>
     </HEAD>     
     <BODY> 
-    	<div id="container">
+    	<DIV ID="container">
     	<?PHP //include('header.php');?>
-		<div id="content">
-		<?php
+		<DIV ID="content">
+		<?PHP
+			//Substitute appropriate server credentials
 			$connect = mysql_connect("127.0.0.1", "root", "") or die ("Check server connection.");
 			mysql_select_db("pphomecheckdb");
-			$query1="select * from dbparticipants";
-			$result=mysql_query($query1) or die(mysql_error());
     	?>
         <DIV STYLE=" TOP: 75; LEFT: 100; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <IMG SRC="images/DailyLogLogo.png" WIDTH="70" HEIGHT="88"/>
@@ -106,31 +109,33 @@
 	    	<IMG SRC="images/participants.png"/>
 		</DIV>
         <DIV STYLE=" TOP: 145; LEFT: 188; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-            <?PHP echo date('l, F j, Y'); ?>
+            <?PHP echo date('d, F, Y'); ?>
         </DIV>
-        <FORM ID="FORM1" ACTION="writeToDL.php" METHOD="post" ONSUBMIT="return checkRequired(this);">
-            <DIV STYLE=" TOP: 209; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+        <FORM ID="FORM1" ACTION="writeToDL.php" METHOD="POST" ONSUBMIT="return checkRequired(this);">
+        	<DIV STYLE=" TOP: 209; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+        		<INPUT TYPE="hidden" NAME="Date" STYLE="WIDTH:0px; " MAXLENGTH="8" TITLE="Enter Date" Value="<?php $dt = date('dmY'); echo $dt ?>"/>
                 <INPUT TYPE="text" NAME="Time" STYLE="WIDTH:70px; " MAXLENGTH="7" ONCHANGE="validateTime();" TITLE="Enter Time in HH:MM" required/>
 				<SELECT NAME = "AP" TITLE="Select AM or PM">
-    		    	<OPTION>AM</OPTION>
-    		    	<OPTION>PM</OPTION>
+    		    	<OPTION VALUE = A>AM</OPTION>
+    		    	<OPTION VALUE = P>PM</OPTION>
                 </SELECT><BR><BR>
             </DIV>
             <DIV STYLE=" TOP: 272; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
         		<SELECT NAME = "Participant" STYLE = "WIDTH: 187" title="Begin typing participant name for fast searching." required>
                 	<OPTION SELECTED VALUE = "">Select Participant...</OPTION>
-		    		<?php
-						while($row=mysql_fetch_array($result)){
-		    				echo "<OPTION VALUE='",$row['id'],"'>";
-		    				echo $row['first_name']," ",$row['last_name'];
+		    		<?PHP
+		    			$allParticipants = getall_participants();
+		    			foreach($allParticipants as &$value) {
+							echo "<OPTION VALUE='",$value->get_id(),"'>";
+		    				echo $value->get_first_name()," ",$value->get_last_name();
 		    				echo "</OPTION>";
-						}
+		    			}
                		?>
         		</SELECT> 
             </DIV>
             <DIV STYLE=" TOP: 335; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
                 <SELECT NAME = "Result" TITLE="Choose 'H' for 'Had to Call', 'C' for 'Called Contact', 'D' for 'Called Dispatch', else leave blank." required>
-    			    <OPTION VALUE =  ></OPTION>
+    			    <OPTION VALUE = OK></OPTION>
     			    <OPTION VALUE = C>C</OPTION>
    			    	<OPTION VALUE = H>H</OPTION>
    			    	<OPTION VALUE = D>D</OPTION>
@@ -142,14 +147,20 @@
 				<INPUT TYPE="submit" VALUE="Submit" />
             </DIV>
         </FORM>
-
-        <FORM ID="FORM2">
+        <FORM ID="FORM2" METHOD = "get">
 	    	<DIV STYLE=" TOP: 210; LEFT: 810; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-      		    <SELECT NAME = ParticipantList STYLE = "WIDTH: 187" SIZE = 18>
-
+      		    <SELECT NAME = id STYLE = "WIDTH: 180" SIZE = 18>
+					<?PHP
+		    			$allParticipants = getall_participants();
+		    			foreach($allParticipants as &$value) {
+							echo "<OPTION VALUE='",$value->get_id(),"'>";
+		    				echo $value->get_first_name()," ",$value->get_last_name();
+		    				echo "</OPTION>";
+		    			}
+               		?>
        		    </SELECT> <BR><BR>
-                <INPUT TYPE="submit" VALUE="Participant Info" ONCLICK="window.location.href='http://homecheck.myopensoftware.org/this-participants-info'"/> 
-				<INPUT TYPE="button" VALUE="Notepad" ONCLICK="window.location.href='http://homecheck.myopensoftware.org/notepad'" /> 
+                <INPUT TYPE="submit" VALUE="Participant Info" ONCLICK="javascript: FORM2.action='http://homecheck.myopensoftware.org/participantInfo.php'"/> 
+				<INPUT TYPE="submit" VALUE="Notepad" ONCLICK="javascript: FORM2.action='http://homecheck.myopensoftware.org/participantLog.php'"/> 
             </DIV>
         </FORM>
         <DIV STYLE=" TOP: 180; LEFT: 570; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
