@@ -6,8 +6,7 @@ class testVolunteer extends UnitTestCase {
         //fake person to test
         $volunteer = new Volunteer("Smith", "John", "14 Way St","Harpswell", "ME", "04079", "(207)111-2345", "", 
     				"jsmith@aol.com", "volunteer", "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com",
-        			"retired", "", "","completed", "Wed:3,Fri:4,FI","Wed:3","",
-    				"08-01-01","", "active", "", "");
+        			"Wed:3,Fri:4,FI","Wed:3","","08-01-01","", "active", "", "");
                  
         //testing getter functions
         $this->assertTrue($volunteer->get_first_name() == "John");

@@ -26,11 +26,7 @@ class Volunteer {
     private $email; 		// e-mail address
     private $type;			// type of volunteer: "volunteer", "coordinator", or "dispatch"
 	private $contacts;		// array of emergency contacts: Òname:phone:emailÓ
-	private $employment_status;		// ÒemployedÓ, ÒunemployedÓ, ÒretiredÓ
-	private $employment_history;	// array of employees (most recent first): 
-							// Òtitle, company, address, start date, end dateÓ
-	private $convictions;		// prior convictions (ÒnoÓ or ÒyesÓ with explanation)
-	private $background_check;	// ÒauthorizedÓ, ÒunauthorizedÓ, ÒcompletedÓ
+
 	private $availability; 	// array of day:week pairs; e.g., [ÒMon:1Ó, ÒThu:4Ó, ÒFIÓ]
 	private $schedule;     	// array of scheduled shifts; e.g.,  [ÒMon:1Ó, ÒWed:2Ó]
 	private $history;      	// array of recent shifts worked; e.g., [Ò11-03-12Ó,"11-05-12"]
@@ -44,8 +40,7 @@ class Volunteer {
          * constructor for a Volunteer
          */
     function __construct($last_name, $first_name, $address, $city, $state, $zip, $phone1, $phone2, $email, $type,
-                         $contacts, $employment_status, $employment_history, $convictions, $background_check, 
-                         $availability, $schedule, $history, $start_date, $end_date, $status, $notes, $password) {                
+                         $contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $notes, $password) {                
         $this->id = $first_name . $phone1; 
         $this->last_name = $last_name;
         $this->first_name = $first_name;
@@ -61,14 +56,7 @@ class Volunteer {
         	$this->contacts = array();
         else 
         	$this->contacts = explode(',',$contacts);
-        $this->employment_status = $employment_status;
-        if ($employment_history == "") 
-        	$this->employment_history = array();
-        else 
-        	$this->employment_history = explode(',',$employment_history);       
-        $this->convictions = $convictions;
-        $this->background_check = $background_check;
-                 
+        
         if ($availability == "") 
         	$this->availability = array();
         else 
@@ -125,18 +113,6 @@ class Volunteer {
     }
     function get_contacts() {
         return $this->contacts;
-    }
-    function get_employment_status() {
-        return $this->employment_status;
-    }
-    function get_employment_history() {
-        return $this->employment_history;
-    }
-    function get_convictions() {
-        return $this->convictions;
-    }
-    function get_background_check() {
-        return $this->background_check;
     }
     function get_availability() {
         return $this->availability;
