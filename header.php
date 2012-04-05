@@ -74,7 +74,7 @@ h1 {padding-left: 0px; padding-right:165px;}
 		    echo('<a href="'.$path.'help.php?helpPage='.$current_page.'" target="_BLANK"> | help</a>');
 		}
 	    if($_SESSION['access_level']==2) { // coordinator only
-	    	echo '<a href="'.$path.'viewSchedule.php"> | schedule</a>';
+	    	echo '<a href="'.$path.'viewMasterSched.php"> | schedule</a>';
 	    	echo('<a href="'.$path.'viewVolunteers.php"> | volunteers</a>');
 	    	echo('<a href="'.$path.'viewParticipants.php"> | participants</a>');
 	    	echo '<a href="'.$path.'viewReports.php?id='.$_SESSION['_area'].'&date='.date('y-m-d').'&enddate='.date('y-m-d').'"> | reports</a>';	    
