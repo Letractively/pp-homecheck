@@ -109,7 +109,7 @@
 	    	<IMG SRC="images/participants.png"/>
 		</DIV>
         <DIV STYLE=" TOP: 145; LEFT: 188; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-            <?PHP echo date('d, F, Y'); ?>
+            <?PHP echo date('F d, Y'); ?>
         </DIV>
         <FORM ID="FORM1" ACTION="writeToDL.php" METHOD="POST" ONSUBMIT="return checkRequired(this);">
         	<DIV STYLE=" TOP: 209; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
