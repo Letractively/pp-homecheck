@@ -83,8 +83,8 @@
 		<DIV ID="content">
 		<?PHP
 			//Substitute appropriate server credentials
-			$connect = mysql_connect("127.0.0.1", "root", "") or die ("Check server connection.");
-			mysql_select_db("pphomecheckdb");
+		//	$connect = mysql_connect("127.0.0.1", "root", "") or die ("Check server connection.");
+		//	mysql_select_db("pphomecheckdb");
     	?>
         <DIV STYLE=" TOP: 75; LEFT: 100; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <IMG SRC="images/DailyLogLogo.png" WIDTH="70" HEIGHT="88"/>
