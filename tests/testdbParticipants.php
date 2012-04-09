@@ -5,7 +5,7 @@ class testdbParticipants extends UnitTestCase {
 	function testdbParticipantsModule() {
 		
 		//create an empty dbParticipants table
-		$this->assertTrue(create_dbParticipants());
+		// $this->assertTrue(create_dbParticipants());
 		
 		//create participants to add to the database
 		$part1 = new Participant("Smith", "John", "111 Main Street", "Brunswick", "ME", "04011", 2071234567, "", "name@domain1.com",

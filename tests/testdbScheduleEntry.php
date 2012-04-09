@@ -19,7 +19,7 @@ include_once(dirname(__FILE__).'/../database/dbScheduleEntry.php');
 class testdbScheduleEntry extends UnitTestCase {
 	function testdbScheduleEntryModule() {
 		//Test Create
-		$this->assertTrue(create_dbScheduleEntry());
+		//$this->assertTrue(create_dbScheduleEntry());
 		
 		//Pseudo-Participants
 		$sched1 = new ScheduleEntry("Sun:1", "John1112345678", "No notes");
