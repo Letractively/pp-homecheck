@@ -4,7 +4,7 @@ include_once(dirname(__FILE__).'/../database/dbDailyLogs.php');
 class testdbDailyLogs extends UnitTestCase {
 	function testdbDailyLogsModule() {
 		//Test table creation
-		$this->assertTrue(create_dbDailyLogs());
+		// $this->assertTrue(create_dbDailyLogs());
 	
 		//Test logs
 		$log1 = new DailyLog("01-01-01","test123,test456,test789", "vol123456", "No Notes");

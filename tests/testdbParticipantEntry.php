@@ -19,7 +19,7 @@ include_once(dirname(__FILE__).'/../database/dbParticipantEntry.php');
 class testdbParticipantEntry extends UnitTestCase {
 	function testdbParticipantEntryModule() {
 		//Test Create
-		$this->assertTrue(create_dbParticipantEntry());
+		// $this->assertTrue(create_dbParticipantEntry());
 		
 		//Pseudo-Participants
 		$part1 = new ParticipantEntry("12-02-29", "John1112345678", "9:57", "H", "Wont be here for a week.");

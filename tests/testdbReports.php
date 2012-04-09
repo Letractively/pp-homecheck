@@ -4,7 +4,7 @@ include_once(dirname(__FILE__).'/../database/dbReports.php');
 class testdbReports extends UnitTestCase {
 	function testdbReportsModule() {
 		//Test table creation
-		$this->assertTrue(create_dbReports());
+		//$this->assertTrue(create_dbReports());
 		
 		//Test repots
 		$report1 = new Report("01-01-01","02-02-02","Active");

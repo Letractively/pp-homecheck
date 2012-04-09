@@ -19,7 +19,7 @@ include_once(dirname(__FILE__).'/../database/dbShifts.php');
 class testdbShifts extends UnitTestCase {
 	function testdbShiftsModule() {
 
-		$this->assertTrue(create_dbShifts());
+		// $this->assertTrue(create_dbShifts());
 		
 		$shift1 = new Shift("12-02-29", "Malcom1234567890", "Monday", "Notes1");
 		$shift2 = new Shift("12-02-28", "vacancy", "Wednesday", "Notes2");
