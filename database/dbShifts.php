@@ -18,7 +18,7 @@ include_once(dirname(__FILE__).'/dbinfo.php');
 function create_dbShifts() {
 		connect();
 		mysql_query("DROP TABLE IF EXISTS dbShifts");
-		$result = mysql_query("CREATE TABLE dbShifts(yy_mm_dd TEXT NOT NULL, volunteer_id TEXT NOT NULL, day TEXT NOT NULL, notes TEXT)");
+		$result = mysql_query("CREATE TABLE dbShifts(yy_mm_dd TEXT NOT NULL, volunteer_id TEXT NOT NULL, day TEXT, notes TEXT)");
 		mysql_close();
 		if(!$result) {
 			echo mysql_error(). "Error creating dbShifts table. <br>";

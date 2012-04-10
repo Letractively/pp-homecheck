@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="styles.css" type="text/css"></link>
       <link type="text/css" rel="stylesheet" href="data:text/css,"></link>
     <?php 
-      echo('<meta http-equiv="Refresh" content="1;url=http://'.$_SERVER['SERVER_NAME'].'/pp-homecheck/viewMasterSched.php" />');
+      echo('<meta http-equiv="Refresh" content="0;url=http://'.$_SERVER['SERVER_NAME'].'/pp-homecheck/viewMasterSched.php" />');
     ?>
   </HEAD>
   <BODY>
