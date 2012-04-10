@@ -79,7 +79,7 @@ function create_dbParticipantEntry() {
 		mysql_close();
    		return $partEntry;
 	}
-
+   	
 	function update_dbParticipantEntry($participantentry){
 		if(!$participantentry instanceof ParticipantEntry) {
 			return false;
@@ -123,7 +123,7 @@ function create_dbParticipantEntry() {
 		mysql_close();
    		return $result;
 	}
-
+	
 	function getall_names() {
 		connect();
 		$query = mysql_query("SELECT * FROM dbParticipantEntry ORDER BY result");
