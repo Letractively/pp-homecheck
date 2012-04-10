@@ -81,7 +81,7 @@
     </HEAD>     
     <BODY> 
     	<DIV ID="container">
-    	<?PHP include('header.php');?>
+    	<?PHP //include('header.php');?>
 		<DIV ID="content">
         <DIV STYLE=" TOP: 160; LEFT: 100; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <IMG SRC="images/DailyLogLogo.png" WIDTH="70" HEIGHT="88"/>
@@ -135,13 +135,20 @@
 						<TR STYLE="float:left;">
 							<?php 
 								$dl = retrieve_dbDailyLogs($dt);
-								$nts = $dl->get_note();
-    							echo "<TD>";
-    							if($dl == null || $nts == null)
+								if ($dl != null) {
+									$nts = $dl->get_note();
+									echo "<TD>";
+    								if($dl == null || $nts == null)
+										echo "No notes today.";
+									else
+										echo "\"".$nts."\"";
+    								echo "</TD>";
+								}
+								else {
+									echo "<TD>";
 									echo "No notes today.";
-								else
-									echo "\"".$nts."\"";
-    							echo "</TD>";
+									echo "</TD>";
+								}
     						?>
 						</TR>
 					</TABLE>

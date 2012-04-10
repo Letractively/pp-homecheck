@@ -43,6 +43,17 @@ function retrieve_dbDailyLogs($id){
 	
 	
 }
+function retrieve_betweentwodates($date_start, $date_end) {
+	connect();
+	$result = mysql_query('SELECT * FROM dbDailyLogs WHERE id >= "'. $date_start . '" AND id <= "' . $date_end . '"');
+	$outLogs = array();
+	while($result_row = mysql_fetch_assoc($result)){
+		$outLog = new DailyLog($result_row['id'], $result_row['participants'], $result_row['volunteer'],$result_row['notes']);
+		$outLogs[] = $outLog;
+	}
+	mysql_close();
+	return $outLogs;
+}
 
 function getall_dbDailyLogs(){
 	connect();
