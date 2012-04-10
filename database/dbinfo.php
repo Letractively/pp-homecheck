@@ -14,15 +14,15 @@
 */
 
 function connect() {
-	$host = "localhost";
-	$database = "pphomecheckDB";
-	$user = "pphomecheckDB";
-	$password = "pphomecheckDB";
+        $host = "localhost";
+        $database = "pphomecheckDB";
+        $user = "pphomecheckDB";
+        $password = "pphomecheckDB";
 
-	$connected = mysql_connect($host,$user,$password);
-	if (!$connected) return mysql_error();
-	$selected = mysql_select_db($database, $connected);
-	if (!$selected) return mysql_error();
-	else return true;
+        $connected = mysql_connect($host,$user,$password);
+        if (!$connected) return mysql_error();
+        $selected = mysql_select_db($database, $connected);
+        if (!$selected) return mysql_error();
+        else return true;
 }
 ?>
