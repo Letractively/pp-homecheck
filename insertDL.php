@@ -17,12 +17,12 @@
 		if($eid != null) {
 			if($_POST[Participant] != null) {
 				foreach($eid as &$parts) 
-					$participants .= $parts." ";
+					$participants .= $parts.",";
 				$participants .= $_POST[Participant];
 			}
 			else {
 				foreach($eid as &$parts) 
-					$participants .= $parts." ";
+					$participants .= $parts.",";
 			}
 		}
 		else {
