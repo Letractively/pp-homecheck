@@ -36,5 +36,6 @@
 		}
 		insert_dbDailyLogs(new DailyLog($_POST[Date],$participants,$_POST[Volunteer],$dNotes));
 	}
-    header("Location: http://127.0.0.1/pp-homecheck/dailyLog.php");
+	$today = Date("y-m-d");
+	header("Location: http://homecheck.myopensoftware.org/dailyLog.php?date=".$today);
 ?>
