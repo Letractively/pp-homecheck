@@ -12,7 +12,7 @@
 	include_once('database/dbParticipants.php');
 	include_once('database/dbParticipantEntry.php');
 	include_once('database/dbDailyLogs.php');
-	$date = $_GET["date"]; 
+	$dt = $_GET["date"]; 
 ?>
 <HTML>     
     <HEAD>  
@@ -81,39 +81,39 @@
     </HEAD>     
     <BODY> 
     	<DIV ID="container">
-    	<?PHP //include('header.php');?>
+    	<?PHP include('header.php');?>
 		<DIV ID="content">
-        <DIV STYLE=" TOP: 160; LEFT: 100; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+        <DIV STYLE=" TOP: 180; LEFT: 100; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <IMG SRC="images/DailyLogLogo.png" WIDTH="70" HEIGHT="88"/>
         </DIV>
         <!--All images with text use Ariel 14pt font-->
-		<DIV STYLE=" TOP: 160; LEFT: 180; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+		<DIV STYLE=" TOP: 180; LEFT: 180; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <IMG SRC="images/DailyLog.png"/>
         </DIV>
-		<DIV STYLE="TOP:282; LEFT: 100; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+		<DIV STYLE="TOP:302; LEFT: 100; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    	<IMG SRC="images/time.png"/>
 		</DIV>
-		<DIV STYLE="TOP:348; LEFT: 97; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+		<DIV STYLE="TOP:368; LEFT: 97; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 		    <IMG SRC="images/participant.png"/>
 		</DIV>
-		<DIV STYLE="TOP:407; LEFT: 100; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+		<DIV STYLE="TOP:427; LEFT: 100; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    	<IMG SRC="images/result.png"/>
 		</DIV>
-		<DIV STYLE="TOP:470; LEFT: 100; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+		<DIV STYLE="TOP:490; LEFT: 100; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    	<IMG SRC="images/note.png"/>
 		</DIV>
-		<DIV STYLE="TOP:470; LEFT: 600; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+		<DIV STYLE="TOP:490; LEFT: 600; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    	<IMG SRC="images/participants.png"/>
 		</DIV>
-		<DIV STYLE="TOP:282; LEFT: 600; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+		<DIV STYLE="TOP:302; LEFT: 600; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    	<IMG SRC="images/dnotes.png"/>
 		</DIV>
-        <DIV STYLE=" TOP: 230; LEFT: 188; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+        <DIV STYLE=" TOP: 250; LEFT: 188; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             <?PHP echo date('F d, Y'); ?>
         </DIV>        
         <FORM ID="FORM1" METHOD="POST" AUTOCOMPLETE="off">
-        	<DIV STYLE=" TOP: 294; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-        		<INPUT TYPE="hidden" NAME="Date" STYLE="WIDTH:0px; " MAXLENGTH="8" TITLE="Enter Date" Value="<?php $dt = date('y-m-d'); echo $dt ?>"/>
+        	<DIV STYLE=" TOP: 314; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+        		<INPUT TYPE="hidden" NAME="Date" STYLE="WIDTH:0px; " MAXLENGTH="8" TITLE="Enter Date" Value="<?php echo $dt ?>"/>
                 <INPUT TYPE="text" NAME="Time" STYLE="WIDTH:70px; " MAXLENGTH="7" ONCHANGE="validateTime();" TITLE="Enter Time in HH:MM"/>
 				<SELECT NAME = "AP" TITLE="Select AM or PM">
     		    	<OPTION VALUE = A>AM</OPTION>
@@ -121,7 +121,7 @@
                 </SELECT><BR><BR>
             </DIV>
             
-            <DIV STYLE=" TOP: 420; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+            <DIV STYLE=" TOP: 440; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
                 <SELECT NAME = "Result" TITLE="Choose 'H' for 'Had to Call', 'C' for 'Called Contact', 'D' for 'Called Dispatch', else leave blank.">
     			    <OPTION VALUE = OK></OPTION>
     			    <OPTION VALUE = C>C</OPTION>
@@ -129,7 +129,7 @@
    			    	<OPTION VALUE = D>D</OPTION>
                 </SELECT>
 	    	</DIV>
-	    	<DIV STYLE=" TOP: 295; LEFT: 810; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+	    	<DIV STYLE=" TOP: 315; LEFT: 810; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
  				<DIV ID="ta">
 					<TABLE>
 						<TR STYLE="float:left;">
@@ -157,7 +157,7 @@
         		<TEXTAREA NAME="dNotes" COLS="28" ROWS="2" STYLE="font-family:arial; resize: none;" TITLE="Enter Daily Notes Here"></TEXTAREA>
         		<BR><BR><INPUT TYPE="submit" CLASS="button_save" TITLE="Save" VALUE="" ONCLICK="javascript: FORM1.action='insertDL.php'"/>
         	</DIV>
-        	<DIV STYLE=" TOP: 360; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+        	<DIV STYLE=" TOP: 380; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
         		<SELECT NAME = "Participant" STYLE = "WIDTH: 187" TITLE="Begin typing participant last name for fast searching.">
                 	<OPTION SELECTED VALUE = "">Select Participant...</OPTION>
 		    		<?PHP
@@ -171,7 +171,7 @@
                		?>
         		</SELECT>
             </DIV>
-	    	<DIV STYLE=' TOP: 482; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;'>
+	    	<DIV STYLE=' TOP: 502; LEFT: 280; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;'>
 				<TEXTAREA NAME="Notes" COLS="28" ROWS="5" STYLE="font-family:arial; resize: none;" TITLE="Enter Notes Here"></TEXTAREA>
 				<?php
 					$vol = $_SESSON['_id'];
@@ -183,7 +183,7 @@
         </FORM>
         
         <FORM ID="FORM2" METHOD = "get">
-	    	<DIV STYLE=" TOP: 482; LEFT: 812; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+	    	<DIV STYLE=" TOP: 502; LEFT: 812; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
       		    <SELECT NAME = id STYLE = "WIDTH: 185" SIZE = 18>
 					<?PHP
 		    			$allParticipants = getall_participants();
@@ -195,14 +195,18 @@
                		?>
        		    </SELECT> <BR><BR>
                 <INPUT TYPE="submit" CLASS="button_info" VALUE="" TITLE="Participant Information" ONCLICK="javascript: FORM2.action='http://homecheck.myopensoftware.org/participantInfo.php'"/> 
-				<INPUT TYPE="submit" CLASS="button_notes" VALUE="" TITLE="Notespad"ONCLICK="javascript: FORM2.action='http://homecheck.myopensoftware.org/participantLog.php'"/> 
+				<INPUT TYPE="submit" CLASS="button_notes" VALUE="" TITLE="Notepad"ONCLICK="javascript: FORM2.action='http://homecheck.myopensoftware.org/notepad.php'"/> 
             </DIV>
         </FORM>
-        <DIV STYLE=" TOP: 265; LEFT: 570; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-	    	<img src="images/vl.png" height="540" width="5"/>
+        <DIV STYLE=" TOP: 285; LEFT: 570; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+	    	<img src="images/vl.png" height="580" width="5"/>
 		</DIV>
 		<br clear="all">
+		<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+		<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+		<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 		<?PHP include('footer.inc');?>	
+		<BR>
         </DIV>     
         </DIV>     
     </BODY>     
