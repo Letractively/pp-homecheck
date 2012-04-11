@@ -35,25 +35,25 @@
    			background:url(images/button_submit.png) no-repeat;
    			border: none;
    			height: 32px;
-   			width: 96px;
+   			width: 99px;
 		}
 	    .button_info {
    			background:url(images/button_info.png) no-repeat;
    			border: none;
    			height: 32px;
-   			width: 96px;
+   			width: 99px;
 		}
 		.button_notes {
    			background:url(images/button_notes.png) no-repeat;
    			border: none;
    			height: 32px;
-   			width: 96px;
+   			width: 99px;
 		}
 		.button_save {
    			background:url(images/button_save.png) no-repeat;
    			border: none;
    			height: 32px;
-   			width: 96px;
+   			width: 99px;
 		}
         </STYLE>
 
