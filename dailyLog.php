@@ -20,6 +20,9 @@
 	<LINK rel="stylesheet" href="styles.css" type="text/css">
 	<LINK type="text/css" rel="stylesheet" href="data:text/css,">
 	<STYLE TYPE="text/css"> 
+		body {
+			min-width: 1024px;
+		}
 	    select {
  			font-family: Arial, sans-serif;
  			font-size: 1em;
@@ -194,8 +197,8 @@
 		    			}
                		?>
        		    </SELECT> <BR><BR>
-                <INPUT TYPE="submit" CLASS="button_info" VALUE="" TITLE="Participant Information" ONCLICK="javascript: FORM2.action='http://homecheck.myopensoftware.org/participantInfo.php'"/> 
-				<INPUT TYPE="submit" CLASS="button_notes" VALUE="" TITLE="Notepad"ONCLICK="javascript: FORM2.action='http://homecheck.myopensoftware.org/notepad.php'"/> 
+                <INPUT TYPE="submit" CLASS="button_info" VALUE="" TITLE="Participant Information" ONCLICK="javascript: FORM2.action='participantInfo.php'"/> 
+				<INPUT TYPE="submit" CLASS="button_notes" VALUE="" TITLE="Notepad"ONCLICK="javascript: FORM2.action='notepad.php'"/> 
             </DIV>
         </FORM>
         <DIV STYLE=" TOP: 285; LEFT: 570; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
