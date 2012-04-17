@@ -7,6 +7,10 @@
     * (see <http://www.gnu.org/licenses/).
     */
 -->
+<?php 
+session_start();
+session_cache_expire(30);
+?>
 <HTML>     
   <HEAD>  
     <TITLE>Master Schedule</TITLE>   
@@ -38,11 +42,6 @@
 	    include_once('domain/ScheduleEntry.php');
 	    include_once('domain/Volunteer.php');
 	    include_once('database/dbVolunteers.php');
-	    //For testing purposes only
-	    /* $vol1 = new Volunteer("Smith", "John", "111 Main Street", "Brunswick", "ME", "04011", 2071234567, "", "name@domain1.com", */
-	    /*                     "volunteer", "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com", */
-	    /*         			"Wed:1,Fri:5,FI","Wed:1,Fri5","", "08-01-01","", "active", "", ""); */
-	    /* insert_dbVolunteers($vol1); */
 	    $volList=getall_dbVolunteers();
 	?>
       </DIV>
@@ -603,7 +602,7 @@
   <INPUT STYLE="WIDTH:auto; HEIGHT:auto;" TYPE="submit" VALUE="Save" align="center"/>
   </DIV>
   </FORM>
-  <FORM ID="CreateMonthly" ACTION="viewMonthlySched.php" METHOD="get" ONSUBMIT="return checkRequired(this);">
+  <FORM ID="CreateMonthly" ACTION="editMonthlySchedule.php" METHOD="get" ONSUBMIT="return checkRequired(this);">
   <DIV ALIGN="center">
   Create Schedule for: 
   <SELECT NAME="Month" > 

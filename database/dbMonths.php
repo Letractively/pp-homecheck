@@ -74,7 +74,7 @@ function getall_Months () {
     $result = mysql_query ($query);
     $theMonths = array();
     while ($result_row = mysql_fetch_assoc($result)) {
-        $theMonth = new Month($resutl_row['id'], $result_row['status'], $result_row['notes']);
+        $theMonth = new Month($result_row['id'], $result_row['status'], $result_row['notes']);
         $theMonths[] = $theMonth;
     }
     return $theMonths; 
