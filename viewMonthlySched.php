@@ -7,6 +7,10 @@
     * (see <http://www.gnu.org/licenses/).
     */
 -->
+<?php 
+session_start();
+session_cache_expire(30);
+?>
 <HTML>     
   <HEAD>  
     <TITLE>Monthly Schedule</TITLE>   
@@ -41,146 +45,74 @@
       <DIV id="content">
 	<?php
 	    include_once('database/dbShifts.php');
-	    include_once('domain/Shift.php');
-	    include_once('database/dbScheduleEntry.php');
-	    include_once('domain/ScheduleEntry.php');
-	    include_once('domain/Month.php');
 	    include_once('database/dbMonths.php');
-	    include_once('domain/Volunteer.php');
 	    include_once('database/dbVolunteers.php');
-	    //For testing purposes only
-	    /* $vol1 = new Volunteer("Smith", "John", "111 Main Street", "Brunswick", "ME", "04011", 2071234567, "", "name@domain1.com", */
-	    /*                     "volunteer", "Mary:2071112222:Mary@email.com,Sue:2072223333:Sue@email.com", */
-	    /*         			"Wed:1,Fri:5,FI","Wed:1,Fri5","", "08-01-01","", "active", "", ""); */
-	    /* insert_dbVolunteers($vol1); */
-	    $volList=getall_dbVolunteers();
-	    if(retrieve_dbMonths($_GET['Year'].'-'.$_GET['Month']))
-	      $thisMonth=retrieve_dbMonths($_GET['Year'].'-'.$_GET['Month']);
-	    else
-	      $thisMonth = new Month($_GET['Year'].'-'.$_GET['Month'],"working","");
+	    $thisMonth=retrieve_dbMonths($_GET['Year'].'-'.$_GET['Month']);
 	    $dayCount = 1;
 	?>
       </DIV>
-      <h1 align="center">Monthly Schedule</h1>
+      <?php
+	echo '<h1 STYLE="text-align:center;">Monthly Schedule for '.date("F Y",mktime(1,1,1,$_GET['Month'],1,$_GET['Year'])).'</h1>';
+      ?>
       <DIV>
-	<DIV STYLE="float:left;">
-	  <FORM ID="MonthBack" ACTION="viewMonthlySched.php" METHOD="get" ONSUBMIT="return confirm('This will discard all unsaved changes.  Do you want to continue?')">
-	    <?php
-		if($_GET['Month'] == 1){
-		  $newMonth = 12;
-		  $newYear = $_GET['Year']-1;}
-		  elseif(intval($_GET['Month'])<=10){
-		    $newMonth = "0".($_GET['Month']-1);
-		    $newYear = $_GET['Year'];}
-		  else{
-		    $newMonth = $_GET['Month']-1;
-		    $newYear = $_GET['Year'];}
-		    echo('<INPUT TYPE="hidden" NAME="Month" VALUE="'.$newMonth.'"/>');
-		    echo('<INPUT TYPE="hidden" NAME="Year" VALUE="'.$newYear.'"/>');
-	    ?>
-	    <INPUT TYPE="submit" VALUE="Previous Month" STYLE="HEIGHT:40;"/>
-	  </FORM>
-	</DIV>
-	<DIV STYLE="float:right;">
-	  <FORM ID="MonthForward" ACTION="viewMonthlySched.php" METHOD="get" ONSUBMIT="return confirm('This will discard all unsaved changes.  Do you want to continue?')">
-	    <?php
-		      if($_GET['Month'] == 12){
-			$newMonth = "01";
-			$newYear = $_GET['Year']+1;}
-			elseif(intval($_GET['Month'])<9){
-			  $newMonth = "0".($_GET['Month']+1);
-			  $newYear = $_GET['Year'];}
-			else{
-			  $newMonth = $_GET['Month']+1;
-			  $newYear = $_GET['Year'];}
-			  echo('<INPUT TYPE="hidden" NAME="Month" VALUE="'.$newMonth.'"/>');
-			  echo('<INPUT TYPE="hidden" NAME="Year" VALUE="'.$newYear.'"/>');
-	    ?>
-	    <INPUT TYPE="submit" VALUE="Next Month" STYLE="HEIGHT:40;"/>
-	  </FORM>
-	</DIV>
-	<?php 
-	      echo('<h2 align="center">'.date("F Y",mktime(1,1,1,$_GET['Month'],1,$_GET['Year'])).'</h2>');
-	      echo('<h3 align="center">'.ucfirst($thisMonth->get_status()).'</h3>');
-	?>
-	<div style="clear:both; font-size:1px;"></div>
-      </DIV>
-      <FORM ID="MonthlySchedule" ACTION="writeMonthlySched.php" METHOD="post" ONSUBMIT="">
-	<?php
-	      echo('<INPUT TYPE="hidden" NAME="Month" VALUE="'.$_GET['Month'].'"/>');
-	      echo('<INPUT TYPE="hidden" NAME="Year" VALUE="'.$_GET['Year'].'"/>');
-	?>
-	<DIV STYLE="TOP:75 ;LEFT:75 Position:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
-	  <table border="2" align="center">
-	    <tr>
-	      <th width="100" align="center">  Sunday  </th>
-	      <th width="100" align="center">  Monday  </th>
-	      <th width="100" align="center">  Tuesday  </th>
-	      <th width="100" align="center">  Wednesday  </th>
-	      <th width="100" align="center">  Thursday  </th>
-	      <th width="100" align="center">  Friday  </th>
-	      <th width="100" align="center">  Saturday  </th>
-	    </tr>
-	    <?php
+	<table border="2" STYLE="margin-left:auto; margin-right:auto;">
+	  <tr>
+	    <th width="175" align="center">  Sunday  </th>
+	    <th width="175" align="center">  Monday  </th>
+	    <th width="175" align="center">  Tuesday  </th>
+	    <th width="175" align="center">Wednesday</th>
+	    <th width="175" align="center">  Thursday  </th>
+	    <th width="175" align="center">  Friday  </th>
+	    <th width="175" align="center">  Saturday  </th>
+	  </tr>
+	  <?php
 	      $weekCount=1;
 	      while($dayCount<=$thisMonth->get_no_days()){
-		echo('<tr STYLE="HEIGHT:100;">');
-		for($i=0;$i<=6;++$i){
-		  echo('<td valign="top">');
-		  if($dayCount>$thisMonth->get_no_days())
-		    continue;
-		  else if($weekCount==1 and $thisMonth->get_first_day()>$i)
-		    continue;
-		  else{
-		    echo('<h4>'.$dayCount.'</h4>');
+	  	echo('<tr STYLE="HEIGHT:200;">');
+	   	for($i=0;$i<=6;++$i){
+	   	  echo('<td valign="top">');
+	  	  if($dayCount>$thisMonth->get_no_days())
+	  	    continue;
+	  	  else if($weekCount==1 and $thisMonth->get_first_day()>$i)
+	  	    continue;
+	  	  else{
+	  	    echo('<h4>'.$dayCount.'</h4>');
 		    $shiftID=$_GET['Year'].'-'.$_GET['Month'].'-'.date("d",mktime(0,0,0,$_GET['Month'],$dayCount,$_GET['Year']));
-		    echo('<SELECT NAME="'.$shiftID.'" TITLE="Select a volunteer for this shift.">');
-		    echo('<OPTION VALUE = "">Select Volunteer...</OPTION>');
-		    $checkMaster=retrieve_dbScheduleEntry(date("D",mktime(0,0,0,$_GET['Month'],$dayCount,$_GET['Year'])).":".$weekCount);
 		    $checkMonth=retrieve_dbShifts($shiftID);
-		    foreach($volList as $row){
-		      if($checkMonth and $checkMonth->get_volunteer_id() == $row->get_id()){
-		      	echo('<OPTION SELECTED VALUE ="');
-		      	echo($row->get_id());
-		      	echo('">');}
-		      else if($checkMaster and $checkMaster->get_volunteer_id() == $row->get_id()){
-			echo('<OPTION SELECTED VALUE ="');
-			echo($row->get_id());
-			echo('">');}
+		    echo 'Volunteer:';
+		    if($checkMonth){
+		      $shiftVol = retrieve_dbVolunteers($checkMonth->get_volunteer_id());
+		      if ($shiftVol)
+			echo($shiftVol->get_first_name()." ".$shiftVol->get_last_name().'<br/>');
 		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo($row->get_first_name()." ".$row->get_last_name());
-		      echo("</OPTION>");}
-		    echo'</SELECT>';
-		    echo'</td>';}
-		  ++$dayCount;}
-		echo('</tr>');
-	    $weekCount+=1;}?>
-       </table>
-</DIV>
-<br/>
-<DIV ALIGN="center">
-  Change Status:
-  <SELECT NAME="STATUS">
-<?php
-		    if($thisMonth->get_status() == "working"){
-		      echo('<OPTION SELECTED VALUE="working">Working</OPTION>');
-		      echo('<OPTION VALUE="published">Published</OPTION>');
+			echo '<br/>';
+		      echo '<FORM NAME="notes" ACTION="writeSchedNotes.php" METHOD="post">';
+		      echo 'Notes:';
+		      echo '<textarea name="notes:'.$shiftID.'">'.$checkMonth->get_notes().'</textarea>';
+		      echo('<INPUT TYPE="hidden" NAME="Month" VALUE="'.$_GET['Month'].'"/>');
+		      echo('<INPUT TYPE="hidden" NAME="Year" VALUE="'.$_GET['Year'].'"/>');
+		      echo('<INPUT TYPE="hidden" NAME="shiftID" VALUE="'.$shiftID.'"/>');
+		      echo '<input type="submit" value="Update" />';
+		      echo '</FORM>';
 		    }
 		    else{
-		      echo('<OPTION  VALUE="working">Working</OPTION>');
-		      echo('<OPTION SELECTED VALUE="published">Published</OPTION>');
-		    }
-?>
-
-  </SELECT>
-  <INPUT STYLE="WIDTH:auto; HEIGHT:auto;" TYPE="submit" VALUE="Save" align="center"/>
-</DIV>
-  </FORM>
-<DIV ALIGN="center">
-  <INPUT STYLE="height:30px; WIDTH:auto;" TYPE="button" VALUE="Discard changes" ONCLICK="confirm_discard()"/>
-</DIV>
-  <?php include('footer.inc');?>
-</DIV>
-</BODY>
+		      echo '<br/>';
+		      echo '<FORM NAME="notes" ACTION="writeSchedNotes.php" METHOD="post">';
+		      echo 'Notes:';
+		      echo '<textarea name="notes:'.$shiftID.'"></textarea>';
+		      echo('<INPUT TYPE="hidden" NAME="Month" VALUE="'.$_GET['Month'].'"/>');
+		      echo('<INPUT TYPE="hidden" NAME="Year" VALUE="'.$_GET['Year'].'"/>');
+		      echo('<INPUT TYPE="hidden" NAME="shiftID" VALUE="'.$shiftID.'"/>');
+		      echo '<input type="submit" value="Update" />';
+		      echo '</FORM>';}
+		  }
+		  echo'</td>';
+		  ++$dayCount;}
+	   	echo('</tr>'); 
+	  $weekCount+=1; }?>
+	</table>
+      </DIV>
+      <?php include('footer.inc');?>
+    </DIV>
+  </BODY>
 </HTML>
