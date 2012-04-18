@@ -13,10 +13,9 @@ session_cache_expire(30);
       <?php include('header.php');?>
       <DIV id="content">
 	<?php include_once('database/dbMonths.php');?>
-      </DIV>
-      <h1> Monthly Schedule List </h1>
-      <DIV>
-	<?php
+	<h1> Monthly Schedule List </h1>
+	<DIV>
+	  <?php
 	    $monthList = getall_Months();
 	    foreach($monthList as $month){
 	      $status=$month->get_status();
@@ -29,9 +28,10 @@ session_cache_expire(30);
 		echo '</a><br/>';
 	      }
 	    }
-	?>
+	  ?>
+	</DIV>
+	<?php include('footer.inc');?>
       </DIV>
-      <?php include('footer.inc');?>
     </DIV>
   </BODY>
 </HTML>

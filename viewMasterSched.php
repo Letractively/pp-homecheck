@@ -44,7 +44,6 @@ session_cache_expire(30);
 	    include_once('database/dbVolunteers.php');
 	    $volList=getall_dbVolunteers();
 	?>
-      </DIV>
       <h1 align="center">Master Schedule</h1>
       <FORM ID="MasterSchedule" ACTION = "writeMasterSched.php" METHOD="post" ONSUBMIT="return checkRequired(this);">
 	<DIV STYLE="TOP:75 ;LEFT:75 Position:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
@@ -629,6 +628,7 @@ session_cache_expire(30);
   </DIV>
   </FORM>
   <?php include('footer.inc');?>	
+</DIV>
 </DIV>
 </BODY>
 </HTML>

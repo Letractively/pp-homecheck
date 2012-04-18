@@ -15,57 +15,56 @@ session_cache_expire(30);
   <HEAD>  
     <TITLE>Monthly Schedule</TITLE>   
     <link rel="stylesheet" href="styles.css" type="text/css"/>
-      <link type="text/css" rel="stylesheet" href="data:text/css,"/>
-	<STYLE TYPE="text/css"> 
-	  select {
-	      font-family: Arial, sans-serif;
-	      font-size: 1em;
-	  }
-	  textarea {
-	      max-width: 280px;
-	      max-height: 250px;
-	  }
-	  .badValue {
-	      border:4px solid red;
-	  }
+    <link type="text/css" rel="stylesheet" href="data:text/css,"/>
+    <STYLE TYPE="text/css"> 
+      select {
+	  font-family: Arial, sans-serif;
+	  font-size: 1em;
+      }
+      textarea {
+	  max-width: 280px;
+	  max-height: 250px;
+      }
+      .badValue {
+	  border:4px solid red;
+      }
 
-	</STYLE>
-	<SCRIPT type="text/javascript">
-	  function confirm_discard(){
-	      var conf = confirm("This will discard all unsaved changes.  Do you want to continue?");
-	      if(conf == true){
-		  window.location="./viewMasterSched.php";
-	      }
+    </STYLE>
+    <SCRIPT type="text/javascript">
+      function confirm_discard(){
+	  var conf = confirm("This will discard all unsaved changes.  Do you want to continue?");
+	  if(conf == true){
+	      window.location="./viewMasterSched.php";
 	  }
-	</SCRIPT>
+      }
+    </SCRIPT>
   </HEAD>     
   <BODY> 
     <DIV id="container">
       <?php include('header.php');?>
       <DIV id="content">
 	<?php
-	    include_once('database/dbShifts.php');
-	    include_once('database/dbMonths.php');
-	    include_once('database/dbVolunteers.php');
-	    $thisMonth=retrieve_dbMonths($_GET['Year'].'-'.$_GET['Month']);
-	    $dayCount = 1;
+	  include_once('database/dbShifts.php');
+	  include_once('database/dbMonths.php');
+	  include_once('database/dbVolunteers.php');
+	  $thisMonth=retrieve_dbMonths($_GET['Year'].'-'.$_GET['Month']);
+	  $dayCount = 1;
 	?>
-      </DIV>
-      <?php
-	echo '<h1 STYLE="text-align:center;">Monthly Schedule for '.date("F Y",mktime(1,1,1,$_GET['Month'],1,$_GET['Year'])).'</h1>';
-      ?>
-      <DIV>
-	<table border="2" STYLE="margin-left:auto; margin-right:auto;">
-	  <tr>
-	    <th width="175" align="center">  Sunday  </th>
-	    <th width="175" align="center">  Monday  </th>
-	    <th width="175" align="center">  Tuesday  </th>
-	    <th width="175" align="center">Wednesday</th>
-	    <th width="175" align="center">  Thursday  </th>
-	    <th width="175" align="center">  Friday  </th>
-	    <th width="175" align="center">  Saturday  </th>
-	  </tr>
-	  <?php
+	<?php
+	  echo '<h1 STYLE="text-align:center;">Monthly Schedule for '.date("F Y",mktime(1,1,1,$_GET['Month'],1,$_GET['Year'])).'</h1>';
+	?>
+	<DIV>
+	  <table border="2" STYLE="margin-left:auto; margin-right:auto;">
+	    <tr>
+	      <th width="175" align="center">  Sunday  </th>
+	      <th width="175" align="center">  Monday  </th>
+	      <th width="175" align="center">  Tuesday  </th>
+	      <th width="175" align="center">Wednesday</th>
+	      <th width="175" align="center">  Thursday  </th>
+	      <th width="175" align="center">  Friday  </th>
+	      <th width="175" align="center">  Saturday  </th>
+	    </tr>
+	    <?php
 	      $weekCount=1;
 	      while($dayCount<=$thisMonth->get_no_days()){
 	  	echo('<tr STYLE="HEIGHT:200;">');
@@ -109,10 +108,11 @@ session_cache_expire(30);
 		  echo'</td>';
 		  ++$dayCount;}
 	   	echo('</tr>'); 
-	  $weekCount+=1; }?>
-	</table>
+	    $weekCount+=1; }?>
+	  </table>
+	</DIV>
+	<?php include('footer.inc');?>
       </DIV>
-      <?php include('footer.inc');?>
     </DIV>
   </BODY>
 </HTML>
