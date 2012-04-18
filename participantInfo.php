@@ -41,8 +41,8 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	<?php
 	  include_once('database/dbParticipants.php');
 	  $id=$_GET['ID'];
-	  if($id != "new" and $_SESSION['access_level']>=1)
-	    $participant = retrieve_dbParticipants($id);
+	  if($id != "new" and $_SESSION['access_level']>=1){
+	    $participant = retrieve_dbParticipants($id);}
 	  else{
 	    if($_SESSION['access_level']==2){
 	      $participant = new Participant('', '', '', '', '', '', '', '', '','', '', '','', '','','', '','', '', '', '', '','','','','');
@@ -59,58 +59,123 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	      <legend>Personal Information</legend>
 	      <?php
 		echo 'First Name: <input type="text" name="first_name" value="';
-		echo $participant->get_first_name();
-		if($_SESSION['access-level']==1)
-		  echo 'readonly';
-		echo '"/>';
-		echo '  Last Name: <input type="text" name="last_name" value="';
-		echo $participant->get_last_name();
-		if($_SESSION['access-level']==1)
-		  echo 'readonly';
-		echo '"/> <br/><br/>';
-		echo ' Birthday:<input type="text" name="birthday" value"';
-		echo $participant->get_birthday();
-		if($_SESSION['access-level']==1)
-		  echo 'readonly';
-		echo'/>';
+		echo $participant->get_first_name().'"';
+		if($_SESSION['access_level']==1){
+		  echo 'readonly';}
+		  echo '/>';
+		  echo '  Last Name: <input type="text" name="last_name" value="';
+		  echo $participant->get_last_name().'"';
+		  if($_SESSION['access_level']==1){
+		    echo 'readonly';}
+		    echo '/> <br/><br/>';
+		    echo ' Birthday:<input type="text" name="birthday" value"';
+		    echo $participant->get_birthday().'"';
+		    if($_SESSION['access_level']==1){
+		      echo 'readonly';}
+		      echo'/>';
 	      ?>
 	    </fieldset>
 	    <fieldset>
 	      <legend>Contact Information</legend>
-	      Address: <input type="text" name="address"/><br/><br/>
-	      City: <input type="text" name="city"/><br/><br/>
-	      State:
 	      <?php
-		if($_SESSION['access_level']==2){
-		  echo '<select name="state">';
-		  foreach ($states as $st) {
-		    echo "<option value='".$st."' ";
-		    if ($id=='new' and $st =="ME")
-		      echo("SELECTED");
-		    else if($participant and $participant->get_state() == $st )
-		      echo("SELECTED");
-		    echo ">" . $st . "</option>";
-		  }
-		  echo '</select>';}
-		else{
-		  echo $participant->get_state();
-		  echo '<input type="hidden" value="'.$participant->get_state().'">';
-		}
-		  ?>		
-,  Zip:<input type="text" name="zip"/><br/><br/>
-	      Phone1: <input type="text" name="phone1"/> <br/> Phone2: <input type="text" name="phone2"/><br/><br/>
-	      Email:    <input type="text" name="email"/>
+		echo 'Address: <input type="text" name="address" value="';
+		echo $participant->get_address().'"';
+		if($_SESSION['access_level']==1)
+		  echo 'readonly';
+		  echo '/><br/><br/>';
+		  echo 'City: <input type="text" name="city" value="';
+		  echo $participant->get_city().'"';
+		  if($_SESSION['access_level']==1)
+		    echo 'readonly';
+		    echo '/><br/><br/>';
+		    echo 'State:';
+		    if($_SESSION['access_level']==2){
+		      echo '<select name="state">';
+		      foreach ($states as $st) {
+			echo "<option value='".$st."' ";
+			if ($id=='new' and $st =="ME")
+			  echo("SELECTED");
+			else if($participant and $participant->get_state() == $st )
+			  echo("SELECTED");
+			echo ">" . $st . "</option>";
+		      }
+		      echo '</select>';}
+		    else{
+		      echo $participant->get_state();
+		      echo '<input type="hidden" value="'.$participant->get_state().'">';
+		    }		
+		    echo ',  Zip:<input type="text" name="zip" value="';
+		    echo $participant->get_zip().'"';
+		    if($_SESSION['access_level']==1)
+		      echo 'readonly';
+		      echo '/><br/><br/>';
+		      echo 'Phone1: <input type="text" name="phone1" value="';
+		      echo $participant->get_phone1().'"';
+		      if($_SESSION['access_level']==1)
+			echo 'readonly';
+			echo'/> <br/>'; 
+			echo 'Phone2: <input type="text" name="phone2" value="';
+			echo $participant->get_phone2().'"';
+			if($_SESSION['access_level']==1)
+			  echo 'readonly';
+			  echo '/><br/><br/>';
+			  echo 'Email:    <input type="text" name="email" value="';
+			  echo $participant->get_email().'"';
+			  if($_SESSION['access_level']==1)
+			    echo 'readonly';
+			    echo'/>';
+	      ?>
 	    </fieldset>
 	    <fieldset>
 	      <legend>Emergency Contacts</legend>
-	      <DIV id="placeholder">
-		<DIV id="emergContact">
-		  Contact Name: <input type="text" name="contactName"/><br/>
-		  Contact Relation: <input type="text" name="contactRel"/><br/>
-		  Contact Phone: <input type="text" name="contactPhone"/><br/>	<br/>	
-		</DIV>
-	      </DIV>
-	      <input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>
+	      <?php
+		if($id=='new'){
+		  echo '<DIV id="placeholder">';
+		  echo'<DIV id="emergContact">';
+		  echo 'Contact Name: <input type="text" name="contactName"/><br/>';
+		  echo 'Contact Relation: <input type="text" name="contactRel"/><br/>';
+		  echo 'Contact Phone: <input type="text" name="contactPhone"/><br/><br/>';	
+		  echo '</DIV>';
+		  echo'</DIV>';
+		  if($_SESSION['access_level']==2){
+		    echo '<input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';}
+		}
+		else{
+		  $numContacts=count($participant->get_contacts());
+		  $contacts = $participant->get_contacts();
+		  for($i=1; $i<=$numContacts;$i++){
+		    $contact=$contacts[$i-1];
+		    $contact=explode(':',$contact);
+		    $name = $contact[0];
+		    $relation = $contact[1];
+		    $phone = $contact[2];
+		    echo'Contact Name: <input type="text" name="contactName'.$i.'" value="';
+		    echo $name.'"';
+		    if($_SESSION['access_level']==1)
+		      echo 'readonly';
+		    echo'/><br/>';
+		    echo 'Contact Relation: <input type="text" name="contactRel'.$i.'" value="';
+		    echo $relation.'"';
+		    if($_SESSION['access_level']==1)
+		      echo 'readonly';
+		    echo'/><br/>';
+		    echo 'Contact Phone: <input type="text" name="contactPhone'.$i.'" value="';
+		    echo $phone.'"';
+		    if($_SESSION['access_level']==1)
+		      echo 'readonly';
+		    echo '/><br/><br/>';}
+		  if($_SESSION['access_level']==2){
+		    echo '<DIV id="placeholder">';
+		    echo'<DIV id="emergContact">';
+		    echo 'Contact Name: <input type="text" name="contactName'.($i+1).'"/><br/>';
+		    echo 'Contact Relation: <input type="text" name="contactRel'.($i+1).'"/><br/>';
+		    echo 'Contact Phone: <input type="text" name="contactPhone'.($i+1).'"/><br/><br/>';
+		    echo '</DIV>';
+		    echo'</DIV>';
+		    echo '<input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';
+		  }
+		}
+	      ?>
 	    </fieldset>
 	    <fieldset>
 	      <legend>System Information</legend>

@@ -19,7 +19,7 @@ h1 {padding-left: 0px; padding-right:165px;}
 
 <div align="left" id="navigationLinks">
 
-<?PHP
+<?php
 	//Log-in security
 	//If they aren't logged in, display our log-in form.
 	if(!isset($_SESSION['logged_in'])){
