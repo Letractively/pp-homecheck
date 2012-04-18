@@ -182,9 +182,22 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	    </fieldset>
 	    <fieldset>
 	      <legend>System Information</legend>
-	      Start Date: <input type="text" name="start_date"/>  End Date: <input type="text" name="end_date"/> <br/>
-	      Status: <input type="text" name="status"/> <br/>
-	      Notes:<br/><textarea name="notes" cols="50" rows="7"></textarea>
+	      <?php
+			 echo' Start Date: <input type="text" name="start_date" value="';
+			 echo $participant->get_start_date().'"';
+			 if($_SESSION['access_level']==1)
+			   echo 'readonly';
+			 echo'/>';
+			 echo' End Date: <input type="text" name="end_date" value="';
+			 echo $participant->get_end_date().'"';
+			 echo'/><br/><br/>';
+			 echo' Status: <input type="text" name="status" value="';
+			 echo $participant->get_status().'"';
+			 echo'/><br/>';
+			 echo 'Notes:<br/><textarea name="notes" cols="50" rows="7">';
+			 echo $participant->get_notes();
+			 echo'</textarea>';
+	      ?>
 	    </fieldset>
 	    <br/>
 	    <input type="submit" value="Submit" STYLE="WIDTH:50; HEIGHT:30;"/>
