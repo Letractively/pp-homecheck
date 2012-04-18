@@ -21,13 +21,14 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
     <link rel="stylesheet" href="styles.css" type="text/css"/>
     <link type="text/css" rel="stylesheet" href="data:text/css,"/>
     <SCRIPT type="text/javascript">
-      var _counter=0;
+      var _counter=1;
       function addContactSlot(){
 	  _counter++;
+	  document.getElementById("numContacts").value+=1;
 	  var oClone = document.getElementById("emergContact").cloneNode(true);
 	  oClone.id += (_counter + "");
 	  var children=oClone.getElementsByTagName('input');
-	  children[0].name+=(_counter+'');
+	  children[0].name=children[0].name.substring(0,children[0].name.length-1)+(_counter+'');
 	  children[1].name+=(_counter+'');
 	  children[2].name+=(_counter+'');
 	  document.getElementById("placeholder").appendChild(oClone);
@@ -130,11 +131,12 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	      <legend>Emergency Contacts</legend>
 	      <?php
 		if($id=='new'){
+		  echo '<input type="hidden" value="1" name="numContacts" id="numContacts" />';
 		  echo '<DIV id="placeholder">';
 		  echo'<DIV id="emergContact">';
-		  echo 'Contact Name: <input type="text" name="contactName"/><br/>';
-		  echo 'Contact Relation: <input type="text" name="contactRel"/><br/>';
-		  echo 'Contact Phone: <input type="text" name="contactPhone"/><br/><br/>';	
+		  echo 'Contact Name: <input type="text" name="contactName1"/><br/>';
+		  echo 'Contact Relation: <input type="text" name="contactRel1"/><br/>';
+		  echo 'Contact Phone: <input type="text" name="contactPhone1"/><br/><br/>';	
 		  echo '</DIV>';
 		  echo'</DIV>';
 		  if($_SESSION['access_level']==2){
@@ -142,6 +144,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		}
 		else{
 		  $numContacts=count($participant->get_contacts());
+		  echo '<input type="hidden" value="'.$numContacts.'" name="numContacts" id="numContacts" />';
 		  $contacts = $participant->get_contacts();
 		  for($i=1; $i<=$numContacts;$i++){
 		    $contact=$contacts[$i-1];
@@ -167,9 +170,9 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		  if($_SESSION['access_level']==2){
 		    echo '<DIV id="placeholder">';
 		    echo'<DIV id="emergContact">';
-		    echo 'Contact Name: <input type="text" name="contactName'.($i+1).'"/><br/>';
-		    echo 'Contact Relation: <input type="text" name="contactRel'.($i+1).'"/><br/>';
-		    echo 'Contact Phone: <input type="text" name="contactPhone'.($i+1).'"/><br/><br/>';
+		    echo 'Contact Name: <input type="text" name="contactName'.$i.'"/><br/>';
+		    echo 'Contact Relation: <input type="text" name="contactRel'.$i.'"/><br/>';
+		    echo 'Contact Phone: <input type="text" name="contactPhone'.$i.'"/><br/><br/>';
 		    echo '</DIV>';
 		    echo'</DIV>';
 		    echo '<input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';
@@ -184,7 +187,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	      Notes:<br/><textarea name="notes" cols="50" rows="7"></textarea>
 	    </fieldset>
 	    <br/>
-	    <input type="submit" value="Submit" STYLE="WIDHT:50; HEIGHT:30;"/>
+	    <input type="submit" value="Submit" STYLE="WIDTH:50; HEIGHT:30;"/>
 	  </FORM>
 	</DIV>
 	<?php include('footer.inc');?>

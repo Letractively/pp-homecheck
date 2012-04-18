@@ -41,9 +41,10 @@ h1 {padding-left: 0px; padding-right:165px;}
 		$permission_array['viewDailyLog.php']=1;
                 $permission_array['viewMonthlyList.php']=1;
                 $permission_array['viewMonthlySched.php']=1;
+		$permission_array['viewParticipants.php']=1;
+		$permission_array['participantInfo.php']=1;
 		//additional pages the coordinator can view
 		$permission_array['editVolunteer.php']=2;
-		$permission_array['editParticipant.php']=2;
 		$permission_array['editMonthlySchedule.php']=2;
 		$permission_array['viewMasterSched.php']=2;
 		$permission_array['searchVolunteers.php']=2;
@@ -65,24 +66,25 @@ h1 {padding-left: 0px; padding-right:165px;}
 
 		//This line gives us the path to the html pages in question, useful if the server isn't installed @ root.
 		$path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']),strpos(strrev($_SERVER['SCRIPT_NAME']),'/')));
-        $today = date("y-m-d");
+		$today = date("y-m-d");
 		//they're logged in and session variables are set.
 		echo('<a href="'.$path.'index.php">home</a>');
 		if ($_SESSION['access_level']==0) // guests
-		    echo('<a href="editVolunteer.php?id=new'.'"> | apply </a>');
+		  echo('<a href="editVolunteer.php?id=new'.'"> | apply </a>');
 		
 		if($_SESSION['access_level']>=1) // volunteers, coordinator, dispatcher 
-		{
+		  {
 		    echo('<a href="'.$path.'dailyLog.php?date='.$today.'"> | daily log</a>');
 		    echo('<a href="'.$path.'viewMonthlyList.php"> | monthly schedule</a>');
-		    echo('<a href="'.$path.'help.php?helpPage='.$current_page.'" target="_BLANK"> | help</a>');
+		    echo('<a href="'.$path.'viewParticipants.php"> | participants</a>');
+
+		  }
+		if($_SESSION['access_level']==2) { // coordinator only
+		  echo '<a href="'.$path.'viewMasterSched.php"> | master schedule</a>';
+		  echo('<a href="'.$path.'viewVolunteers.php"> | volunteers</a>');
+		  echo '<a href="'.$path.'viewReports.php?id='.$_SESSION['_area'].'&date='.date('y-m-d').'&enddate='.date('y-m-d').'"> | reports</a>';	    
 		}
-	    if($_SESSION['access_level']==2) { // coordinator only
-	    	echo '<a href="'.$path.'viewMasterSched.php"> | master schedule</a>';
-	    	echo('<a href="'.$path.'viewVolunteers.php"> | volunteers</a>');
-	    	echo('<a href="'.$path.'viewParticipants.php"> | participants</a>');
-	    	echo '<a href="'.$path.'viewReports.php?id='.$_SESSION['_area'].'&date='.date('y-m-d').'&enddate='.date('y-m-d').'"> | reports</a>';	    
-	    }
+		echo('<a href="'.$path.'help.php?helpPage='.$current_page.'" target="_BLANK"> | help</a>');
 		echo('<a href="'.$path.'about.php"> | about</a>');
 		echo('<a href="'.$path.'logout.php"> | logout</a>');
 	}
