@@ -67,7 +67,8 @@ session_cache_expire(30);
 		echo '<FORM METHOD="get" ACTION="participantInfo.php" ONSUBMIT="">';
 		echo '<input type="hidden" name="ID" value="new"/>';
 		echo '<input type="submit" STYLE="HEIGHT:40; WIDTH:140;" value="Add New Participant" align="center" />';
-      echo '</FORM>';?>
+		echo '</FORM>';
+      }?>
       <?php include('footer.inc');?>
       </DIV>
     </DIV>

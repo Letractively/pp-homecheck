@@ -63,11 +63,11 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		if($_SESSION['access-level']==1)
 		  echo 'readonly';
 		echo '"/>';
-		echo 'Last Name: <input type="text" name="last_name" value="';
+		echo '  Last Name: <input type="text" name="last_name" value="';
 		echo $participant->get_last_name();
 		if($_SESSION['access-level']==1)
 		  echo 'readonly';
-		echo '/> <br/><br/>';
+		echo '"/> <br/><br/>';
 		echo ' Birthday:<input type="text" name="birthday" value"';
 		echo $participant->get_birthday();
 		if($_SESSION['access-level']==1)
@@ -95,6 +95,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		else{
 		  echo $participant->get_state();
 		  echo '<input type="hidden" value="'.$participant->get_state().'">';
+		}
 		  ?>		
 ,  Zip:<input type="text" name="zip"/><br/><br/>
 	      Phone1: <input type="text" name="phone1"/> <br/> Phone2: <input type="text" name="phone2"/><br/><br/>
