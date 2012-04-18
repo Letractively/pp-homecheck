@@ -85,7 +85,7 @@ else {
 		for($i = 0; $i < count; $i++)
 		{
 			$contact = $contacts[$i];
-			$contact = explode(',', $contact);
+			$contact = explode(';', $contact);
 			$name = $contact[0];
 			$phone = $contact[1];
 			$email = $contact[2];
