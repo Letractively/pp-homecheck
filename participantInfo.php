@@ -200,18 +200,24 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	      ?>
 	    </fieldset>
 	    <br/>
-	    <input type="submit" value="Submit" STYLE="WIDTH:60; HEIGHT:30;"/>
-	  </FORM>
+	   <DIV>
+	    <input type="submit" value="Submit" STYLE="WIDTH:60; HEIGHT:30; float:left;"/>
 	  <?php 
 			   if($_SESSION['access_level']==2 and $id!='new'){
 			     $deleteString='\'This will delete the current Participant record.  Are you sure you want to conitune?\'';
+			     
+			     echo '<div STYLE="float:left; padding-left:30px;">';
 			     echo '<FORM name="DeleteCheck" METHOD="post" ACTION="deleteParticipant.php" ONSUBMIT="return confirm('.$deleteString.')">';
 			     echo '<input type="hidden" name="partID" value="'.$participant->get_id().'"/>';
 			     echo '<input type="submit" value="Delete" STYLE="WIDTH:60; HEIGHT:30;"/>';
 			     echo '</FORM>';
+			     echo '</div>';
+			     ;
 			   }
 
 	  ?>
+	  <div style="clear:both;"></div></DIV>
+	  </FORM>
 	</DIV>
 	<?php include('footer.inc');?>
       </DIV>
