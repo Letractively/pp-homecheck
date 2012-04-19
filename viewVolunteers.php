@@ -27,9 +27,6 @@
 
 		<script type = "text/javascript">
 			function updateID(selector) {
-			//	var id_list = document.getElementById("volunteer_list").options;
-			//	var index = document.getElementById("volunteer_list").selectedIndex;
-			//	var currentID = id_list.item(index);
 				var currentID = selector.options[selector.selectedIndex].value;
 				var info_url = "volunteer_info.php?id=";
 				info_url = info_url.concat(currentID);
