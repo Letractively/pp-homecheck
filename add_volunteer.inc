@@ -79,29 +79,42 @@ else {
 <fieldset>
 	<legend>Emergency Contacts</legend>
 	<?PHP
-		$contact = $person->get_contacts();
-		$count = count($contact);
-		
-		for($i = 0; $i < count; $i++)
-		{
-			$contact = $contacts[$i];
-			$contact = explode(',', $contact);
-			$name = $contact[0];
-			$phone = $contact[1];
-			$email = $contact[2];
+	if($id=='new'){
+		  echo '<input type="hidden" value="2" name="numContacts" id="numContacts" />';
+		  echo 'Contact Name: <input type="text" name="contactName1"/><br/>';
+		  echo 'Contact Phone: <input type="text" name="contactPhone1"/><br/>';
+		  echo 'Contact Email: <input type="text" name="contactEmail1"/><br/><br/>';
+	  	  echo 'Contact Name: <input type="text" name="contactName2"/><br/>';
+		  echo 'Contact Phone: <input type="text" name="contactPhone2"/><br/>';
+		  echo 'Contact Email: <input type="text" name="contactEmail2"/><br/><br/>';		  
+		}
+		else{
+		  $numContacts=count($person->get_contacts());
+		  echo '<input type="hidden" value="'.$numContacts.'" name="numContacts" id="numContacts" />';
+		  if ($numContacts == 0)
+		  {
+			echo 'Contact Name: <input type="text" name="contactName1"/><br/>';
+		 	 echo 'Contact Phone: <input type="text" name="contactPhone1"/><br/>';
+		 	 echo 'Contact Email: <input type="text" name="contactEmail1"/><br/><br/>';
+	  	 	 echo 'Contact Name: <input type="text" name="contactName2"/><br/>';
+		 	 echo 'Contact Phone: <input type="text" name="contactPhone2"/><br/>';
+		 	 echo 'Contact Email: <input type="text" name="contactEmail2"/><br/><br/>';		
+		  }
 
-			echo '<table>';
-			echo ('<tr><td>Name:</td><td><input type="text" name="contact_name" tabindex=1 value="');
-			echo $name.'"';
-			echo '</td></tr>';
-			
-			echo ('<tr><td>Phone:</td><td><input type="text" name="contact_phone" tabindex=2 value="');
-			echo $phone.'"';
-			echo '</td></tr>';
-
-			echo ('<tr><td>Email:</td><td><input type="text" name="contact_email" tabindex=3 value="');
-			echo $email.'"';
-			echo '</td></tr></table>';
+		  $contacts = $person->get_contacts();
+		  for($i=1; $i<=$numContacts;$i++){
+		    $contact=$contacts[$i-1];
+		    $contact=explode(':',$contact);
+		    $name = $contact[0];
+		    $phone = $contact[1];
+		    $email = $contact[2];
+		    echo'Contact Name: <input type="text" name="contactName'.$i.'" value="';
+		    echo $name.'"/><br/>';
+		    echo 'Contact Phone: <input type="text" name="contactPhone'.$i.'" value="';
+		    echo $phone.'"/><br/>';		    
+		    echo 'Contact Email: <input type="text" name="contactEmail'.$i.'" value="';
+		    echo $email.'"/><br/><br/>';		    
+		  }
 		}
 ?>
 
