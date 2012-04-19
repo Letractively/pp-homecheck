@@ -26,9 +26,16 @@
 		</style>
 
 		<script type = "text/javascript">
-			function getID() {
-				var current = document.getElementById("volunteer_list").value;
-				document.getElementById("info").src = "volunteer_info.php?id=" + current;
+			function updateID(selector) {
+				var currentID = selector.options[selector.selectedIndex].value;
+				var info_url = "volunteer_info.php?id=";
+				info_url = info_url.concat(currentID);
+				document.getElementById('info').src = info_url;
+
+				var currentID2 = selector.options[selector.selectedIndex].value;
+				var edit_url = "volunteerEdit.php?id=";
+				edit_url = edit_url.concat(currentID2);
+				document.getElementById('edit').href = edit_url;
 			}
 		</script>
 		
@@ -50,9 +57,9 @@
 					echo "There are no volunteers in the database.";
 				}
 				else {
-					echo "<select id=volunteer_list size=15 width='350' style='width: 350px'></option>";
+					echo "<select id=volunteer_list size=15 width='350' style='width: 350px' onchange='updateID(this);'></option>";
 					foreach ($allVolunteers as $vol) {
-						echo ("<option value='.$vol->get_id().'>");
+						echo ('<option value="'.$vol->get_id().'">');
 						echo(''.$vol->get_first_name()." ".$vol->get_last_name().'');
 						echo "</option>";
 						$onePerson = $vol;
@@ -67,13 +74,13 @@
 					echo('<td class="searchResults"><a href="volunteerEdit.php?id='.$_SESSION['_id'].'">&nbsp; &nbsp; Edit Your Information</a></td>');
 				}
 				else if ($_SESSION['access_level']==2){
-					echo('<td class="searchResults"><a href="volunteerEdit.php?id='.$onePerson->get_id().'">&nbsp; &nbsp; &nbsp; &nbsp; Edit Volunteer</a></td>');
+					echo('<td class="searchResults"><a href="volunteerEdit.php?id='.$onePerson->get_id().'" id="edit">&nbsp; &nbsp; &nbsp; &nbsp; Edit Volunteer</a></td>');
   				}
 		
 				echo "</div>";
 
 				echo "<div class='floatRight'>";
-				echo('<Iframe id="info" src="volunteer_info.php?id='.$onePerson->get_id().'" width="450" height="350"></Iframe>');
+				echo('<Iframe id="info" src="" width="450" height="350"></Iframe>');
 				echo "</div>";	
 ?>
 			</div>

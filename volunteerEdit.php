@@ -94,10 +94,9 @@ function process_form($id)      {
 
 		$type = implode(',', $_POST['type']);
 
-		// if ($_POST['contacts'] != null)
-                  //      $contacts=implode(',', $_POST['contacts']);
-                //else $contacts = "";
-		$contacts = "";
+		 if ($_POST['contacts'] != null)
+                        $contacts=implode(',', $_POST['contacts']);
+                else $contacts = "";
                         
         if ($_POST['availability'] != null)
                         $availability=implode(',', $_POST['availability']);
@@ -119,7 +118,7 @@ function process_form($id)      {
                 if($_POST['deleteMe']=="DELETE"){
                         $result = retrieve_dbVolunteers($id);
                         if (!$result)
-                                echo('<p>Unable to delete. ' .$first_name.' '.$last_name. ' is not in the database. <br>Please report this error to the House Manager.');
+                                echo('<p>Unable to delete. ' .$first_name.' '.$last_name. ' is not in the database. <br>Please report this error to the Program Coordinator .');
                         else {
                                 //What if they're the last remaining manager account?
                                 if(strpos($type,'coordinator')!==false){
@@ -148,7 +147,7 @@ function process_form($id)      {
 			$contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $notes, $password);
 				$result = insert_dbVolunteers($newperson);
                                 if (!$result)
-                   echo ('<p class="error">Unable to reset ' .$first_name.' '.$last_name. "'s password.. <br>Please report this error to the House Manager.");
+                   echo ('<p class="error">Unable to reset ' .$first_name.' '.$last_name. "'s password.. <br>Please report this error to the Program Coordinator.");
                                 else echo("<p>You have successfully reset " .$first_name." ".$last_name. "'s password.</p>");
                 }
 

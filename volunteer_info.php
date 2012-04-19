@@ -48,12 +48,13 @@
 					$nice_phone_1 = substr($volunteer->get_phone1(),0,3)."-".substr($volunteer->get_phone1(),3,3)."-".substr($volunteer->get_phone1(),6,4);
 					if($volunteer->get_phone2() !== "")
 						$nice_phone_2 = substr($volunteer->get_phone2(),0,3)."-".substr($volunteer->get_phone2(),3,3)."-".substr($volunteer->get_phone2(),6,4);;
-					echo("<p><h3>" . $volunteer->get_first_name() . " " . $volunteer->get_last_name()."</h3>");
-					echo("</p><p>");
-					echo("<table class=\"searchResults\"><tr><td colspan=\"2\" class=\"searchResults\"></td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Status:</b></td><td class=\"searchResults\">".$volunteer->get_status()."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Volunteer Type:</b></td><td class=\"searchResults\">".$volunteer->get_type()."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Availability:</b></td><td class=\"searchResults\">");
+					echo("<table class=\"searchResults\"><tr><td colspan=\"2\" class=\"searchResults\"><h3>".$volunteer->get_first_name()." ".$volunteer->get_last_name()."</h3></td></tr>");						
+			      		//echo("<p><h3>" . $volunteer->get_first_name() . " " . $volunteer->get_last_name()."</h3>");
+					//echo("</p><p>");
+					//echo("<table class=\"searchResults\"><tr><td colspan=\"2\" class=\"searchResults\"></td></tr>");
+					echo("<tr><td class=\"searchResults\"><b>Status: </b></td><td class=\"searchResults\">".$volunteer->get_status()."</td></tr>");
+					echo("<tr><td class=\"searchResults\"><b>Volunteer Type: </b></td><td class=\"searchResults\">".$volunteer->get_type()."</td></tr>");
+					echo("<tr><td class=\"searchResults\"><b>Availability: </b></td><td class=\"searchResults\">");
 					$availability = $volunteer->get_availability();
 					$counting = count($availability);
 					for($j = 0; $j < $counting; $j++)
@@ -68,7 +69,7 @@
 					}
 					echo("</td></tr>");
 					
-					echo("<tr><td class=\"searchResults\"><b>Schedule:</b></td><td class=\"searchResults\">");
+					echo("<tr><td class=\"searchResults\"><b>Schedule: </b></td><td class=\"searchResults\">");
 					$schedule = $volunteer->get_schedule();
 					$count = count($schedule);
 					for($i = 0; $i < $count; $i++)
@@ -86,11 +87,11 @@
 						
 					echo("</p><p>");	
 					echo("<table class=\"searchResults\"><tr><td colspan=\"2\" class=\"searchResults\"><h3>Contact Information</h3></td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Address:</b></td><td class=\"searchResults\">".$volunteer->get_address()."</td></tr>");
-					echo("<tr><td class=\"searchResults\"></td><td class=\"searchResults\">".$volunteer->get_city().", ".$volunteer->get_state()."  ".$volunteer->get_zip()."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Primary Phone:</b></td><td class=\"searchResults\">".$nice_phone_1."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Alternate Phone:</b></td><td class=\"searchResults\">".$nice_phone_2."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Email:</b></td><td class=\"searchResults\"><a href=\"mailto:".$volunteer->get_email()."\">".$volunteer->get_email()."</a></td></tr>");
+					echo("<tr><td class=\"searchResults\"><b>Address: </b></td><td class=\"searchResults\">".$volunteer->get_address()."</td></tr>");
+					echo("<tr><td class=\"searchResults\"></td><td class=\"searchResults\"> ".$volunteer->get_city().", ".$volunteer->get_state()."  ".$volunteer->get_zip()."</td></tr>");
+					echo("<tr><td class=\"searchResults\"><b>Primary Phone: </b></td><td class=\"searchResults\">".$nice_phone_1."</td></tr>");
+					echo("<tr><td class=\"searchResults\"><b>Alternate Phone: </b></td><td class=\"searchResults\">".$nice_phone_2."</td></tr>");
+					echo("<tr><td class=\"searchResults\"><b>Email: </b></td><td class=\"searchResults\"><a href=\"mailto:".$volunteer->get_email()."\">".$volunteer->get_email()."</a></td></tr>");
 					echo("</p><p>");
 					echo("<tr><td class=\"searchResults\"><b>Notes:</b></td><td class=\"searchResults\">".$volunteer->get_notes()."</td></tr>");
 						
