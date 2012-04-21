@@ -82,7 +82,7 @@ h1 {padding-left: 0px; padding-right:165px;}
 		if($_SESSION['access_level']==2) { // coordinator only
 		  echo '<a href="'.$path.'viewMasterSched.php"> | master schedule</a>';
 		  echo('<a href="'.$path.'viewVolunteers.php"> | volunteers</a>');
-		  echo '<a href="'.$path.'viewReports.php?id='.$_SESSION['_area'].'&date='.date('y-m-d').'&enddate='.date('y-m-d').'"> | reports</a>';	    
+		  echo '<a href="'.$path.'viewReport.php"> | reports</a>';	    
 		}
 		echo('<a href="'.$path.'help.php?helpPage='.$current_page.'" target="_BLANK"> | help</a>');
 		echo('<a href="'.$path.'about.php"> | about</a>');
