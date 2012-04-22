@@ -17,7 +17,7 @@
 ?>
 <HTML>     
     <HEAD>  
-    <TITLE>Daily Log</TITLE>   
+    <TITLE>Notepad</TITLE>   
 	<LINK rel="stylesheet" href="styles.css" type="text/css">
 	<LINK type="text/css" rel="stylesheet" href="data:text/css,">
 	<STYLE TYPE="text/css"> 
