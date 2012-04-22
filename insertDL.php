@@ -3,8 +3,8 @@
 	include_once('database/dbDailyLogs.php');
 	include_once('domain/DailyLog.php');
 	
-	if ($_POST[Time] !== null && $_POST[Participant])
-		insert_dbParticipantEntry(new ParticipantEntry($_POST[Date],$_POST[Participant],$_POST[Time],$_POST[Result],$_POST[Notes]));
+	if ($_POST[Time1] !== null && $_POST[Time2] !== null && $_POST[Participant])
+		insert_dbParticipantEntry(new ParticipantEntry($_POST[Date],$_POST[Participant],$_POST[Time1].":".$_POST[Time2].$_POST[AP],$_POST[Result],$_POST[Notes]));
 	
 	$dl = retrieve_dbDailyLogs($_POST[Date]);
 	if($dl == null){
@@ -37,5 +37,5 @@
 		insert_dbDailyLogs(new DailyLog($_POST[Date],$participants,$_POST[Volunteer],$dNotes));
 	}
 	$today = Date("y-m-d");
-	header("Location: dailyLog.php?date=".$today);
+	header("Location: dailyLog.php?date=".$today."&submitted=".$_POST[Participant]);
 ?>
