@@ -210,13 +210,15 @@
    				}
    				$volID = $al->get_volunteer_id();
    				$vol = retrieve_dbVolunteers($volID);
-   				$location = $vol->get_city();
-   				if(strcasecmp($location , "Brunswick") == 0) $VaBrunswick++;
-   				if(strcasecmp($location , "Freeport") == 0) $VaFreeport++;
-   				if(strcasecmp($location , "Harpswell") == 0) $VaHarpswell++;
-   				if(strcasecmp($location , "Bowdoinham") == 0) $VaBowdoinham++;
-    			if(strcasecmp($location , "Topsham") == 0) $VaTopsham++;
-    			if(strcasecmp($location , "Brunswick") != 0 && strcasecmp($location , "Freeport") != 0 && strcasecmp($location , "Harpswell") != 0 && strcasecmp($location , "Bowdoinham") != 0 && strcasecmp($location , "Topsham") != 0) $VaOther++;
+   				if ($vol != null) {
+   					$location = $vol->get_city();
+   					if(strcasecmp($location , "Brunswick") == 0) $VaBrunswick++;
+   					if(strcasecmp($location , "Freeport") == 0) $VaFreeport++;
+   					if(strcasecmp($location , "Harpswell") == 0) $VaHarpswell++;
+   					if(strcasecmp($location , "Bowdoinham") == 0) $VaBowdoinham++;
+    				if(strcasecmp($location , "Topsham") == 0) $VaTopsham++;
+    				if(strcasecmp($location , "Brunswick") != 0 && strcasecmp($location , "Freeport") != 0 && strcasecmp($location , "Harpswell") != 0 && strcasecmp($location , "Bowdoinham") != 0 && strcasecmp($location , "Topsham") != 0) $VaOther++;
+   				}
    			}
    			foreach($bLogs as &$bl) {
    				$d = $bl->get_id();
@@ -241,13 +243,15 @@
    				}
    				$volID = $bl->get_volunteer_id();
    				$vol = retrieve_dbVolunteers($volID);
-   				$location = $vol->get_city();
-   				if(strcasecmp($location , "Brunswick") == 0) $VbBrunswick++;
-   				if(strcasecmp($location , "Freeport") == 0) $VbFreeport++;
-   				if(strcasecmp($location , "Harpswell") == 0) $VbHarpswell++;
-   				if(strcasecmp($location , "Bowdoinham") == 0) $VbBowdoinham++;
-    			if(strcasecmp($location , "Topsham") == 0) $VbTopsham++;
-    			if(strcasecmp($location , "Brunswick") != 0 && strcasecmp($location , "Freeport") != 0 && strcasecmp($location , "Harpswell") != 0 && strcasecmp($location , "Bowdoinham") != 0 && strcasecmp($location , "Topsham") != 0) $VbOther++;
+   				if ($vol != null) {
+   					$location = $vol->get_city();
+   					if(strcasecmp($location , "Brunswick") == 0) $VbBrunswick++;
+   					if(strcasecmp($location , "Freeport") == 0) $VbFreeport++;
+   					if(strcasecmp($location , "Harpswell") == 0) $VbHarpswell++;
+   					if(strcasecmp($location , "Bowdoinham") == 0) $VbBowdoinham++;
+    				if(strcasecmp($location , "Topsham") == 0) $VbTopsham++;
+    				if(strcasecmp($location , "Brunswick") != 0 && strcasecmp($location , "Freeport") != 0 && strcasecmp($location , "Harpswell") != 0 && strcasecmp($location , "Bowdoinham") != 0 && strcasecmp($location , "Topsham") != 0) $VbOther++;
+	   			}
    			}
    			foreach($cLogs as &$cl) {
    				$d = $cl->get_id();
@@ -272,13 +276,15 @@
    				}
    				$volID = $cl->get_volunteer_id();
    				$vol = retrieve_dbVolunteers($volID);
-   				$location = $vol->get_city();
-   				if(strcasecmp($location , "Brunswick") == 0) $VcBrunswick++;
-   				if(strcasecmp($location , "Freeport") == 0) $VcFreeport++;
-   				if(strcasecmp($location , "Harpswell") == 0) $VcHarpswell++;
-   				if(strcasecmp($location , "Bowdoinham") == 0) $VcBowdoinham++;
-    			if(strcasecmp($location , "Topsham") == 0) $VcTopsham++;
-    			if(strcasecmp($location , "Brunswick") != 0 && strcasecmp($location , "Freeport") != 0 && strcasecmp($location , "Harpswell") != 0 && strcasecmp($location , "Bowdoinham") != 0 && strcasecmp($location , "Topsham") != 0) $VcOther++;
+   				if ($vol != null) {
+   					$location = $vol->get_city();
+   					if(strcasecmp($location , "Brunswick") == 0) $VcBrunswick++;
+   					if(strcasecmp($location , "Freeport") == 0) $VcFreeport++;
+   					if(strcasecmp($location , "Harpswell") == 0) $VcHarpswell++;
+   					if(strcasecmp($location , "Bowdoinham") == 0) $VcBowdoinham++;
+    				if(strcasecmp($location , "Topsham") == 0) $VcTopsham++;
+    				if(strcasecmp($location , "Brunswick") != 0 && strcasecmp($location , "Freeport") != 0 && strcasecmp($location , "Harpswell") != 0 && strcasecmp($location , "Bowdoinham") != 0 && strcasecmp($location , "Topsham") != 0) $VcOther++;
+   				}
     		}
     		
     		$totalOK = (int)$aOK+$bOK+$cOK;
@@ -345,8 +351,8 @@
     			}
     		}
     		echo "<TABLE><BR><BR>"; 
-    		echo "<DIV ID='printbttn'><INPUT TYPE='submit' CLASS='button_print' VALUE='' TITLE='Print' ONCLICK='javascript: window.print();'/></DIV><BR><BR>";
     	} 		
+    	echo "<DIV ID='printbttn'><INPUT TYPE='submit' CLASS='button_print' VALUE='' TITLE='Print' ONCLICK='javascript: window.print();'/></DIV><BR><BR>";
     ?>
     <DIV ID="footer"><?PHP include('footer.inc');?></DIV>
     </DIV>
