@@ -193,19 +193,21 @@
    				foreach($partEntries as &$p) {
    					if ($p != null){
    						$entry = retrieve_dbParticipantEntry($d.$p);
-   						$status = $entry->get_result();
-   						if(strcasecmp($status , "OK") == 0) $aOK++;
-   						if(strcasecmp($status , "C") == 0) $aC++;
-   						if(strcasecmp($status , "D") == 0) $aD++;
-   						if(strcasecmp($status , "H") == 0) $aH++;
-   						$part = retrieve_dbParticipants($p);
-   						$location = $part->get_city();
-   						if(strcasecmp($location , "Brunswick") == 0) $aBrunswick++;
-   						if(strcasecmp($location , "Freeport") == 0) $aFreeport++;
-   						if(strcasecmp($location , "Harpswell") == 0) $aHarpswell++;
-   						if(strcasecmp($location , "Bowdoinham") == 0) $aBowdoinham++;
-   						if(strcasecmp($location , "Topsham") == 0) $aTopsham++;
-   						if(strcasecmp($location , "Brunswick") != 0 && strcasecmp($location , "Freeport") != 0 && strcasecmp($location , "Harpswell") != 0 && strcasecmp($location , "Bowdoinham") != 0 && strcasecmp($location , "Topsham") != 0) $aOther++;
+   						if ($entry != null) {
+   							$status = $entry->get_result();
+	   						if(strcasecmp($status , "OK") == 0) $aOK++;
+   							if(strcasecmp($status , "C") == 0) $aC++;
+   							if(strcasecmp($status , "D") == 0) $aD++;
+   							if(strcasecmp($status , "H") == 0) $aH++;
+   							$part = retrieve_dbParticipants($p);
+   							$location = $part->get_city();
+   							if(strcasecmp($location , "Brunswick") == 0) $aBrunswick++;
+	   						if(strcasecmp($location , "Freeport") == 0) $aFreeport++;
+   							if(strcasecmp($location , "Harpswell") == 0) $aHarpswell++;
+   							if(strcasecmp($location , "Bowdoinham") == 0) $aBowdoinham++;
+   							if(strcasecmp($location , "Topsham") == 0) $aTopsham++;
+   							if(strcasecmp($location , "Brunswick") != 0 && strcasecmp($location , "Freeport") != 0 && strcasecmp($location , "Harpswell") != 0 && strcasecmp($location , "Bowdoinham") != 0 && strcasecmp($location , "Topsham") != 0) $aOther++;
+   						}
    					}
    				}
    				$volID = $al->get_volunteer_id();
@@ -328,31 +330,33 @@
     		echo "<TR><TH><B>Totals</B></TH><TD>";
     		echo $aTotal."/".$VaTotal."</TD><TD>".$bTotal."/".$VbTotal."</TD><TD>".$cTotal."/".$VcTotal."</TD></TR>";
     		echo "</TABLE><BR><BR>";
-    	}
-    	if($quarter != null && $totalD != 0) {
-    		echo "<TABLE CLASS='gridtable'>";
-    		echo "<TR><TH><B>Participants Referred to Dispatch</B></TH><TH><B>Town</B></TH><TH><B>Date</B></TH></TR>";
-    		if ($quarter == 1) $dls = retrieve_betweentwodates($jan_start, $mar_end);
-    		if ($quarter == 2) $dls = retrieve_betweentwodates($apr_start, $jun_end);
-    		if ($quarter == 3) $dls = retrieve_betweentwodates($jul_start, $sep_end);
-    		if ($quarter == 4) $dls = retrieve_betweentwodates($oct_start, $dec_end);
-    		foreach($dls as &$dl) {
-    			$eID = $dl->get_entry_ids();
-    			$date = $dl->get_id();
-    			foreach($eID as &$ID) {
-    				$pEntry = retrieve_dbParticipantEntry($date.$ID);
-    				if($ID != null) {
-    					$fname = retrieve_dbParticipants($ID)->get_first_name();
-    					$lname = retrieve_dbParticipants($ID)->get_last_name();
-    					$cit = retrieve_dbParticipants($ID)->get_city();
-    					$stat = $pEntry->get_result();
-	    				if($stat == "D") echo "<TR><TD>".$fname." ".$lname."</TD><TD>".$cit."</TD><TD>".$date."</TR>";
+    	
+    		if($totalD != 0) {
+	    		echo "<TABLE CLASS='gridtable'>";
+    			echo "<TR><TH><B>Participants Referred to Dispatch</B></TH><TH><B>Town</B></TH><TH><B>Date</B></TH></TR>";
+    			if ($quarter == 1) $dls = retrieve_betweentwodates($jan_start, $mar_end);
+    			if ($quarter == 2) $dls = retrieve_betweentwodates($apr_start, $jun_end);
+ 	   			if ($quarter == 3) $dls = retrieve_betweentwodates($jul_start, $sep_end);
+    			if ($quarter == 4) $dls = retrieve_betweentwodates($oct_start, $dec_end);
+    			foreach($dls as &$dl) {
+    				$eID = $dl->get_entry_ids();
+    				$date = $dl->get_id();
+    				foreach($eID as &$ID) {
+    					$pEntry = retrieve_dbParticipantEntry($date.$ID);
+    					if($ID != null && $pEntry != null) {
+    						$fname = retrieve_dbParticipants($ID)->get_first_name();
+    						$lname = retrieve_dbParticipants($ID)->get_last_name();
+    						$cit = retrieve_dbParticipants($ID)->get_city();
+    						$stat = $pEntry->get_result();
+	    					if($stat == "D") echo "<TR><TD>".$fname." ".$lname."</TD><TD>".$cit."</TD><TD>".$date."</TR>";
+    					}
     				}
     			}
+    			echo "<TABLE><BR><BR>"; 
     		}
-    		echo "<TABLE><BR><BR>"; 
+    		echo "<DIV ID='printbttn'><INPUT TYPE='submit' CLASS='button_print' VALUE='' TITLE='Print' ONCLICK='javascript: window.print();'/></DIV><BR><BR>";
     	} 		
-    	echo "<DIV ID='printbttn'><INPUT TYPE='submit' CLASS='button_print' VALUE='' TITLE='Print' ONCLICK='javascript: window.print();'/></DIV><BR><BR>";
+    	
     ?>
     <DIV ID="footer"><?PHP include('footer.inc');?></DIV>
     </DIV>
