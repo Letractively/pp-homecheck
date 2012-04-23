@@ -88,6 +88,18 @@
     	<?PHP include('header.php');?>
 		<DIV ID="content">
 		<FORM ID="FORM1" METHOD="POST" AUTOCOMPLETE="off">
+			<DIV STYLE=' TOP: 252; MARGIN-LEFT: 25; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;'>
+            	<?php 
+					if ($submitted != null){
+            	  		$subPart = retrieve_dbParticipants($submitted);
+            	    	$name = $subPart->get_first_name()." ".$subPart->get_last_name();
+            	    	echo "<BR><BR>";
+            	    	echo "<h2 style='color: red'>&#10004; Submitted Log for ";
+            	    	echo $name;
+            	    	echo "</h2>";
+            		}
+            	?>
+            </DIV>
         	<DIV STYLE=" TOP: 180; MARGIN-LEFT: 15; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             	<IMG SRC="images/DailyLogLogo.png" WIDTH="70" HEIGHT="88"/>
         	</DIV>
@@ -99,10 +111,10 @@
             	<?PHP echo date('F d, Y');?>
         	</DIV>     
         	
-			<DIV STYLE="TOP:302; MARGIN-LEFT: 15; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE="TOP:332; MARGIN-LEFT: 15; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    		<IMG SRC="images/time.png"/>
 			</DIV>
-			<DIV STYLE=" TOP: 314; MARGIN-LEFT: 195; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE=" TOP: 344; MARGIN-LEFT: 195; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
         		<INPUT TYPE="hidden" NAME="Date" STYLE="WIDTH:0px; " MAXLENGTH="8" TITLE="Enter Date" Value="<?php echo $dt ?>"/>
                 <INPUT TYPE="text" NAME="Time1" ID="Time1" STYLE="WIDTH:30px; " MAXLENGTH="2" ONCHANGE="validateTime();" TITLE="Enter Time, HH" ONKEYUP="moveOnMax(this,'Time2')"/>:<INPUT TYPE="text" NAME="Time2" ID="Time2" STYLE="WIDTH:30px; " MAXLENGTH="2" ONCHANGE="validateTime();" TITLE="Enter Time, MM"/>
 				<SELECT NAME = "AP" TITLE="Select AM or PM">
@@ -111,10 +123,10 @@
                 </SELECT><BR><BR>
             </DIV>
             
-			<DIV STYLE="TOP:368; MARGIN-LEFT: 15; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE="TOP:398; MARGIN-LEFT: 15; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 		    	<IMG SRC="images/participant.png"/>
 			</DIV>
-			<DIV STYLE=" TOP: 380; MARGIN-LEFT: 195; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE=" TOP: 410; MARGIN-LEFT: 195; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
         		<SELECT NAME = "Participant" STYLE = "WIDTH: 187" TITLE="Begin typing participant last name for fast searching.">
                 	<OPTION SELECTED VALUE = "">Select Participant...</OPTION>
 		    		<?PHP
@@ -132,10 +144,10 @@
         		</SELECT>
             </DIV>
             
-			<DIV STYLE="TOP:427; MARGIN-LEFT: 15; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE="TOP:457; MARGIN-LEFT: 15; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    		<IMG SRC="images/result.png"/>
 			</DIV>
-			<DIV STYLE=" TOP: 440; MARGIN-LEFT: 195; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE=" TOP: 470; MARGIN-LEFT: 195; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
                 <SELECT NAME = "Result" TITLE="Choose 'H' for 'Had to Call', 'C' for 'Called Contact', 'D' for 'Called Dispatch', else leave blank.">
     			    <OPTION VALUE = OK></OPTION>
     			    <OPTION VALUE = C>C</OPTION>
@@ -144,23 +156,23 @@
                 </SELECT>
 	    	</DIV>
 	    	
-			<DIV STYLE="TOP:490; MARGIN-LEFT: 15; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE="TOP:520; MARGIN-LEFT: 15; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    		<IMG SRC="images/note.png"/>
 			</DIV>
-			<DIV STYLE=' TOP: 502; MARGIN-LEFT: 195; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;'>
+			<DIV STYLE=' TOP: 532; MARGIN-LEFT: 195; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;'>
 				<TEXTAREA NAME="Notes" COLS="28" ROWS="5" STYLE="font-family:arial; resize: none;" TITLE="Enter Notes Here"></TEXTAREA>
 				<?php
 					$vol = $_SESSON['_id'];
 					echo "<INPUT TYPE='hidden' NAME='Volunteer' TITLE='Volunteer' ";
 					echo "VALUE='", $vol, "'/>";
 				?><BR><BR>				
-				<INPUT TYPE="submit" CLASS="button_submit" VALUE="" TITLE="Submit Participant" ONCLICK="javascript: FORM1.action='insertDL.php'"/>
+				<INPUT TYPE="submit" onmouseover="this.style.cursor = 'hand';" CLASS="button_submit" VALUE="" TITLE="Submit Participant" ONCLICK="javascript: FORM1.action='insertDL.php'"/>
             </DIV>
             
-            <DIV STYLE="TOP:302; MARGIN-LEFT: 515; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+            <DIV STYLE="TOP:332; MARGIN-LEFT: 515; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    		<IMG SRC="images/dnotes.png"/>
 			</DIV>
-			<DIV STYLE=" TOP: 315; MARGIN-LEFT: 725; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE=" TOP: 335; MARGIN-LEFT: 725; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
  				<DIV ID="ta">
 					<TABLE>
 						<TR STYLE="float:left;">
@@ -184,28 +196,17 @@
 				</DIV>
  				<BR>
         		<TEXTAREA NAME="dNotes" COLS="28" ROWS="2" STYLE="font-family:arial; resize: none;" TITLE="Enter Daily Notes Here"></TEXTAREA>
-        		<BR><BR><INPUT TYPE="submit" CLASS="button_save" TITLE="Save" VALUE="" ONCLICK="javascript: FORM1.action='insertDL.php'"/>
+        		<BR><BR><INPUT TYPE="submit" ONMOUSEOVER="this.style.cursor = 'hand';" CLASS="button_save" TITLE="Save Note" VALUE="" ONCLICK="javascript: FORM1.action='insertDL.php'"/>
         	</DIV>
         	
-			<DIV STYLE=' TOP: 632; MARGIN-LEFT: 25; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;'>
-            	<?php 
-					if ($submitted != null){
-            	  		$subPart = retrieve_dbParticipants($submitted);
-            	    	$name = $subPart->get_first_name()." ".$subPart->get_last_name();
-            	    	echo "<BR><BR>";
-            	    	echo "<h2>&#10004; Submitted Log for: ";
-            	    	echo $name;
-            	    	echo "</h2>";
-            		}
-            	?>
-            </DIV>
+			
         </FORM>
         
         <FORM ID="FORM2" METHOD = "get">
-        	<DIV STYLE="TOP:490; MARGIN-LEFT: 515; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
+        	<DIV STYLE="TOP:520; MARGIN-LEFT: 515; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    		<IMG SRC="images/participants.png"/>
 			</DIV>
-	    	<DIV STYLE=" TOP: 502; MARGIN-LEFT: 728; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+	    	<DIV STYLE=" TOP: 532; MARGIN-LEFT: 728; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
       		    <SELECT NAME = id STYLE = "WIDTH: 185" SIZE = 18>
 					<?PHP
 		    			$allParticipants = getall_participants();
@@ -216,11 +217,11 @@
 		    			}
                		?>
        		    </SELECT> <BR><BR>
-                <INPUT TYPE="submit" STYLE="FLOAT: LEFT;" CLASS="button_info" VALUE="" TITLE="Participant Information" ONCLICK="javascript: FORM2.action='participantInfo.php'"/> 
-				<?php echo "<A HREF='notepad.php?date=".$dt."'><img src='images/button_notes.png'/></A>"; ?>
+                <INPUT TYPE="submit" ONMOUSEOVER="this.style.cursor = 'hand';" STYLE="FLOAT: LEFT;" CLASS="button_info" VALUE="" TITLE="Participant Information" ONCLICK="javascript: FORM2.action='participantInfo.php'"/> 
+				<?php echo "<A STYLE='FLOAT: RIGHT;' HREF='notepad.php?date=".$dt."' TITLE='See Notepad' ONMOUSEOVER='this.style.cursor = 'hand';'><img src='images/button_notes.png'/></A>"; ?>
             </DIV>
         </FORM>
-        <DIV STYLE=" TOP: 285; MARGIN-LEFT: 485; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+        <DIV STYLE=" TOP: 295; MARGIN-LEFT: 485; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
 	    	<img src="images/vl.png" height="590" width="5"/>
 		</DIV>
 		
