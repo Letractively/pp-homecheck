@@ -19,21 +19,25 @@
 <HTML>     
     <HEAD>  
     <TITLE>Quarterly Report</TITLE>   
-	<LINK rel="stylesheet" href="styles.css" type="text/css">
-	<LINK href="print.css" type="text/css" rel="stylesheet" media="print">
-	<LINK type="text/css" rel="stylesheet" href="data:text/css,">
+	<LINK REL="stylesheet" HREF="styles.css" TYPE="text/css">
+	<LINK REL="icon"  TYPE="image/png" HREF="images/VRfavicon.png">
+	<LINK HREF="print.css" TYPE="text/css" REL="stylesheet" MEDIA="print">
+	<LINK TYPE="text/css" REL="stylesheet" HREF="data:text/css,">
 	<STYLE TYPE="text/css">
 	.button_report {
    		background:url(images/button_report.png) no-repeat;
    		border: none;
    		height: 32px;
    		width: 99px;
+   		cursor: hand;
 	}
 	.button_print {
    		background:url(images/button_print.png) no-repeat;
    		border: none;
    		height: 32px;
    		width: 99px;
+   		cursor: hand;
+   		margin-left: 20px;
 	}
 	table.gridtable {
 		font-family: verdana,arial,sans-serif;
@@ -42,6 +46,7 @@
 		border-width: 1px;
 		border-color: #000000;
 		border-collapse: collapse;
+		margin-left: 20px;
 	}
 	table.gridtable th {
 		border-width: 1px;
@@ -66,7 +71,7 @@
     <DIV ID="container">
     <DIV ID ="head"><?PHP include('header.php');?></DIV>
     <DIV ID="content">
-    <H2>Good Morning Quarterly Activity Report</H2><BR>
+    <H2 STYLE="margin-left:20px;">Good Morning Quarterly Activity Report</H2><BR>
     <DIV ID="form">
     <FORM ID="FORM1" METHOD = "get" ACTION = "viewReport.php">
     	<H3>Select a Quarter:</H3>
@@ -118,7 +123,7 @@
     		}
     		?>
     	</SELECT>
-    	<INPUT TYPE="submit" VALUE ="" CLASS="button_report" TITLE="Show Report"/> 
+    	<INPUT TYPE="submit" VALUE ="" ONMOUSEOVER="this.style.cursor = 'hand';" CLASS="button_report" TITLE="Show Report"/> 
     	</DIV>
     </FORM>
     </DIV>
@@ -354,7 +359,7 @@
     			}
     			echo "<TABLE><BR><BR>"; 
     		}
-    		echo "<DIV ID='printbttn'><INPUT TYPE='submit' CLASS='button_print' VALUE='' TITLE='Print' ONCLICK='javascript: window.print();'/></DIV><BR><BR>";
+    		echo "<DIV ID='printbttn'><INPUT TYPE='submit' CLASS='button_print' VALUE='' TITLE='Print Page' ONCLICK='javascript: window.print();'/></DIV><BR><BR>";
     	} 		
     	
     ?>

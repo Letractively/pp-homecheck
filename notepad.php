@@ -12,14 +12,14 @@
 	include_once('database/dbParticipants.php');
 	include_once('database/dbParticipantEntry.php');
 	include_once('database/dbDailyLogs.php');
-	$id = $_GET["id"];
 	$dt = $_GET["date"]; 
 ?>
 <HTML>     
     <HEAD>  
     <TITLE>Notepad</TITLE>   
-	<LINK rel="stylesheet" href="styles.css" type="text/css">
-	<LINK type="text/css" rel="stylesheet" href="data:text/css,">
+	<LINK REL="stylesheet" HREF="styles.css" TYPE="text/css">
+	<LINK REL="icon"  TYPE="image/png" HREF="images/NPfavicon.png">
+	<LINK TYPE="text/css" REL="stylesheet" HREF="data:text/css,">
 	<STYLE TYPE="text/css"> 
 	table.gridtable {
 		font-family: verdana,arial,sans-serif;
@@ -54,6 +54,7 @@
 		<DIV ID="content">
 		<?php 
 		$now = date('y-m-d');
+		if($dt == null) $dt = $now;
 		$prevDay = date('y-m-d', strtotime($dt."-1 day"));
 		$nextDay = date('y-m-d', strtotime($dt."+1 day"));
 		$day = substr($dt, -2); 
@@ -74,9 +75,9 @@
 		echo "<h2></h2>";
 		echo "<DIV STYLE='POSITION: relative; Z-INDEX: 1; VISIBILITY: show;'>";
 		echo "<TABLE><TR>
-		<TH><A TITLE='See Previous Day' HREF='notepad.php?date=".$prevDay."'><img src='images/button_back.png'/></A></TH>
+		<TH><A ONMOUSEOVER='this.style.cursor = 'hand';' TITLE='See Previous Day' HREF='notepad.php?date=".$prevDay."'><img border=0 src='images/button_back.png'/></A></TH>
 		<TH>Participant Notepad for ".$m." ".$day.", 20".$year."</TH>
-		<TH><A TITLE='See Next Day' HREF='notepad.php?date=".$nextDay."'><img src='images/button_forward.png'/></A></TH>
+		<TH><A ONMOUSEOVER='this.style.cursor = 'hand';' TITLE='See Next Day' HREF='notepad.php?date=".$nextDay."'><img border=0 src='images/button_forward.png'/></A></TH>
 		</TR></TABLE><BR></DIV>";
 		if ($dt <= $now) {
 			$DLs = retrieve_dbDailyLogs($dt);
