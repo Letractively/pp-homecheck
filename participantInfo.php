@@ -7,7 +7,7 @@
     * (see <http://www.gnu.org/licenses/).
     */
 -->
-<?php 
+ <?php 
 session_start();
 session_cache_expire(30);
 $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA",
@@ -197,6 +197,12 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 			 echo 'Notes:<br/><textarea name="notes" cols="50" rows="7">';
 			 echo $participant->get_notes();
 			 echo'</textarea>';
+			 if($id != 'new'){
+			   echo '<br/>';
+			   echo '<form name="SendNotes" MEHTOD="get" ACTION="participantNotes.php" ONSUBMIT="">';
+			   echo('<INPUT TYPE="hidden" NAME="id" VALUE="'.$participant->get_id().'"/>');
+			   echo('<INPUT TYPE="button" TITLE="Click to see daily notes for this participant." Value ="Daily Notes" ONCLICK="location.href=\'./participantNotes.php?id='.$participant->get_id().'&date='.date('y-m-d').'\'"/>');
+			 }
 	      ?>
 	    </fieldset>
 	    <br/>
