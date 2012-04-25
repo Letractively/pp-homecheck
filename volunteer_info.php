@@ -13,16 +13,10 @@
 		</title>
 		<style>
 			body{
-			/* background:#001460; */
-			background:#FFFFFF;
 			font-family:verdana, arial, sans-serif;
 			font-size:12px;
 			color: 	#000000;
 			}
-			p {padding-left: 15px; padding-right:15px;}
-			p.notes {padding-left:20px;}
-			h3 {padding-left: 20px}
-			h1 {padding-left: 20px; padding-right: 20px;}
 
 			/* LINK STYLES */
 			A			{ color: #001460; text-decoration: none; img-decoration: none; font-weight:bold;}
@@ -48,13 +42,11 @@
 					$nice_phone_1 = substr($volunteer->get_phone1(),0,3)."-".substr($volunteer->get_phone1(),3,3)."-".substr($volunteer->get_phone1(),6,4);
 					if($volunteer->get_phone2() !== "")
 						$nice_phone_2 = substr($volunteer->get_phone2(),0,3)."-".substr($volunteer->get_phone2(),3,3)."-".substr($volunteer->get_phone2(),6,4);;
-					echo("<table class=\"searchResults\"><tr><td colspan=\"2\" class=\"searchResults\"><h3>".$volunteer->get_first_name()." ".$volunteer->get_last_name()."</h3></td></tr>");						
-			      		//echo("<p><h3>" . $volunteer->get_first_name() . " " . $volunteer->get_last_name()."</h3>");
-					//echo("</p><p>");
-					//echo("<table class=\"searchResults\"><tr><td colspan=\"2\" class=\"searchResults\"></td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Status: </b></td><td class=\"searchResults\">".$volunteer->get_status()."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Volunteer Type: </b></td><td class=\"searchResults\">".$volunteer->get_type()."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Availability: </b></td><td class=\"searchResults\">");
+					echo("<h3>".$volunteer->get_first_name()." ".$volunteer->get_last_name()."</h3>");						
+					echo("<fieldset><legend>Scheduling Information</legend>");
+					echo("<b>Status: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>".$volunteer->get_status()."<br />");
+					echo("<b>Volunteer Type:  </b>".$volunteer->get_type()."<br />");
+					echo("<b>Availability: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>");
 					$availability = $volunteer->get_availability();
 					$counting = count($availability);
 					for($j = 0; $j < $counting; $j++)
@@ -67,9 +59,9 @@
 						echo ', week ';
 						echo $weeks.';&nbsp';
 					}
-					echo("</td></tr>");
+					echo("<br />");
 					
-					echo("<tr><td class=\"searchResults\"><b>Schedule: </b></td><td class=\"searchResults\">");
+					echo("<b>Schedule: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>");
 					$schedule = $volunteer->get_schedule();
 					$count = count($schedule);
 					for($i = 0; $i < $count; $i++)
@@ -82,21 +74,22 @@
 						echo ', week ';
 						echo $week.';&nbsp';
 					}
-					echo("</td></tr>");
+					echo("</fieldset><br />");
 					
-						
-					echo("</p><p>");	
-					echo("<table class=\"searchResults\"><tr><td colspan=\"2\" class=\"searchResults\"><h3>Contact Information</h3></td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Address: </b></td><td class=\"searchResults\">".$volunteer->get_address()."</td></tr>");
-					echo("<tr><td class=\"searchResults\"></td><td class=\"searchResults\"> ".$volunteer->get_city().", ".$volunteer->get_state()."  ".$volunteer->get_zip()."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Primary Phone: </b></td><td class=\"searchResults\">".$nice_phone_1."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Alternate Phone: </b></td><td class=\"searchResults\">".$nice_phone_2."</td></tr>");
-					echo("<tr><td class=\"searchResults\"><b>Email: </b></td><td class=\"searchResults\"><a href=\"mailto:".$volunteer->get_email()."\">".$volunteer->get_email()."</a></td></tr>");
-					echo("</p><p>");
-					echo("<tr><td class=\"searchResults\"><b>Notes:</b></td><td class=\"searchResults\">".$volunteer->get_notes()."</td></tr>");
-						
-					echo("</table></p>");
-				}
+					echo('<fieldset><legend>Contact Information</legend>');
+					echo("<b>Address: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>".$volunteer->get_address()."<br />");
+					echo("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$volunteer->get_city().", ".$volunteer->get_state()."  ".$volunteer->get_zip()."<br />");
+					echo("<b>Primary Phone: &nbsp; </b>".$nice_phone_1."<br />");
+					echo("<b>Alternate Phone: </b>".$nice_phone_2."<br />");
+					echo("<b>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b><a href=\"mailto:".$volunteer->get_email()."\">".$volunteer->get_email()."</a><br />");
+					echo("</table></fieldset><br />");
+
+					//echo("<fieldset><legend>Emergency Contacts</legend>");
+
+					//echo("</fieldset><br />");
+
+					echo("<fieldset><legend>Notes:</legend>".$volunteer->get_notes()."</fieldset>");
+						}
 				?>
 			</div>
 		</div>

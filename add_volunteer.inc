@@ -79,44 +79,39 @@ else {
 <fieldset>
 	<legend>Emergency Contacts</legend>
 	<?PHP
-	if($id=='new'){
 		  echo '<input type="hidden" value="2" name="numContacts" id="numContacts" />';
-		  echo 'Contact Name: <input type="text" name="contactName1"/><br/>';
-		  echo 'Contact Phone: <input type="text" name="contactPhone1"/><br/>';
-		  echo 'Contact Email: <input type="text" name="contactEmail1"/><br/><br/>';
-	  	  echo 'Contact Name: <input type="text" name="contactName2"/><br/>';
-		  echo 'Contact Phone: <input type="text" name="contactPhone2"/><br/>';
-		  echo 'Contact Email: <input type="text" name="contactEmail2"/><br/><br/>';		  
-		}
-		else{
-		  $numContacts=count($person->get_contacts());
-		  echo '<input type="hidden" value="'.$numContacts.'" name="numContacts" id="numContacts" />';
-		  if ($numContacts == 0)
-		  {
-			echo 'Contact Name: <input type="text" name="contactName1"/><br/>';
-		 	 echo 'Contact Phone: <input type="text" name="contactPhone1"/><br/>';
-		 	 echo 'Contact Email: <input type="text" name="contactEmail1"/><br/><br/>';
-	  	 	 echo 'Contact Name: <input type="text" name="contactName2"/><br/>';
-		 	 echo 'Contact Phone: <input type="text" name="contactPhone2"/><br/>';
-		 	 echo 'Contact Email: <input type="text" name="contactEmail2"/><br/><br/>';		
-		  }
+	
+		  if ($id != 'new'){
+			  $contacts = $person->get_contacts(); 
+			  $contact = $contacts[0];
+			  $contact = explode(':', $contact);
+			  $name = $contact[0];
+			  $phone = $contact[1];
+			  $email = $contact[2];
+		  
+		  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName1" tabindex=1 value="'.$name .'"></td></tr>';
+		  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone1" tabindex=2 value="'.$phone.'"></td></tr>';
+		  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail1" tabindex=3 value="'.$email.'"></td></tr></table><br />';
 
-		  $contacts = $person->get_contacts();
-		  for($i=1; $i<=$numContacts;$i++){
-		    $contact=$contacts[$i-1];
-		    $contact=explode(':',$contact);
-		    $name = $contact[0];
-		    $phone = $contact[1];
-		    $email = $contact[2];
-		    echo'Contact Name: <input type="text" name="contactName'.$i.'" value="';
-		    echo $name.'"/><br/>';
-		    echo 'Contact Phone: <input type="text" name="contactPhone'.$i.'" value="';
-		    echo $phone.'"/><br/>';		    
-		    echo 'Contact Email: <input type="text" name="contactEmail'.$i.'" value="';
-		    echo $email.'"/><br/><br/>';		    
+		  $contact = $contacts[1];
+		  $contact = explode(':', $contact);
+		  $name = $contact[0];
+		  $phone = $contact[1];
+		  $email = $contact[2];
+
+	  	  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName2" tabindex=1 value="'.$name.'"></td></tr>';
+		  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone2" tabindex=2 value="'.$phone.'"></td></tr>';
+		  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail2" tabindex=3 value="'.$email.'"></td></tr></table>';		  		}
+		  else {
+			  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName1" tabindex=1></td></tr>';
+			  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone1" tabindex=2></td></tr>';
+			  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail1" tabindex=3></td></tr></table><br />';
+
+	  		  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName2" tabindex=1></td></tr>';
+			  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone2" tabindex=2></td></tr>';
+			  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail2" tabindex=3></td></tr></table>';		
 		  }
-		}
-?>
+		 ?>
 
 </fieldset>
 
@@ -124,18 +119,22 @@ else {
 <fieldset id="scheduling">
 <legend>Scheduling</strong></legend>
 <?PHP	
-	$st = implode(',',$person->get_type());
-    $types = array('volunteer'=>'Volunteer', 'coordinator'=>'Coordinator', 'dispatch'=>'Dispatch');
 	echo('<p>Volunteer Type');
 	echo('<span style="font-size:x-small;color:FF0000">*</span>: &nbsp;&nbsp;');
 
-    foreach ($types as $key=>$value) {
-    	echo ('<input type="checkbox" name="type[]" value=' . $key);
-    	if (strpos($st,$key)!==false) echo(' CHECKED');
-    	echo ('>' . $value . '&nbsp;&nbsp;');
-    }
+	echo('<select name="type">');
+   		 $types = array('volunteer'=>'volunteer', 'coordinator'=>'coordinator', 'dispatch'=>'dispatch');
+		foreach ($types as $ty) {
+				echo "<option value='" . $ty . "' ";
+                if($person->get_type() == $ty ) echo("SELECTED");
+                else if ($id == "new" && $ty =="volunteer") echo("SELECTED");
+                echo ">" . $ty . "</option>";
+			}
+		
+	echo('</select><br><br>');
 
-    echo ('<br><br>Status: ');
+
+    echo ('Status: ');
     echo('<select name="status">');
     echo ('<option value="">Status...</option>');
     echo ('<option value="active"');if ($person->get_status()=='active') echo (' SELECTED'); echo('>Active</option>');
@@ -176,12 +175,24 @@ else {
 </fieldset>
 </fieldset>
 <p>
-		<?PHP	     
-		
+
+
+<?PHP
+    //changing password for existing volunteer
+    	if ($id != "new" && $_SESSION['_id'] == $id)
+   	{
+		echo '<fieldset id=password><legend>Change Password</strong></legend>';
+		echo '<table><tr><td>New Password:</td><td><input type="text" name="newPassword" tabindex=2></td></tr>';
+		echo '<tr><td>New Password (confirm):</td><td><input type="text" name="newPasswordCheck" tabindex=3></td></tr></table></fieldset>';
+   	}					
+?>
+
+		<?PHP	     	
 		  echo('<p>Notes:<br />');
 	      echo('<textarea name="notes" rows="2" cols="60">');
-	      echo($_POST['notes']);
-	      echo('</textarea>');
+	      //echo($_POST['notes']);
+    	      echo($person->get_notes());
+              echo('</textarea>');
 
 		  echo('<input type="hidden" name="schedule" value="'.implode(',',$person->get_schedule()).'">');
 		  echo('<input type="hidden" name="password" value="'.$person->get_password().')">');
