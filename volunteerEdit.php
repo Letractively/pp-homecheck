@@ -92,11 +92,16 @@ function process_form($id)      {
                 $clean_phone2 = ereg_replace("[^0-9]", "", $phone2);
                 $email = $_POST['email'];
 
-		$type = implode(',', $_POST['type']);
+		$type = trim(htmlentities($_POST['type']));
 
-		 if ($_POST['contacts'] != null)
-                        $contacts=implode(',', $_POST['contacts']);
-                else $contacts = "";
+
+		$numContacts=$_POST['numContacts'];
+		$contacts=array();
+		for($i=1;$i<=$numContacts+1;$i++){
+ 			 if($_POST['contactName'.$i] != '' or $_POST['contactPhone'.$i]!='' or $_POST['contactEmail'.$i] !=''){
+  			 $contacts[]=$_POST['contactName'.$i].':'.$_POST['contactPhone'.$i].':'.$_POST['contactEmail'.$i];}
+		}
+		$contacts=implode(',',$contacts);
                         
         if ($_POST['availability'] != null)
                         $availability=implode(',', $_POST['availability']);
@@ -111,8 +116,12 @@ function process_form($id)      {
 
 		$end_date = $_POST['end_date'];
 
-  	      $status = $_POST['status'];	
-                $notes = trim(str_replace('\\\'','\'',htmlentities($_POST['my_notes'])));
+		$status = $_POST['status'];
+
+		if($_POST['newPassword'] != null)
+			$password = md5($_POST['newPassword']);
+
+                $new_notes = trim(str_replace('\\\'','\'',htmlentities($_POST['notes'])));
 
         //step two: try to make the deletion, password change, addition, or change
                 if($_POST['deleteMe']=="DELETE"){
@@ -144,7 +153,7 @@ function process_form($id)      {
                                 $result = delete_dbVolunteers($id);
                                 $pass = md5($first_name . $phone1);
                 $newperson = new Volunteer($last_name, $first_name, $address, $city, $state, $zip, $clean_phone1, $clean_phone2, $email, $type,
-			$contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $notes, $password);
+			$contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $new_notes, $password);
 				$result = insert_dbVolunteers($newperson);
                                 if (!$result)
                    echo ('<p class="error">Unable to reset ' .$first_name.' '.$last_name. "'s password.. <br>Please report this error to the Program Coordinator.");
@@ -160,7 +169,7 @@ function process_form($id)      {
                                         echo('<p class="error">Unable to add ' .$first_name.' '.$last_name. ' to the database. <br>Another person with the same id is already there.');
                                 else {
 					$newperson = new Volunteer($last_name, $first_name, $address, $city, $state, $zip, $clean_phone1, $clean_phone2, $email, 
-						$type, $contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $notes, $password);
+						$type, $contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $new_notes, $password);
                     $result = insert_dbVolunteers($newperson);
                                         if (!$result)
                         echo ('<p class="error">Unable to add " .$first_name." ".$last_name. " in the database. <br>Please report this error to the Program Coordinator.');
@@ -177,12 +186,16 @@ function process_form($id)      {
                    echo ('<p class="error">Unable to update ' .$first_name.' '.$last_name. '. <br>Please report this error to the Program Coordinator.');
                                 else {
 					$newperson = new Volunteer($last_name, $first_name, $address, $city, $state, $zip, $clean_phone1, $clean_phone2, $email, 
-						$type, 	$contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $notes, $password);
+						$type, 	$contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $new_notes, $password);
 
                                 $result = insert_dbVolunteers($newperson);
                                         if (!$result)
                                 echo ('<p class="error">Unable to update ' .$first_name.' '.$last_name. '. <br>Please report this error to the Program Coordinator.');
-                                        else echo("<p>You have successfully updated " .$first_name." ".$last_name. " in the database.</p>");
+					else {
+						echo("<p>You have successfully updated " .$first_name." ".$last_name. " in the database.</p>");
+    						echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+						
+					}
 //                                      add_log_entry('<a href=\"viewPerson.php?id='.$id.'\">'.$first_name.' '.$last_name.'</a>\'s database entry has been updated.');
                                 }
                 }
