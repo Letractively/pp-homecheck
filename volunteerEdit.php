@@ -116,7 +116,11 @@ function process_form($id)      {
 
 		$end_date = $_POST['end_date'];
 
-  	      $status = $_POST['status'];	
+		$status = $_POST['status'];
+
+		if($_POST['newPassword'] != null)
+			$password = md5($_POST['newPassword']);
+
                 $new_notes = trim(str_replace('\\\'','\'',htmlentities($_POST['notes'])));
 
         //step two: try to make the deletion, password change, addition, or change
