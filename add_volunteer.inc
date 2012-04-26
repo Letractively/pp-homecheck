@@ -48,13 +48,13 @@ else {
 
 <fieldset>
 <legend>Contact Information</legend>
-	<table>		<tr><td>First Name<span style="font-size:x-small;color:FF0000">*</span>:</td><td><input type="text" name="first_name" tabindex=1 value="<?PHP echo($person->get_first_name())?>"></td></tr>
-			<tr><td>Last Name<span style="font-size:x-small;color:FF0000">*</span>:</td><td><input type="text" name="last_name" tabindex=2 value="<?PHP echo($person->get_last_name())?>"></td></tr>
+	<table>		<tr><td>First Name<span style="font-size:x-small;color:FF0000">*</span>:</td><td><input type="text" name="first_name" title="Type volunteer's first name" tabindex=1 value="<?PHP echo($person->get_first_name())?>"></td></tr>
+			<tr><td>Last Name<span style="font-size:x-small;color:FF0000">*</span>:</td><td><input type="text" name="last_name" title="Type volunteer's last name" tabindex=2 value="<?PHP echo($person->get_last_name())?>"></td></tr>
 
-		<tr><td>Address<span style="font-size:x-small;color:FF0000">*</span>:</td><td> <input type="text" name="address" tabindex=3 value="<?PHP echo($person->get_address())?>"></td></tr>
-		<tr><td>City<span style="font-size:x-small;color:FF0000">*</span>:</td><td> <input type="text" name="city" tabindex=4 value="<?PHP echo($person->get_city())?>"></td></tr>
+		<tr><td>Address<span style="font-size:x-small;color:FF0000">*</span>:</td><td> <input type="text" name="address" title="Type volunteer's street address" tabindex=3 value="<?PHP echo($person->get_address())?>"></td></tr>
+		<tr><td>City<span style="font-size:x-small;color:FF0000">*</span>:</td><td> <input type="text" name="city" title="Type volunteer's city" tabindex=4 value="<?PHP echo($person->get_city())?>"></td></tr>
 		<tr><td>State, Zip<span style="font-size:x-small;color:FF0000">*</span>:</td>
-		<td><select name="state" tabindex=5>
+		<td><select name="state" title="Select a state" tabindex=5>
 		<?PHP
 
 			$states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA",
@@ -69,10 +69,10 @@ else {
 			}
 		?>
 		</select>,
-		<input type="text" name="zip" size="5" tabindex=6 value="<?PHP echo($person->get_zip())?>"></td></tr>
-		<tr><td>Primary Phone<span style="font-size:x-small;color:FF0000">*</span>:</td><td> <input type="text" name="phone1" MAXLENGTH=12 tabindex=7 value="<?PHP echo($person->get_phone1())?>"></td></tr>
-		<tr><td>Alternate Phone:</td><td><input type="text" name="phone2" MAXLENGTH=12 tabindex=8 value="<?PHP echo($person->get_phone2())?>"></td></tr>
-		<tr><td>Email:</td><td><input type="text" name="email" tabindex=9 value="<?PHP echo($person->get_email())?>"></td></tr>
+		<input type="text" name="zip" title="Type volunteer's zip code" size="5" tabindex=6 value="<?PHP echo($person->get_zip())?>"></td></tr>
+		<tr><td>Primary Phone<span style="font-size:x-small;color:FF0000">*</span>:</td><td> <input type="text" name="phone1" title="Type volunteer's phone number" MAXLENGTH=12 tabindex=7 value="<?PHP echo($person->get_phone1())?>"></td></tr>
+		<tr><td>Alternate Phone:</td><td><input type="text" name="phone2" title="Type volunteer's alternate phone number" MAXLENGTH=12 tabindex=8 value="<?PHP echo($person->get_phone2())?>"></td></tr>
+		<tr><td>Email:</td><td><input type="text" name="email" title="Type volunteer's email" tabindex=9 value="<?PHP echo($person->get_email())?>"></td></tr>
 	   </table>
 </fieldset>
 <br>
@@ -89,9 +89,9 @@ else {
 			  $phone = $contact[1];
 			  $email = $contact[2];
 		  
-		  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName1" tabindex=1 value="'.$name .'"></td></tr>';
-		  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone1" tabindex=2 value="'.$phone.'"></td></tr>';
-		  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail1" tabindex=3 value="'.$email.'"></td></tr></table><br />';
+		  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName1" title="Type the name of volunteer\'s first contact" tabindex=1 value="'.$name .'"></td></tr>';
+		  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone1" title="Type the phone number of volunteer\'s first contact" tabindex=2 value="'.$phone.'"></td></tr>';
+		  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail1" title="Type the email of volunteer\'s first contact" tabindex=3 value="'.$email.'"></td></tr></table><br />';
 
 		  $contact = $contacts[1];
 		  $contact = explode(':', $contact);
@@ -99,17 +99,17 @@ else {
 		  $phone = $contact[1];
 		  $email = $contact[2];
 
-	  	  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName2" tabindex=1 value="'.$name.'"></td></tr>';
-		  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone2" tabindex=2 value="'.$phone.'"></td></tr>';
-		  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail2" tabindex=3 value="'.$email.'"></td></tr></table>';		  		}
+	  	  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName2" title="Type the name of volunteer\'s second contact" tabindex=1 value="'.$name.'"></td></tr>';
+		  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone2" title="Type the phone number of volunteer\'s second contact" tabindex=2 value="'.$phone.'"></td></tr>';
+		  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail2" title="Type the email of volunteer\'s second contact" tabindex=3 value="'.$email.'"></td></tr></table>';		  		}
 		  else {
-			  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName1" tabindex=1></td></tr>';
-			  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone1" tabindex=2></td></tr>';
-			  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail1" tabindex=3></td></tr></table><br />';
+			  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName1" title="Type the name of volunteer\'s first contact" tabindex=1></td></tr>';
+			  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone1" title="Type the phone number of volunteer\'s first contact" tabindex=2></td></tr>';
+			  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail1" title="Type the email of volunteer\'s first contact" tabindex=3></td></tr></table><br />';
 
-	  		  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName2" tabindex=1></td></tr>';
-			  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone2" tabindex=2></td></tr>';
-			  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail2" tabindex=3></td></tr></table>';		
+	  		  echo '<table><tr><td>Contact Name:</td><td><input type="text" name="contactName2" title="Type the name of volunteer\'s second contact" tabindex=1></td></tr>';
+			  echo '<tr><td>Contact Phone:</td><td><input type="text" name="contactPhone2" title="Type the phone number of volunteer\'s second contact" tabindex=2></td></tr>';
+			  echo '<tr><td>Contact Email:</td><td><input type="text" name="contactEmail2" title="Type the email of volunteer\'s second contact" tabindex=3></td></tr></table>';		
 		  }
 		 ?>
 
@@ -122,7 +122,7 @@ else {
 	echo('<p>Volunteer Type');
 	echo('<span style="font-size:x-small;color:FF0000">*</span>: &nbsp;&nbsp;');
 
-	echo('<select name="type">');
+	echo('<select name="type" title="Select the volunteer\'s role">');
    		 $types = array('volunteer'=>'volunteer', 'coordinator'=>'coordinator', 'dispatch'=>'dispatch');
 		foreach ($types as $ty) {
 				echo "<option value='" . $ty . "' ";
@@ -135,7 +135,7 @@ else {
 
 
     echo ('Status: ');
-    echo('<select name="status">');
+    echo('<select name="status" title="Select the volunteer\'s status">');
     echo ('<option value="">Status...</option>');
     echo ('<option value="active"');if ($person->get_status()=='active') echo (' SELECTED'); echo('>Active</option>');
 	echo ('<option value="on-leave"');if ($person->get_status()=='on-leave') echo (' SELECTED'); echo('>On Leave</option>');
@@ -182,14 +182,14 @@ else {
     	if ($id != "new" && $_SESSION['_id'] == $id)
    	{
 		echo '<fieldset id=password><legend>Change Password</strong></legend>';
-		echo '<table><tr><td>New Password:</td><td><input type="text" name="newPassword" tabindex=2></td></tr>';
-		echo '<tr><td>New Password (confirm):</td><td><input type="text" name="newPasswordCheck" tabindex=3></td></tr></table></fieldset>';
+		echo '<table><tr><td>New Password:</td><td><input type="text" name="newPassword" title="Enter new password" tabindex=2></td></tr>';
+		echo '<tr><td>New Password (confirm):</td><td><input type="text" name="newPasswordCheck" title="Confirm new password" tabindex=3></td></tr></table></fieldset>';
    	}					
 ?>
 
 		<?PHP	     	
 		  echo('<p>Notes:<br />');
-	      echo('<textarea name="notes" rows="2" cols="60">');
+	      echo('<textarea name="notes" title="Enter any notes for this volunteer" rows="2" cols="60">');
 	      //echo($_POST['notes']);
     	      echo($person->get_notes());
               echo('</textarea>');
