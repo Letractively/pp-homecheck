@@ -172,7 +172,7 @@
             <DIV STYLE="TOP:332; MARGIN-LEFT: 515; POSITION:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
 	    		<IMG SRC="images/dnotes.png"/>
 			</DIV>
-			<DIV STYLE=" TOP: 335; MARGIN-LEFT: 725; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+			<DIV STYLE=" TOP: 342; MARGIN-LEFT: 725; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
  				<DIV ID="ta">
 					<TABLE>
 						<TR STYLE="float:left;">
@@ -207,7 +207,8 @@
 	    		<IMG SRC="images/participants.png"/>
 			</DIV>
 	    	<DIV STYLE=" TOP: 532; MARGIN-LEFT: 728; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-      		    <SELECT NAME = id STYLE = "WIDTH: 185" SIZE = 18>
+	    		<INPUT TYPE="hidden" NAME="date" STYLE="WIDTH:0px; " MAXLENGTH="8" TITLE="Enter Date" Value="<?php echo $dt ?>"/>
+      		    <SELECT NAME = "id" STYLE = "WIDTH: 185" SIZE = 18>
 					<?PHP
 		    			$allParticipants = getall_participants();
 		    			foreach($allParticipants as &$value) {
@@ -217,12 +218,12 @@
 		    			}
                		?>
        		    </SELECT> <BR><BR>
-                <INPUT TYPE="submit" ONMOUSEOVER="this.style.cursor = 'hand';" STYLE="FLOAT: LEFT;" CLASS="button_info" VALUE="" TITLE="Participant Information" ONCLICK="javascript: FORM2.action='participantInfo.php'"/> 
-				<?php echo "<A STYLE='FLOAT: RIGHT;' HREF='notepad.php?date=".$dt."' TITLE='See Notepad' ONMOUSEOVER='this.style.cursor = 'hand';'><img src='images/button_notes.png'/></A>"; ?>
+                <?php echo "<INPUT TYPE=\"submit\" ONMOUSEOVER=\"this.style.cursor = 'hand'/;\" STYLE=\"FLOAT: LEFT;\" CLASS=\"button_info\" VALUE=\"\" TITLE=\"Participant Information\" ONCLICK=\"javascript: FORM2.action='participantNotes.php'\"/>"; ?> 
+				<?php echo "<A STYLE='FLOAT: RIGHT;' HREF='notepad.php?date=".$dt."' TITLE='See Notepad' ONMOUSEOVER='this.style.cursor = 'hand';'><img border=0 src='images/button_notes.png'/></A>"; ?>
             </DIV>
         </FORM>
-        <DIV STYLE=" TOP: 295; MARGIN-LEFT: 485; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-	    	<img src="images/vl.png" height="590" width="5"/>
+        <DIV STYLE=" TOP: 295; MARGIN-LEFT: 475; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+	    	<img src="images/vl.png" height="590" width="3"/>
 		</DIV>
 		
 		<BR clear="all">
