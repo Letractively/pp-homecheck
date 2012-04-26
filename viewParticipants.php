@@ -17,12 +17,13 @@ session_cache_expire(30);
     <link rel="stylesheet" href="styles.css" type="text/css"/>
     <link type="text/css" rel="stylesheet" href="data:text/css,"/>
     <SCRIPT type="text/javascript">
-      function populateInfo(name, phone1, phone2, email, status, notes,contacts){
-      writeString="Name:".concat(name,"\nPhone1:",phone1,"\nPhone2:",phone2,"\nEmail:",email,"\nStatus:",status,"\nNotes:",notes,"\n\nContacts:\n",contacts);
-      document.getElementById('infoArea').value=writeString;
-      document.getElementById('infoArea').readOnly=true;
-      } 
-    </SCRIPT>
+      function updateID(selector){
+	  var currentID = selector.options[selector.selectedIndex].value;
+      	  var info_url = "participantBrief.php?ID=";
+	  info_url = info_url.concat(currentID);
+	  document.getElementById('info').src = info_url;
+      }
+      </SCRIPT>
   </HEAD>
   <BODY>
     <DIV id="container">
@@ -31,44 +32,36 @@ session_cache_expire(30);
 	<?php
 	  include_once('database/dbParticipants.php'); ?>
       <DIV>
+	<form METHOD="get" ACTION="participantInfo.php" ONSUBMIT="">
 	<DIV STYLE="float:left;">
 	  <h1>Participant List</h1>
-	  <ul>
+	  <select size="32" id="partList" name="ID" style="WIDTH:400px;" onchange="updateID(this);">
 	  <?php
 	    $partList=getall_participants();
 	    foreach($partList as $participant){
-	      echo'<li>';
-	      echo '<a href="participantInfo.php?ID='.$participant->get_id().'" ONMOUSEOVER="populateInfo('."'";
-	      echo $participant->get_first_name()." ".$participant->get_last_name()."','";
-	      echo $participant->get_phone1()."','";
-	      echo $participant->get_phone2()."','";
-	      echo $participant->get_email()."','";
-	      echo $participant->get_status()."','";
-	      echo $participant->get_notes()."','";
-	      echo implode("\\n",$participant->get_contacts())."'";
-	      echo ')">';
+	      echo '<option value="'.$participant->get_id().'">';
 	      echo $participant->get_first_name();
 	      echo ' ';
 	      echo $participant->get_last_name();
-	      echo '</a>';
-	      echo '</li>';
+	      echo '</option>';
 	    }
 	  ?>
-	  </ul>
+	  </select>
 	</DIV>
-	<DIV STYLE="float:left;">
-	  <h1>Participant Info</h1>
-	  <textarea id="infoArea" cols="40" rows="20"></textarea>
+	<DIV STYLE="float:left; padding-left:15px;">
+	  <h1>Participant Info 	  <input type="submit" value="View Details" STYLE="HEIGHT:25; WIDTH:100;"/></h1>
+	  <Iframe id="info" src="" width="450" height="445"></Iframe>
 	</DIV>
 	<div style="clear:both;"></div>
+	</form>
       </DIV>
-      <?php
-	      if($_SESSION['access_level']==2){
-		echo '<FORM METHOD="get" ACTION="participantInfo.php" ONSUBMIT="">';
-		echo '<input type="hidden" name="ID" value="new"/>';
-		echo '<input type="submit" STYLE="HEIGHT:40; WIDTH:140;" value="Add New Participant" align="center" />';
-		echo '</FORM>';
-      }?>
+	  <?php
+	    if($_SESSION['access_level']==2){
+	      echo '<FORM METHOD="get" ACTION="participantInfo.php" ONSUBMIT="">';
+	      echo '<input type="hidden" name="ID" value="new"/>';
+	      echo '<input type="submit" STYLE="HEIGHT:40; WIDTH:140;" value="Add New Participant" align="center" />';
+	      echo '</FORM>';
+	  }?>
       <?php include('footer.inc');?>
       </DIV>
     </DIV>
