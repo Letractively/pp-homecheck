@@ -7,7 +7,7 @@
     * (see <http://www.gnu.org/licenses/).
     */
 -->
- <?php 
+<?php 
 session_start();
 session_cache_expire(30);
 $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA",
@@ -58,37 +58,45 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	  <FORM name="ParticipantInfo" METHOD="post" ACTION="writeParticipant.php" ONSUBMIT="">
 	    <fieldset>
 	      <legend>Personal Information</legend>
-	      <?php
-		echo 'First Name: <input type="text" name="first_name" value="';
-		echo $participant->get_first_name().'"';
-		if($_SESSION['access_level']==1){
-		  echo 'readonly';}
-		  echo '/>';
-		  echo '  Last Name: <input type="text" name="last_name" value="';
-		  echo $participant->get_last_name().'"';
-		  if($_SESSION['access_level']==1){
-		    echo 'readonly';}
-		    echo '/> <br/><br/>';
-		    echo ' Birthday:<input type="text" name="birthday" value"';
+	      <table border="">
+		<tr>
+		  <?php
+		    echo '<td>';
+		    echo 'First Name:</td><td> <input type="text" name="first_name" value="';
+		    echo $participant->get_first_name().'"';
+		    if($_SESSION['access_level']==1){
+		      echo 'readonly';}
+		    echo '/></td></tr><tr><td>';
+		    echo '  Last Name: </td><td><input type="text" name="last_name" value="';
+		    echo $participant->get_last_name().'"';
+		    if($_SESSION['access_level']==1){
+		      echo 'readonly';}
+		    echo '/></td></tr> <tr><td>';
+		    echo ' Birthday:</td><td><input type="text" name="birthday" value"';
 		    echo $participant->get_birthday().'"';
 		    if($_SESSION['access_level']==1){
 		      echo 'readonly';}
-		      echo'/>';
-	      ?>
+		    echo'/></td>';
+		  ?>
+		</tr>
+	      </table>
 	    </fieldset>
 	    <fieldset>
 	      <legend>Contact Information</legend>
+	      <table>
+		<tr>
 	      <?php
-		echo 'Address: <input type="text" name="address" value="';
+		echo'<td>';
+		echo 'Address:</td><td> <input type="text" name="address" value="';
 		echo $participant->get_address().'"';
 		if($_SESSION['access_level']==1)
 		  echo 'readonly';
-		  echo '/><br/><br/>';
-		  echo 'City: <input type="text" name="city" value="';
+		  echo '/></td></tr><tr><td>';
+		  echo 'City:</td><td> <input type="text" name="city" value="';
 		  echo $participant->get_city().'"';
 		  if($_SESSION['access_level']==1)
 		    echo 'readonly';
-		    echo '/><br/><br/>';
+		    echo '/></td></tr><tr><td>';
 		    echo 'State:';
 		    if($_SESSION['access_level']==2){
 		      echo '<select name="state">';
@@ -105,42 +113,47 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		      echo $participant->get_state();
 		      echo '<input type="hidden" value="'.$participant->get_state().'">';
 		    }		
-		    echo ',  Zip:<input type="text" name="zip" value="';
+		    echo ',</td><td>  Zip:<input type="text" name="zip" value="';
 		    echo $participant->get_zip().'"';
 		    if($_SESSION['access_level']==1)
 		      echo 'readonly';
-		      echo '/><br/><br/>';
-		      echo 'Phone1: <input type="text" name="phone1" value="';
+		      echo '/></td></tr><tr><td>';
+		      echo 'Phone1:</td><td> <input type="text" name="phone1" value="';
 		      echo $participant->get_phone1().'"';
 		      if($_SESSION['access_level']==1)
 			echo 'readonly';
-			echo'/> <br/>'; 
-			echo 'Phone2: <input type="text" name="phone2" value="';
+			echo'/> </td></tr><tr><td>'; 
+			echo 'Phone2:</td><td> <input type="text" name="phone2" value="';
 			echo $participant->get_phone2().'"';
 			if($_SESSION['access_level']==1)
 			  echo 'readonly';
-			  echo '/><br/><br/>';
-			  echo 'Email:    <input type="text" name="email" value="';
+			  echo '/></td></tr><tr><td>';
+			  echo 'Email: </td><td>   <input type="text" name="email" value="';
 			  echo $participant->get_email().'"';
 			  if($_SESSION['access_level']==1)
 			    echo 'readonly';
-			    echo'/>';
+			    echo'/></td>';
 	      ?>
+		</tr>
+	      </table>
 	    </fieldset>
 	    <fieldset>
 	      <legend>Emergency Contacts</legend>
 	      <?php
 		if($id=='new'){
-		  echo '<input type="hidden" value="1" name="numContacts" id="numContacts" />';
 		  echo '<DIV id="placeholder">';
 		  echo'<DIV id="emergContact">';
-		  echo 'Contact Name: <input type="text" name="contactName1"/><br/>';
-		  echo 'Contact Relation: <input type="text" name="contactRel1"/><br/>';
-		  echo 'Contact Phone: <input type="text" name="contactPhone1"/><br/><br/>';	
+		  echo"<table>\n<tr><td>",'Contact Name:</td><td> <input type="text" name="contactName1"/></td>';
+		  echo '</tr><tr><td>';
+		  echo 'Contact Relation:</td><td><input type="text" name="contactRel1"/></td>';
+		  echo '</tr><tr>';
+		  echo '<td>Contact Phone:</td><td><input type="text" name="contactPhone1"/></td>';
+		  echo '</tr> </table>';	
 		  echo '</DIV>';
 		  echo'</DIV>';
+		  echo '<input type="hidden" value="1" name="numContacts" id="numContacts" />';
 		  if($_SESSION['access_level']==2){
-		    echo '<input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';}
+		    echo '<br/><input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';}
 		}
 		else{
 		  $numContacts=count($participant->get_contacts());
@@ -170,12 +183,15 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		  if($_SESSION['access_level']==2){
 		    echo '<DIV id="placeholder">';
 		    echo'<DIV id="emergContact">';
-		    echo 'Contact Name: <input type="text" name="contactName'.$i.'"/><br/>';
-		    echo 'Contact Relation: <input type="text" name="contactRel'.$i.'"/><br/>';
-		    echo 'Contact Phone: <input type="text" name="contactPhone'.$i.'"/><br/><br/>';
+		    echo"<table>\n<tr><td>",'Contact Name:</td><td> <input type="text" name="contactName'.$i.'"/></td>';
+		    echo '</tr><tr><td>';
+		    echo 'Contact Relation:</td><td><input type="text" name="contactRel'.$i.'"/></td>';
+		    echo '</tr><tr>';
+		    echo '<td>Contact Phone:</td><td><input type="text" name="contactPhone'.$i.'"/></td>';
+		    echo '</tr> </table>';
 		    echo '</DIV>';
 		    echo'</DIV>';
-		    echo '<input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';
+		    echo '<br/><input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';
 		  }
 		}
 	      ?>
@@ -183,46 +199,46 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	    <fieldset>
 	      <legend>System Information</legend>
 	      <?php
-			 echo' Start Date: <input type="text" name="start_date" value="';
-			 echo $participant->get_start_date().'"';
-			 if($_SESSION['access_level']==1)
-			   echo 'readonly';
-			 echo'/>';
-			 echo' End Date: <input type="text" name="end_date" value="';
-			 echo $participant->get_end_date().'"';
-			 echo'/><br/><br/>';
-			 echo' Status: <input type="text" name="status" value="';
-			 echo $participant->get_status().'"';
-			 echo'/><br/>';
-			 echo 'Notes:<br/><textarea name="notes" cols="50" rows="7">';
-			 echo $participant->get_notes();
-			 echo'</textarea>';
-			 if($id != 'new'){
-			   echo '<br/>';
-			   echo '<form name="SendNotes" MEHTOD="get" ACTION="participantNotes.php" ONSUBMIT="">';
-			   echo('<INPUT TYPE="hidden" NAME="id" VALUE="'.$participant->get_id().'"/>');
-			   echo('<INPUT TYPE="button" TITLE="Click to see daily notes for this participant." Value ="Daily Notes" ONCLICK="location.href=\'./participantNotes.php?id='.$participant->get_id().'&date='.date('y-m-d').'\'"/>');
-			 }
+		echo' Start Date: <input type="text" name="start_date" value="';
+		echo $participant->get_start_date().'"';
+		if($_SESSION['access_level']==1)
+		  echo 'readonly';
+		  echo'/>';
+		  echo' End Date: <input type="text" name="end_date" value="';
+		  echo $participant->get_end_date().'"';
+		  echo'/><br/><br/>';
+		  echo' Status: <input type="text" name="status" value="';
+		  echo $participant->get_status().'"';
+		  echo'/><br/>';
+		  echo 'Notes:<br/><textarea name="notes" cols="50" rows="7">';
+		  echo $participant->get_notes();
+		  echo'</textarea>';
+		  if($id != 'new'){
+		    echo '<br/>';
+		    echo '<form name="SendNotes" MEHTOD="get" ACTION="participantNotes.php" ONSUBMIT="">';
+		    echo('<INPUT TYPE="hidden" NAME="id" VALUE="'.$participant->get_id().'"/>');
+		    echo('<INPUT TYPE="button" TITLE="Click to see daily notes for this participant." Value ="Daily Notes" ONCLICK="location.href=\'./participantNotes.php?id='.$participant->get_id().'&date='.date('y-m-d').'\'"/>');
+		  }
 	      ?>
 	    </fieldset>
 	    <br/>
-	   <DIV>
-	    <input type="submit" value="Submit" STYLE="WIDTH:60; HEIGHT:30; float:left;"/>
-	  <?php 
-			   if($_SESSION['access_level']==2 and $id!='new'){
-			     $deleteString='\'This will delete the current Participant record.  Are you sure you want to conitune?\'';
-			     
-			     echo '<div STYLE="float:left; padding-left:30px;">';
-			     echo '<FORM name="DeleteCheck" METHOD="post" ACTION="deleteParticipant.php" ONSUBMIT="return confirm('.$deleteString.')">';
-			     echo '<input type="hidden" name="partID" value="'.$participant->get_id().'"/>';
-			     echo '<input type="submit" value="Delete" STYLE="WIDTH:60; HEIGHT:30;"/>';
-			     echo '</FORM>';
-			     echo '</div>';
-			     ;
-			   }
+	    <DIV>
+	      <input type="submit" value="Submit" STYLE="WIDTH:60; HEIGHT:30; float:left;"/>
+	      <?php 
+		    if($_SESSION['access_level']==2 and $id!='new'){
+		      $deleteString='\'This will delete the current Participant record.  Are you sure you want to conitune?\'';
+		      
+		      echo '<div STYLE="float:left; padding-left:30px;">';
+		      echo '<FORM name="DeleteCheck" METHOD="post" ACTION="deleteParticipant.php" ONSUBMIT="return confirm('.$deleteString.')">';
+		      echo '<input type="hidden" name="partID" value="'.$participant->get_id().'"/>';
+		      echo '<input type="submit" value="Delete" STYLE="WIDTH:60; HEIGHT:30;"/>';
+		      echo '</FORM>';
+		      echo '</div>';
+		      ;
+		    }
 
-	  ?>
-	  <div style="clear:both;"></div></DIV>
+	      ?>
+	    <div style="clear:both;"></div></DIV>
 	  </FORM>
 	</DIV>
 	<?php include('footer.inc');?>
