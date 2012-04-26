@@ -173,7 +173,11 @@ function process_form($id)      {
                     $result = insert_dbVolunteers($newperson);
                                         if (!$result)
                         echo ('<p class="error">Unable to add " .$first_name." ".$last_name. " in the database. <br>Please report this error to the Program Coordinator.');
-                                                  else echo("<p>You have successfully added " .$first_name." ".$last_name. " to the database.</p>");
+					else {
+						echo("<p>You have successfully added " .$first_name." ".$last_name. " to the database.</p>");
+						echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+					}
+
                                 }
                 }
 
