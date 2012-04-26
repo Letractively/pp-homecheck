@@ -55,6 +55,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	  }
 	?>
 	<DIV>
+	  <DIV>
 	  <FORM name="ParticipantInfo" METHOD="post" ACTION="writeParticipant.php" ONSUBMIT="">
 	    <fieldset>
 	      <legend>Personal Information</legend>
@@ -153,7 +154,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		  echo'</DIV>';
 		  echo '<input type="hidden" value="1" name="numContacts" id="numContacts" />';
 		  if($_SESSION['access_level']==2){
-		    echo '<br/><input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';}
+		    echo '<br/><input type="button" ONCLICK="addContactSlot();" value="Add Contact"/>';}
 		}
 		else{
 		  $numContacts=count($participant->get_contacts());
@@ -191,7 +192,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		    echo '</tr> </table>';
 		    echo '</DIV>';
 		    echo'</DIV>';
-		    echo '<br/><input type="button" ONCLICK="addContactSlot();" value="Add Slot"/>';
+		    echo '<br/><input type="button" ONCLICK="addContactSlot();" value="Add Contact"/>';
 		  }
 		}
 	      ?>
@@ -222,16 +223,18 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	      ?>
 	    </fieldset>
 	    <br/>
-	    <DIV>
-	      <input type="submit" value="Submit" STYLE="WIDTH:60; HEIGHT:30; float:left;"/>
+	    Hit <input type="submit" value="Submit" STYLE="WIDTH:60; HEIGHT:30;"/> to save changes.
+	    </FORM>
 	      <?php 
 		    if($_SESSION['access_level']==2 and $id!='new'){
 		      $deleteString='\'This will delete the current Participant record.  Are you sure you want to conitune?\'';
 		      
-		      echo '<div STYLE="float:left; padding-left:30px;">';
+		      echo '<div STYLE="float:left;">';
 		      echo '<FORM name="DeleteCheck" METHOD="post" ACTION="deleteParticipant.php" ONSUBMIT="return confirm('.$deleteString.')">';
 		      echo '<input type="hidden" name="partID" value="'.$participant->get_id().'"/>';
+			 echo'Hit ';
 		      echo '<input type="submit" value="Delete" STYLE="WIDTH:60; HEIGHT:30;"/>';
+			 echo ' to delete this participant.';
 		      echo '</FORM>';
 		      echo '</div>';
 		      ;
@@ -239,7 +242,6 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 
 	      ?>
 	    <div style="clear:both;"></div></DIV>
-	  </FORM>
 	</DIV>
 	<?php include('footer.inc');?>
       </DIV>
