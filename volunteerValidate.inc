@@ -12,8 +12,6 @@ function validate_form(){
 //	if(($_POST['zip'] != strval(intval($_POST['zip']))) || ($_POST['zip']==null) || (strlen($_POST['zip'])!=5)) $errors[] = 'Please enter a valid zip code';
 	if($_POST['type']==null && $_SESSION['access_level']>=1) $errors[] = 'Select a role';
 	if($_POST['type']=='coordinator' && $_SESSION['access_level']<2) $errors[] = 'You cannot upgrade yourself to Program Coordinator.';
-	if ($_POST['type']!=null && $_SESSION['access_level']<=1 && in_array('manager',$_POST['type']))
-		$errors[] = "Sorry, you can't promote yourself to manager.";
 
 	if(!valid_phone($_POST['phone1'])) $errors[] = 'Enter a valid primary phone number (10 digits: ### ### ####)';
 	if($_POST['phone2']!=null && !valid_phone($_POST['phone2'])) $errors[] = 'Enter a valid secondary phone number (10 digits: ### ### ####)';
