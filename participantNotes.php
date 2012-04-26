@@ -11,6 +11,7 @@
 session_start();
 session_cache_expire(30);
 include_once('database/dbParticipants.php');
+include_once('database/dbParticipantEntry.php');
 $partID = $_GET['id'];
 $participant = retrieve_dbParticipants($partID);
 $lastDay=mktime(0,0,0,substr($_GET['date'],3,2),substr($_GET['date'],-2),substr($_GET['date'],0,2));
@@ -33,6 +34,7 @@ $dayInc =86400;
 	      <?php
 		$newWeek = date('y-m-d',$lastDay-$weekInc);
 		echo('<INPUT TYPE="hidden" NAME="date" VALUE="'.$newWeek.'"/>');
+		echo('<INPUT TYPE="hidden" NAME="id" VALUE="'.$partID.'"/>');
 	      ?>
 	      <INPUT TYPE="submit" VALUE="Previous Week" STYLE="HEIGHT:40;WIDTH:150;"/>
 	    </FORM>
@@ -40,14 +42,16 @@ $dayInc =86400;
 	  <DIV STYLE="float:right;">
 	    <FORM ID="WeekForward" ACTION="participantNotes.php" METHOD="get" ONSUBMIT="">
 	      <?php
-		  if($lastDay != date('y-m-d')){
+		  if($lastDay >= time()){
+		    echo('<INPUT TYPE="hidden" NAME="date" VALUE="'.date('y-m-d',$lastDay).'"/>');
+		  }
+		  else{
 		    $newWeek=date('y-m-d',($lastDay+$weekInc));
 		    echo('<INPUT TYPE="hidden" NAME="date" VALUE="'.$newWeek.'"/>');
 		  }
-		  else
-		    echo('<INPUT TYPE="hidden" NAME="date" VALUE="'.$lastDay.'"/>');
+		  echo('<INPUT TYPE="hidden" NAME="id" VALUE="'.$partID.'"/>');
 	      ?>
-	      <INPUT TYPE="submit" VALUE="Next Week" STYLE="HEIGHT:40;WIDTH:150;"/>
+		    <INPUT TYPE="submit" VALUE="Next Week" STYLE="HEIGHT:40;WIDTH:150;"/>
 	    </FORM>
 	  </DIV>
 	  <h1 align="center">Participant Daily Notes</h1>
@@ -66,17 +70,28 @@ $dayInc =86400;
 	    </tr>
 	    <?php
 		  for($i=0;$i<7;$i++){
+		    $entryID=date('y-m-d',($lastDay-$i*$dayInc)).$partID;
 		    echo '<tr>';
 		    echo '<td>';
 		    echo date('D m/d/y', $lastDay-$i*$dayInc);
 		    echo '</td>';
-		    echo '<td>';
-		    echo 'Placehold';
-		    echo '</td>';
-		    echo '<td>';
-		    echo 'Placehold';
-		    echo '</td>';
-		    echo'</tr>';
+		    $entry=retrieve_dbParticipantEntry($entryID);
+		    if($entry){
+		      echo '<td>';
+		      echo $entry->get_result();
+		      echo '</td>';
+		      echo '<td>';
+		      echo $entry->get_note();
+		      echo '</td>';
+		      echo'</tr>';
+		    }
+		    else{
+		      echo '<td>';
+		      echo '</td>';
+		      echo '<td>';
+		      echo '</td>';
+		      echo'</tr>';
+		    }	      
 		  }
 
 	  ?>

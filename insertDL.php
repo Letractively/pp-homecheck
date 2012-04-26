@@ -1,10 +1,16 @@
 <?php
-	include_once('database/dbParticipantEntry.php');
-	include_once('database/dbDailyLogs.php');
-	include_once('domain/DailyLog.php');
-	
-	if ($_POST[Time1] !== null && $_POST[Time2] !== null && $_POST[Participant])
-		insert_dbParticipantEntry(new ParticipantEntry($_POST[Date],$_POST[Participant],$_POST[Time1].":".$_POST[Time2].$_POST[AP],$_POST[Result],$_POST[Notes]));
+include_once('database/dbParticipantEntry.php');
+include_once('database/dbParticipants.php');
+include_once('database/dbDailyLogs.php');
+include_once('domain/DailyLog.php');
+
+if ($_POST[Time1] !== null && $_POST[Time2] !== null && $_POST[Participant]){
+  insert_dbParticipantEntry(new ParticipantEntry($_POST[Date],$_POST[Participant],$_POST[Time1].":".$_POST[Time2].$_POST[AP],$_POST[Result],$_POST[Notes]));
+  $part=retrieve_dbParticipants($_POST['Participant']);
+  $part->update_logs($_POST['Notes']);
+  update_dbParticipants($part);
+  
+}
 	
 	$dl = retrieve_dbDailyLogs($_POST[Date]);
 	if($dl == null){

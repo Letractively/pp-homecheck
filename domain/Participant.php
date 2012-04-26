@@ -172,5 +172,9 @@ class Participant {
 	function set_address($address) {
 		$this->address = $address;
 	}
+
+	function update_logs($newLog){
+	  $log_entries[]=$newLog;
+	}
 }
 ?>
