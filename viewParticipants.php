@@ -35,7 +35,7 @@ session_cache_expire(30);
 	<form METHOD="get" ACTION="participantInfo.php" ONSUBMIT="">
 	<DIV STYLE="float:left;">
 	  <h1>Participant List</h1>
-	  <select size="32" id="partList" name="ID" style="WIDTH:400px;" onchange="updateID(this);">
+	  <select size="32" id="partList" required="" name="ID" style="WIDTH:400px;" onchange="updateID(this);">
 	  <?php
 	    $partList=getall_participants();
 	    foreach($partList as $participant){
@@ -49,7 +49,7 @@ session_cache_expire(30);
 	  </select>
 	</DIV>
 	<DIV STYLE="float:left; padding-left:15px;">
-	  <h1>Participant Info 	  <input type="submit" value="View Details" STYLE="HEIGHT:25; WIDTH:100;"/></h1>
+	  <h1>Participant Info 	  <input type="submit" value="View and Update Details" STYLE="HEIGHT:25; WIDTH:160;"/></h1>
 	  <Iframe id="info" src="" width="450" height="445"></Iframe>
 	</DIV>
 	<div style="clear:both;"></div>
