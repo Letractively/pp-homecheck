@@ -165,21 +165,21 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		    $name = $contact[0];
 		    $relation = $contact[1];
 		    $phone = $contact[2];
-		    echo'Contact Name: <input type="text" name="contactName'.$i.'" value="';
+		    echo"<table>\n<tr><td>",'Contact Name:</td><td> <input type="text" name="contactName'.$i.'" value="';
 		    echo $name.'"';
 		    if($_SESSION['access_level']==1)
 		      echo 'readonly';
-		    echo'/><br/>';
-		    echo 'Contact Relation: <input type="text" name="contactRel'.$i.'" value="';
+		    echo'/></td></tr><tr><td>';
+		    echo 'Contact Relation:</td><td> <input type="text" name="contactRel'.$i.'" value="';
 		    echo $relation.'"';
 		    if($_SESSION['access_level']==1)
 		      echo 'readonly';
-		    echo'/><br/>';
-		    echo 'Contact Phone: <input type="text" name="contactPhone'.$i.'" value="';
+		    echo'/></td></tr><tr><td>';
+		    echo 'Contact Phone: </td><td><input type="text" name="contactPhone'.$i.'" value="';
 		    echo $phone.'"';
 		    if($_SESSION['access_level']==1)
 		      echo 'readonly';
-		    echo '/><br/><br/>';}
+		    echo '/></td></tr></table><br/>';}
 		  if($_SESSION['access_level']==2){
 		    echo '<DIV id="placeholder">';
 		    echo'<DIV id="emergContact">';
