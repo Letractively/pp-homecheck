@@ -126,23 +126,31 @@ function process_form($id)      {
         //step two: try to make the deletion, password change, addition, or change
                 if($_POST['deleteMe']=="DELETE"){
                         $result = retrieve_dbVolunteers($id);
-                        if (!$result)
-                                echo('<p>Unable to delete. ' .$first_name.' '.$last_name. ' is not in the database. <br>Please report this error to the Program Coordinator .');
+                        if (!$result){
+				echo('<p>Unable to delete. ' .$first_name.' '.$last_name. ' is not in the database. <br>Please report this error to the Program Coordinator .');		
+				echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+			}
                         else {
                                 //What if they're the last remaining manager account?
                                 if(strpos($type,'coordinator')!==false){
                                 //They're a manager, we need to check that they can be deleted
                                         $coordinators = retrievealltype_dbVolunteers('coordinator');
-                                        if ($id==$_SESSION['_id'] || !$coordinators || mysql_num_rows($coordinators) <= 1)
-                                                echo('<p class="error">You cannot remove yourself or the last remaining coordinator from the database.</p>');
+                                        if ($id==$_SESSION['_id'] || !$coordinators || mysql_num_rows($coordinators) <= 1){
+						echo('<p class="error">You cannot remove yourself or the last remaining coordinator from the database.</p>');
+						echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+					}
                                         else {
                                                 $result = delete_dbVolunteers($id);
-                                                echo("<p>You have successfully removed " .$first_name." ".$last_name. " from the database.</p>");
+						echo("<p>You have successfully removed " .$first_name." ".$last_name. " from the database.</p>");
+						echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+						
                                         }
                                 }
                                 else {
                                         $result = delete_dbVolunteers($id);
-                                        echo("<p>You have successfully removed " .$first_name." ".$last_name. " from the database.</p>");               
+					echo("<p>You have successfully removed " .$first_name." ".$last_name. " from the database.</p>"); 
+					echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+			  		
                                 }
                         }
                 }
@@ -155,9 +163,16 @@ function process_form($id)      {
                 $newperson = new Volunteer($last_name, $first_name, $address, $city, $state, $zip, $clean_phone1, $clean_phone2, $email, $type,
 			$contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $new_notes, $password);
 				$result = insert_dbVolunteers($newperson);
-                                if (!$result)
-                   echo ('<p class="error">Unable to reset ' .$first_name.' '.$last_name. "'s password.. <br>Please report this error to the Program Coordinator.");
-                                else echo("<p>You have successfully reset " .$first_name." ".$last_name. "'s password.</p>");
+                                if (!$result){
+					echo ('<p class="error">Unable to reset ' .$first_name.' '.$last_name. "'s password.. <br>Please report this error to the Program Coordinator.");
+					echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+					
+				}
+				else {
+					echo("<p>You have successfully reset " .$first_name." ".$last_name. "'s password.</p>");
+					echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+				}
+					
                 }
 
                 // try to add a new person to the database
@@ -165,14 +180,18 @@ function process_form($id)      {
                             $id = $first_name.$clean_phone1;
                                 //check if there's already an entry
                                 $dup = retrieve_dbVolunteers($id);
-                                if ($dup)
-                                        echo('<p class="error">Unable to add ' .$first_name.' '.$last_name. ' to the database. <br>Another person with the same id is already there.');
+                                if ($dup){
+					echo('<p class="error">Unable to add ' .$first_name.' '.$last_name. ' to the database. <br>Another person with the same id is already there.');
+					echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+				}
                                 else {
 					$newperson = new Volunteer($last_name, $first_name, $address, $city, $state, $zip, $clean_phone1, $clean_phone2, $email, 
 						$type, $contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $new_notes, $password);
                     $result = insert_dbVolunteers($newperson);
-                                        if (!$result)
-                        echo ('<p class="error">Unable to add " .$first_name." ".$last_name. " in the database. <br>Please report this error to the Program Coordinator.');
+                                        if (!$result){
+						echo ('<p class="error">Unable to add " .$first_name." ".$last_name. " in the database. <br>Please report this error to the Program Coordinator.');
+						echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+					}
 					else {
 						echo("<p>You have successfully added " .$first_name." ".$last_name. " to the database.</p>");
 						echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
@@ -186,15 +205,19 @@ function process_form($id)      {
                                 $id = $_POST['old_id'];
                                 $pass = $_POST['old_pass'];
                                 $result = delete_dbVolunteers($id);
-                if (!$result)
+                if (!$result){
                    echo ('<p class="error">Unable to update ' .$first_name.' '.$last_name. '. <br>Please report this error to the Program Coordinator.');
-                                else {
+		   echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+		}
+		else {
 					$newperson = new Volunteer($last_name, $first_name, $address, $city, $state, $zip, $clean_phone1, $clean_phone2, $email, 
 						$type, 	$contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $new_notes, $password);
 
                                 $result = insert_dbVolunteers($newperson);
-                                        if (!$result)
-                                echo ('<p class="error">Unable to update ' .$first_name.' '.$last_name. '. <br>Please report this error to the Program Coordinator.');
+                                        if (!$result){
+                               			 echo ('<p class="error">Unable to update ' .$first_name.' '.$last_name. '. <br>Please report this error to the Program Coordinator.');
+						echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
+					}
 					else {
 						echo("<p>You have successfully updated " .$first_name." ".$last_name. " in the database.</p>");
     						echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
