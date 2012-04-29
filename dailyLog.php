@@ -94,18 +94,15 @@
 			// Valid entries
         	var ent = "0123456789";
         	event.returnValue = true;
-            /* Loop over contents. If any character is not a number,
+        	/* Loop over contents. If any character is not a number,
             	set the return value to false. */
             for (var intLoop = 0; intLoop < el.value.length; intLoop++)
-               	if (-1 == ent.indexOf(el.value.charAt(intLoop))) {
-               		event.returnValue=false;
-					alert("Invalid Time Entry! \nPlease enter in format 12:00, 08:00, or 9:00");
-		    	}
+               	if (-1 == ent.indexOf(el.value.charAt(intLoop))) event.returnValue=false;
             	if (!event.returnValue) {       // Bad value
+            		alert("Invalid Time Entry! \nPlease enter in format 12:00, 08:00, or 9:00");
                		el.className = "badValue"; // Change class
 		    	}
-            	else
-               		el.className="";       
+            	else el.className="";       
             }
 	</SCRIPT>
     </HEAD>     
@@ -135,7 +132,7 @@
 	        	</TABLE>
         	</DIV>
         	<!--All images with text use Ariel 14pt font-->
-        	<DIV STYLE="TOP: 237px; MARGIN-LEFT: 107px; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+        	<DIV STYLE="TOP: 242px; MARGIN-LEFT: 105px; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
             	<?PHP echo date('F d, Y');?>
         	</DIV><BR><BR><BR><BR><BR><BR><BR>
         	
@@ -148,7 +145,7 @@
 			<SELECT NAME = "AP" TITLE="Select AM or PM">
     		    <OPTION VALUE = A>AM</OPTION>
     		    <OPTION VALUE = P>PM</OPTION>
-            </SELECT><I><FONT COLOR="333333"> e.g. 09:00</FONT></I><BR>
+            </SELECT><I><FONT COLOR="333333"> e.g. 09:15</FONT></I><BR>
             </TD></TR><TR><TD>
             <IMG SRC="images/participant.png" TITLE="Begin typing participant last name for fast searching"/>
             </TD><TD>
