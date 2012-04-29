@@ -21,6 +21,10 @@
 	<LINK REL="icon"  TYPE="image/png" HREF="images/NPfavicon.png">
 	<LINK TYPE="text/css" REL="stylesheet" HREF="data:text/css,">
 	<STYLE TYPE="text/css"> 
+	body {
+		min-width: 1024px;
+		overflow:scroll;
+	}
 	table.gridtable {
 		font-family: verdana,arial,sans-serif;
 		font-size:12px;

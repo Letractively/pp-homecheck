@@ -24,6 +24,10 @@
 	<LINK HREF="print.css" TYPE="text/css" REL="stylesheet" MEDIA="print">
 	<LINK TYPE="text/css" REL="stylesheet" HREF="data:text/css,">
 	<STYLE TYPE="text/css">
+	body {
+		min-width: 1024px;
+		overflow:scroll;
+	}
 	.button_report {
    		background:url(images/button_report.png) no-repeat;
    		border: none;
@@ -75,7 +79,7 @@
     <DIV ID="form">
     <FORM ID="FORM1" METHOD = "get" ACTION = "viewReport.php">
     	<H3>Select a Quarter:</H3>
-    	<DIV STYLE=" TOP: 240; LEFT: 260; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
+    	<DIV STYLE=" TOP: 240; MARGIN-LEFT: 200; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
     	<SELECT NAME = "Quarter" STYLE = "WIDTH: 150" TITLE="Select Time Period">
     		<?PHP 
     			if($quarter == null) {
@@ -112,15 +116,13 @@
     	</SELECT>
     	<SELECT NAME = "Year" STYLE = "WIDTH: 100" TITLE="Select a Year">
     		<?php 
-    		$startyear = 2012;
-    		$currentYear = "20".Date(y);
-    		while ($startyear < (int)$currentYear){
-    			echo "<OPTION VALUE = '".$startyear."'>".$startyear."</OPTION>";
-    			$startyear++;
-    		}
-    		if ($startyear == $currentYear) {
-    			echo "<OPTION SELECTED VALUE = '".$startyear."'>".$startyear."</OPTION>";
-    		}
+    			$startyear = 2012;
+    			$currentYear = Date(Y);
+    			while ($startyear < (int)$currentYear){
+    				echo "<OPTION VALUE = '".$startyear."'>".$startyear."</OPTION>";
+    				$startyear++;
+    			}
+    			if ($startyear == $currentYear) echo "<OPTION SELECTED VALUE = '".$startyear."'>".$startyear."</OPTION>";
     		?>
     	</SELECT>
     	<INPUT TYPE="submit" VALUE ="" ONMOUSEOVER="this.style.cursor = 'hand';" CLASS="button_report" TITLE="Show Report"/> 
@@ -139,58 +141,50 @@
     		$y = substr($year, 2);
     		if ($quarter == 1) {
     			echo "<BR><H3>Quarterly Report for January 1, ".$startyear." to March 31, ".$startyear."</H3><BR>";
-    			$jan_start = $y."-01-01";
-    			$jan_end = $y."-01-31";
+    			$a_start = $y."-01-01";
+    			$a_end = $y."-01-31";
     			if ((int)$y%4 == 0) {
-    				$feb_start = $y."-02-01";
-    				$feb_end = $y."-02-29";
+    				$b_start = $y."-02-01";
+    				$b_end = $y."-02-29";
     			}
     			else {
-    				$feb_start = $y."-02-01";
-    				$feb_end = $y."-02-28";
+    				$b_start = $y."-02-01";
+    				$b_end = $y."-02-28";
     			}
-    			$mar_start = $y."-03-01";
-    			$mar_end = $y."-03-31";
-    			$aLogs = retrieve_betweentwodates($jan_start, $jan_end);
-    			$bLogs = retrieve_betweentwodates($feb_start, $feb_end);
-    			$cLogs = retrieve_betweentwodates($mar_start, $mar_end);
+    			$c_start = $y."-03-01";
+    			$c_end = $y."-03-31";
     		}
     		if ($quarter == 2) {
     			echo "<BR><H3>Quarterly Report for April 1, ".$startyear." to June 30, ".$startyear."</H3><BR>";
-    			$apr_start = $y."-04-01";
-    			$apr_end = $y."-04-30";
-    			$may_start = $y."-05-01";
-    			$may_end = $y."-05-31";
-    			$jun_start = $y."-06-01";
-    			$jun_end = $y."-06-30";
-    			$aLogs = retrieve_betweentwodates($apr_start, $apr_end);
-    			$bLogs = retrieve_betweentwodates($may_start, $may_end);
-    			$cLogs = retrieve_betweentwodates($jun_start, $jun_end);
+    			$a_start = $y."-04-01";
+    			$a_end = $y."-04-30";
+    			$b_start = $y."-05-01";
+    			$b_end = $y."-05-31";
+    			$c_start = $y."-06-01";
+    			$c_end = $y."-06-30";
     		}
     		if ($quarter == 3) {
-    			echo "<BR><H2>Quarterly Report for July 1, ".$startyear." to September 30, ".$startyear."</H2><BR>";
-    			$jul_start = $y."-07-01";
-    			$jul_end = $y."-07-31";
-    			$aug_start = $y."-08-01";
-    			$aug_end = $y."-08-31";
-    			$sep_start = $y."-09-01";
-    			$sep_end = $y."-09-30";
-    			$aLogs = retrieve_betweentwodates($jul_start, $jul_end);
-    			$bLogs = retrieve_betweentwodates($aug_start, $aug_end);
-    			$cLogs = retrieve_betweentwodates($sep_start, $sep_end);
+    			echo "<BR><H3>Quarterly Report for July 1, ".$startyear." to September 30, ".$startyear."</H3><BR>";
+    			$a_start = $y."-07-01";
+    			$a_end = $y."-07-31";
+    			$b_start = $y."-08-01";
+    			$b_end = $y."-08-31";
+    			$c_start = $y."-09-01";
+    			$c_end = $y."-09-30";
     		}
     		if ($quarter == 4) {
-    			echo "<BR><H2>Quarterly Report for August 1, ".$startyear." to December 31, ".$startyear."</H2><BR>";
-    			$oct_start = $y."-10-01";
-    			$oct_end = $y."-10-31";
-    			$nov_start = $y."-11-01";
-    			$nov_end = $y."-11-30";
-    			$dec_start = $y."-12-01";
-    			$dec_end = $y."-12-31";
-    			$aLogs = retrieve_betweentwodates($oct_start, $oct_end);
-    			$bLogs = retrieve_betweentwodates($nov_start, $nov_end);
-    			$cLogs = retrieve_betweentwodates($dec_start, $dec_end);
-    		}    		
+    			echo "<BR><H3>Quarterly Report for August 1, ".$startyear." to December 31, ".$startyear."</H3><BR>";
+    			$a_start = $y."-10-01";
+    			$a_end = $y."-10-31";
+    			$b_start = $y."-11-01";
+    			$b_end = $y."-11-30";
+    			$c_start = $y."-12-01";
+    			$c_end = $y."-12-31";
+    		}
+
+    		$aLogs = retrieve_betweentwodates($a_start, $a_end);
+    		$bLogs = retrieve_betweentwodates($b_start, $b_end);
+    		$cLogs = retrieve_betweentwodates($c_start, $c_end);
     		
    		 	foreach($aLogs as &$al) {
    				$d = $al->get_id();
@@ -339,10 +333,7 @@
     		if($totalD != 0) {
 	    		echo "<TABLE CLASS='gridtable'>";
     			echo "<TR><TH><B>Participants Referred to Dispatch</B></TH><TH><B>Town</B></TH><TH><B>Date</B></TH></TR>";
-    			if ($quarter == 1) $dls = retrieve_betweentwodates($jan_start, $mar_end);
-    			if ($quarter == 2) $dls = retrieve_betweentwodates($apr_start, $jun_end);
- 	   			if ($quarter == 3) $dls = retrieve_betweentwodates($jul_start, $sep_end);
-    			if ($quarter == 4) $dls = retrieve_betweentwodates($oct_start, $dec_end);
+    			$dls = retrieve_betweentwodates($a_start, $c_end);
     			foreach($dls as &$dl) {
     				$eID = $dl->get_entry_ids();
     				$date = $dl->get_id();
@@ -353,7 +344,10 @@
     						$lname = retrieve_dbParticipants($ID)->get_last_name();
     						$cit = retrieve_dbParticipants($ID)->get_city();
     						$stat = $pEntry->get_result();
-	    					if($stat == "D") echo "<TR><TD>".$fname." ".$lname."</TD><TD>".$cit."</TD><TD>".$date."</TR>";
+    						$day = substr($date, -2); 
+							$month = substr($date, -5, 2); 
+							$year = substr($date, 0, -6); 
+	    					if($stat == "D") echo "<TR><TD>".$fname." ".$lname."</TD><TD>".$cit."</TD><TD>".$month."/".$day."/".$year."</TR>";
     					}
     				}
     			}
