@@ -78,7 +78,7 @@ $participant = retrieve_dbParticipants($id);
 		  
 
 		  echo("</fieldset><br />");
-		  echo("<fieldset><legend>Status:</legend>".$participant->get_status()."</fieldset>");
+		  echo("<fieldset><legend>Status:</legend>".ucwords($participant->get_status())."</fieldset>");
 		  echo("<fieldset><legend>Notes:</legend>".$participant->get_notes()."</fieldset>");
 		}
 	?>
