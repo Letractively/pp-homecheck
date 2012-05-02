@@ -52,7 +52,8 @@ session_cache_expire(30);
 	?>
 	<?php
 	  echo '<h1 STYLE="text-align:center;">Monthly Schedule for '.date("F Y",mktime(1,1,1,$_GET['Month'],1,$_GET['Year'])).'</h1>';
-	?>
+	  echo $_SESSION['_id'];
+	  ?>
 	<DIV>
 	  <table border="2" STYLE="margin-left:auto; margin-right:auto;">
 	    <tr>
@@ -81,8 +82,12 @@ session_cache_expire(30);
 		    echo 'Volunteer:';
 		    if($checkMonth){
 		      $shiftVol = retrieve_dbVolunteers($checkMonth->get_volunteer_id());
-		      if ($shiftVol)
-			echo($shiftVol->get_first_name()." ".$shiftVol->get_last_name().'<br/>');
+		      if ($shiftVol){
+			if($shiftVol->get_id() == $_SESSION['_id'])
+			  echo('<font STYLE="background-color:red; color:white;"> '.$shiftVol->get_first_name()." ".$shiftVol->get_last_name().' </font><br/>');
+			else
+			  echo($shiftVol->get_first_name()." ".$shiftVol->get_last_name().'<br/>');
+		      }
 		      else
 			echo '<br/>';
 		      echo '<FORM NAME="notes" ACTION="writeSchedNotes.php" METHOD="post">';

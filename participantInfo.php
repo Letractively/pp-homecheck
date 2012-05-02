@@ -208,9 +208,25 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		  echo' End Date: <input type="text" name="end_date" value="';
 		  echo $participant->get_end_date().'"';
 		  echo'/><br/><br/>';
-		  echo' Status: <input type="text" name="status" value="';
-		  echo $participant->get_status().'"';
-		  echo'/><br/>';
+		  echo "Status:";
+		  echo '<select name="status">';
+		  if ($participant->get_status()=="on leave"){
+		    echo '<option value="active">Active</option>';
+		    echo '<option value="on leave" selected>On Leave</option>';
+		    echo '<option value="inactive">Inactive</option>';
+		  }
+		  else if ($participant->get_status()=="inactive"){
+		    echo '<option value="active">Active</option>';
+		    echo '<option value="on leave">On Leave</option>';
+		    echo '<option value="inactive" selected>Inactive</option>';
+		  }
+		  else{
+		    echo '<option value="active" selected>Active</option>';
+		    echo '<option value="on leave">On Leave</option>';
+		    echo '<option value="inactive">Inactive</option>';
+		  }
+		  echo '</select>';
+		  echo '<br/>';
 		  echo 'Notes:<br/><textarea name="notes" cols="50" rows="7">';
 		  echo $participant->get_notes();
 		  echo'</textarea>';
