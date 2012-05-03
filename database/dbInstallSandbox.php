@@ -21,16 +21,16 @@ Database Initialization
 </title>
 <body>
 <?php
-	echo("Installing Tables...<br />");
-	include_once('dbinfo.php');
-	include_once('dbDailyLogs.php');
-	include_once('dbParticipantEntry.php');
-	include_once('dbParticipants.php');include_once('../domain/Volunteer.php');
-	include_once('dbReports.php');
-	include_once('dbScheduleEntry.php');
-	include_once('dbShifts.php');
-	include_once('dbVolunteers.php');include_once('../domain/Volunteer.php');
-	include_once('dbWeeks.php');
+echo("Installing Tables...<br />");
+include_once('dbinfo.php');
+include_once('dbDailyLogs.php');
+include_once('dbParticipantEntry.php');
+include_once('dbParticipants.php');
+include_once('dbReports.php');
+include_once('dbScheduleEntry.php');
+include_once('dbShifts.php');
+include_once('dbVolunteers.php');
+include_once('dbMonths.php');
 	
 	// connect
 	$connected=connect();
