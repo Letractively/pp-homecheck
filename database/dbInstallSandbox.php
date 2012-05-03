@@ -45,6 +45,7 @@ include_once('dbMonths.php');
 	create_dbScheduleEntry(); echo("dbScheduleEntry added...<br />");
 	create_dbShifts(); echo("dbShifts added...<br />");
 	create_dbVolunteers(); echo("dbVolunteers added...<br />");
+	create_dbMonths(); echo("dbMonths added...<br />");
 	
 	// now add some data to the volunteers and clients tables
 	fill_the_sandbox();
