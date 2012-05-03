@@ -98,7 +98,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		  if($_SESSION['access_level']==1)
 		    echo 'readonly';
 		    echo '/></td></tr><tr><td>';
-		    echo 'State:';
+		    echo 'State, Zip </td><td>';
 		    if($_SESSION['access_level']==2){
 		      echo '<select name="state">';
 		      foreach ($states as $st) {
@@ -114,7 +114,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 		      echo $participant->get_state();
 		      echo '<input type="hidden" value="'.$participant->get_state().'">';
 		    }		
-		    echo ',</td><td>  Zip:<input type="text" name="zip" value="';
+		    echo ' , <input type="text" name="zip" value="';
 		    echo $participant->get_zip().'"';
 		    if($_SESSION['access_level']==1)
 		      echo 'readonly';

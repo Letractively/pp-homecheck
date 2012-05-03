@@ -57,6 +57,7 @@ $dayInc =86400;
 	  <h1 align="center">Participant Daily Notes</h1>
 	  <?php 
 		  echo('<h2 align="center">For '.$participant->get_first_name().' '.$participant->get_last_name().'</h2>');
+		  echo('<h2 align="center">Phone: '.$participant->get_phone1().'</h2>');
 		  echo('<h2 align="center">Week ending on '.date('l jS F Y',$lastDay).'</h2>');
 	  ?>
 	  <div style="clear:both; font-size:1px;"></div>
