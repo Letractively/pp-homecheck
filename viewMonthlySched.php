@@ -52,7 +52,6 @@ session_cache_expire(30);
 	?>
 	<?php
 	  echo '<h1 STYLE="text-align:center;">Monthly Schedule for '.date("F Y",mktime(1,1,1,$_GET['Month'],1,$_GET['Year'])).'</h1>';
-	  echo $_SESSION['_id'];
 	  ?>
 	<DIV>
 	  <table border="2" STYLE="margin-left:auto; margin-right:auto;">

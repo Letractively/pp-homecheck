@@ -39,9 +39,9 @@
 					if($person){ //avoids null results
 						if($person->get_password()==$db_pass) { //if the passwords match, login
 							$_SESSION['logged_in']=1;
-							if ($person->get_type()=="dispatch" || $person->get_type()=="volunteer")
+							if ($person->get_type()=="volunteer")
 									$_SESSION['access_level'] = 1;
-							else if ($person->get_type()=="coordinator")
+							else if ($person->get_type()=="dispatch" ||$person->get_type()=="coordinator")
 								$_SESSION['access_level'] = 2;
 							else $_SESSION['access_level'] = 0;
 							$_SESSION['f_name']=$person->get_first_name();
