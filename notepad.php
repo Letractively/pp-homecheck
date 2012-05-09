@@ -58,7 +58,8 @@
 		<DIV ID="content">
 		<?php 
 		$now = date('y-m-d');
-		if($dt == null) $dt = $now;
+		if($dt == null) 
+			$dt = $now;
 		$prevDay = date('y-m-d', strtotime($dt."-1 day"));
 		$nextDay = date('y-m-d', strtotime($dt."+1 day"));
 		$day = substr($dt, -2); 
@@ -80,7 +81,7 @@
 		echo "<DIV STYLE='POSITION: relative; Z-INDEX: 1; VISIBILITY: show;'>";
 		echo "<TABLE><TR>
 		<TH><A ONMOUSEOVER='this.style.cursor = 'hand';' TITLE='See Previous Day' HREF='notepad.php?date=".$prevDay."'><img border=0 src='images/button_back.png'/></A></TH>
-		<TH>Participant Notepad for ".$m." ".$day.", 20".$year."</TH>
+		<TH>Daily Notepad for ".$m." ".$day.", 20".$year."</TH>
 		<TH><A ONMOUSEOVER='this.style.cursor = 'hand';' TITLE='See Next Day' HREF='notepad.php?date=".$nextDay."'><img border=0 src='images/button_forward.png'/></A></TH>
 		</TR></TABLE><BR></DIV>";
 		if ($dt <= $now) {
@@ -122,9 +123,9 @@
 						echo "<TR><TD>".$DLs->get_note()."</TD></TR>";
 						echo "</TABLE><BR><BR>";
 					}
-					else echo "<h3>No Daily Notes for this day.</h3>";
+					else echo "<h3>No Additional Notes were entered for this day.</h3>";
 				}
-				else echo "<h3>No extra notes were entered this day.</h3>";
+				else echo "<h3>No Additional Notes were entered for this day.</h3>";
 				
 			}
 			else echo "<h3>No information is available for this day.</h3>";
