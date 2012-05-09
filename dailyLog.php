@@ -129,7 +129,7 @@
             			}
             		?>
             		</TR>
-	        	</TABLE>
+	        	</TABLE> 
         	</DIV>
         	<!--All images with text use Ariel 14pt font-->
         	<DIV STYLE="TOP: 242px; MARGIN-LEFT: 105px; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
@@ -210,7 +210,7 @@
         	<IMG SRC="images/participants.png" TITLE="Select a Participant from the list"/>
         	</TD><TD><BR>
         	<INPUT TYPE="hidden" NAME="date" STYLE="WIDTH:0px; " MAXLENGTH="8" TITLE="Enter Date" Value="<?php echo $dt ?>"/>
-			<SELECT NAME = "id" TITLE="Select a Participant" STYLE = "WIDTH: 190">
+			<SELECT NAME = "id" TITLE="Select a Participant" STYLE = "WIDTH: 190" required>
 				<OPTION SELECTED VALUE = "">Select Participant...</OPTION>
 				<?PHP
 		    		$allParticipants = getall_participants();
@@ -221,9 +221,9 @@
 		    		}
                	?>
        		</SELECT><BR><BR>
-       		<?php echo "<INPUT TYPE=\"submit\" ONMOUSEOVER=\"this.style.cursor = 'hand';\" STYLE=\"FLOAT: LEFT;\" CLASS=\"button_info\" VALUE=\"\" TITLE=\"See this Participant's Log\"/>"; ?> 
+       		<?php echo "<INPUT TYPE=\"submit\" ONMOUSEOVER=\"this.style.cursor = 'hand';\" STYLE=\"FLOAT: LEFT;\" CLASS=\"button_info\" VALUE=\"\" TITLE=\"See Selected Participant's Log\"/>"; ?> 
 		</FORM>
-        <?php echo "<A STYLE='FLOAT: RIGHT;' HREF='notepad.php?date=".$dt."' TITLE='See Notepad for the past week' ONMOUSEOVER='this.style.cursor = 'hand';'><img border=0 src='images/button_notes.png'/></A>"; ?>
+        <?php echo "<A STYLE='FLOAT: RIGHT;' HREF='notepad.php?date=".$dt."' TITLE='See Daily Notepad' ONMOUSEOVER='this.style.cursor = 'hand';'><img border=0 src='images/button_notes.png'/></A>"; ?>
         </TD></TR></TABLE>
         </TD></TR></TABLE>
         <DIV STYLE=" TOP: 275; MARGIN-LEFT: 390; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
