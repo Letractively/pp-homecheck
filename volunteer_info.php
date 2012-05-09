@@ -61,7 +61,7 @@
 					}
 					echo("<br />");
 					
-					echo("<b>Schedule: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>");
+					/*echo("<b>Schedule: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>");
 					$schedule = $volunteer->get_schedule();
 					$count = count($schedule);
 					for($i = 0; $i < $count; $i++)
@@ -73,7 +73,7 @@
 						echo $day.'';
 						echo ', week ';
 						echo $week.';&nbsp';
-					}
+					} */
 					echo("</fieldset><br />");
 					
 					echo('<fieldset><legend>Contact Information</legend>');
