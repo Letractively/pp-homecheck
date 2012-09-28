@@ -36,7 +36,7 @@
      		
 					if($_SESSION['access_level']==0) 
 					    echo('<p> To apply to become a volunteer for the Good Morning Program, select <a href="'.$path.
-					         'editVolunteer.php?id='.'new'.'">apply</a>.');
+					         'volunteerEdit.php?id='.'new'.'">apply</a>.');
 				?>
 
 				To learn more about this software, select <a href="<?php echo($path);?>about.php">about</a>. 
