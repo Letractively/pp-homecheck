@@ -55,7 +55,7 @@ include_once('dbMonths.php');
 
 function fill_the_sandbox() {
 	// add some volunteer data
-	    $vol1 = new Volunteer("Edison", "Alex", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
+	/*    $vol1 = new Volunteer("Edison", "Alex", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
     				"edison.ace@gmail.com", "volunteer",  "",
         			"Wed:4,Fri:2","","", "","", "active", "", "");insert_dbVolunteers($vol1);
         $vol1 = new Volunteer("Erkis", "Nicole", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
@@ -67,8 +67,9 @@ function fill_the_sandbox() {
         $vol1 = new Volunteer("Ashe", "Madeleine", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
     				"madeleine@ashe.com", "coordinator", "",
         			"Wed:2,Thu:5","","", "","", "active", "", "");insert_dbVolunteers($vol1);
-        $vol1 = new Volunteer("Tucker", "Allen", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
-    				"allen@bowdoin.edu", "dispatch", "",
+    */    
+$vol1 = new Volunteer("Tucker", "Allen", "111 Main Street", "Brunswick", "ME", "04011", "2077298111", "", 
+    				"allen@bowdoin.edu", "coordinator", "",
         			"FI","","", "","", "active", "", ""); insert_dbVolunteers($vol1);
 $vol1=new Volunteer("Ashe","Madeleine","4 Larkspur Lane","Brunswick","ME","04011","2077254242","2072324262","madeleine@ashe.com","coordinator","","Sun:2,Thur:5:FI","","","","","active","",""); insert_dbVolunteers($vol1);
 $vol1=new Volunteer("Bailey","Rita","866 Merepoint Rd","Brunswick","ME","04011","2077290966","","rbailey626@gmail.com","volunteer","","Wed:4","","","","","active","",""); insert_dbVolunteers($vol1);

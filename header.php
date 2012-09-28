@@ -76,16 +76,14 @@ h1 {padding-left: 0px; padding-right:165px;}
 		if($_SESSION['access_level']>=1) // volunteers, coordinator, dispatcher 
 		  {
 		    echo('<a href="'.$path.'dailyLog.php?date='.$today.'"> | daily log</a>');
-		    echo('<a href="'.$path.'viewMonthlyList.php"> | monthly schedule</a>');
 		    echo('<a href="'.$path.'viewParticipants.php"> | participants</a>');
-
+		    echo('<a href="'.$path.'viewMonthlyList.php"> | monthly schedule</a>');
 		  }
 		if($_SESSION['access_level']==2) { // coordinator only
 		  echo '<a href="'.$path.'viewMasterSched.php"> | master schedule</a>';
 		  echo('<a href="'.$path.'viewVolunteers.php"> | volunteers</a>');
 		  echo '<a href="'.$path.'viewReport.php"> | reports</a>';	    
 		}
-		echo('<a href="'.$path.'help.php?helpPage='.$current_page.'" target="_BLANK"> | help</a>');
 		echo('<a href="'.$path.'about.php"> | about</a>');
 		echo('<a href="'.$path.'logout.php"> | logout</a>');
 	}
