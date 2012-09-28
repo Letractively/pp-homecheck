@@ -45,7 +45,7 @@ h1 {padding-left: 0px; padding-right:165px;}
 		$permission_array['participantInfo.php']=1;
 		$permission_array['participantBrief.php']=1;
 		//additional pages the coordinator can view
-		$permission_array['editVolunteer.php']=2;
+		$permission_array['volunteerEdit.php']=2;
 		$permission_array['editMonthlySchedule.php']=2;
 		$permission_array['viewMasterSched.php']=2;
 		$permission_array['searchVolunteers.php']=2;
@@ -71,7 +71,7 @@ h1 {padding-left: 0px; padding-right:165px;}
 		//they're logged in and session variables are set.
 		echo('<a href="'.$path.'index.php">home</a>');
 		if ($_SESSION['access_level']==0) // guests
-		  echo('<a href="editVolunteer.php?id=new'.'"> | apply </a>');
+		  echo('<a href="volunteerEdit.php?id=new'.'"> | apply </a>');
 		
 		if($_SESSION['access_level']>=1) // volunteers, coordinator, dispatcher 
 		  {
