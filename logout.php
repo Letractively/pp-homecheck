@@ -25,8 +25,8 @@
 					session_write_close();
 				?>
 				<p>You are now logged out of Homecheck.</p>
-				<?PHP include('footer.inc');?>
 			</div>
+			<?PHP include('footer.inc');?>
 		</div>
 	</body>
 </html>

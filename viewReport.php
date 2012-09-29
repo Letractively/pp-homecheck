@@ -357,8 +357,9 @@
     	} 		
     	
     ?>
-    <DIV ID="footer"><?PHP include('footer.inc');?></DIV>
+    <DIV ID="footer"></DIV>
     </DIV>
+    <?PHP include('footer.inc');?>
     </DIV>
     </BODY>     
 </HTML>        

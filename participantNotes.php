@@ -98,8 +98,8 @@ $dayInc =86400;
 	  ?>
 	  </table>
 	</DIV>
-	<?php include('footer.inc');?>
-      </DIV>
+	</DIV>
+	<?PHP include('footer.inc');?>
     </DIV>
   </BODY>
 </HTML>

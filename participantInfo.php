@@ -259,8 +259,8 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	      ?>
 	    <div style="clear:both;"></div></DIV>
 	</DIV>
-	<?php include('footer.inc');?>
-      </DIV>
+	</DIV>
+	<?PHP include('footer.inc');?>
     </DIV>
   </BODY>
 </HTML>

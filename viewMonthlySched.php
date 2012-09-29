@@ -115,8 +115,8 @@ session_cache_expire(30);
 	    $weekCount+=1; }?>
 	  </table>
 	</DIV>
-	<?php include('footer.inc');?>
-      </DIV>
+	</DIV>
+	<?PHP include('footer.inc');?>
     </DIV>
   </BODY>
 </HTML>

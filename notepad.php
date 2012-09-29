@@ -132,8 +132,8 @@
 		}
 		else echo "<h3>No information is available for this day....yet!</h3>";
 		?>
+		</DIV>
 		<?PHP include('footer.inc');?>
-   		</DIV>
     	</DIV>
     </BODY>     
 </HTML> 

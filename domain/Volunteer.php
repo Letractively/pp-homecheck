@@ -134,10 +134,13 @@ class Volunteer {
     }
 	function get_notes(){
         return $this->notes;
-    }function get_password () {
+    }
+    function get_password () {
         return $this->password;
     }
-    //setter functions ... can be added later as needed
+    function set_password ($p) {
+        $this->password = $p;
+    }
         
 }
 ?>

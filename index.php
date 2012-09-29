@@ -34,12 +34,11 @@
      				$today = time();
 					echo "Today is ".date('l F j, Y', $today).".<p>";
      		
-					if($_SESSION['access_level']==0) 
-					    echo('<p> To apply to become a volunteer for the Good Morning Program, select <a href="'.$path.
-					         'volunteerEdit.php?id='.'new'.'">apply</a>.');
+				//	if($_SESSION['access_level']==0) 
+				//	    echo('<p> To apply to become a volunteer for the Good Morning Program, select <a href="'.$path.
+				//	         'volunteerEdit.php?id='.'new'.'">apply</a>.');
 				?>
 
-				To learn more about this software, select <a href="<?php echo($path);?>about.php">about</a>. 
 				When you are finished, please remember to <a href="<?php echo($path);?>logout.php">logout</a>.</p>
 
 				<?PHP
@@ -52,7 +51,7 @@
 					 * 			generate new calendar weeks, generate reports, export data
 					 * level 3: Police Dispatcher: same as level 1, but no editing or updatng expected.
 					*/
-                    echo ('<p>If you want help using this software, select <a href="'.$path.'help.php">help</a> at any time.');
+               //     echo ('<p>If you want help using this software, select <a href="'.$path.'help.php">help</a> at any time.');
 					//DEFAULT PASSWORD CHECK
 					if (md5($person->get_id())==$person->get_password()){
 						 if(!isset($_POST['_rp_submitted']))
@@ -88,7 +87,7 @@
 			    //NOTES OUTPUT
 				echo('<div class="infobox"><p class="notes"><strong>Notes from the program coordinator:</strong><br />');
 				echo($person->get_notes().'</div>');
-
+/*
 				// we have a guest authenticated
 				if($_SESSION['access_level']==0) {
 					echo('<div class="infobox"><p><strong>Your application has been submitted.  Thank you!</strong><br></p></div>)');
@@ -106,11 +105,12 @@
 					echo "<p>(Here we need to show the dispatcher today's system status: daily log, highlighting: <br> -- persons who the volunteer hasn't been ".
 					"able to contact, <br> -- volunteer not showing up, etc.)";
 				}
+*/
 				}
 				?>
-				<br clear="all">
-				<?PHP include('footer.inc');?>
+				<br clear="all">	
 			</div>
+			<?PHP include('footer.inc');?>
 		</div>
 	</body>
 </html>

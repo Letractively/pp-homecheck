@@ -54,20 +54,7 @@ include_once('dbMonths.php');
 	echo(" To prevent data loss, run this program only if you want to reinitialize the tables.</p>");
 
 function fill_the_sandbox() {
-	// add some volunteer data
-	/*    $vol1 = new Volunteer("Edison", "Alex", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
-    				"edison.ace@gmail.com", "volunteer",  "",
-        			"Wed:4,Fri:2","","", "","", "active", "", "");insert_dbVolunteers($vol1);
-        $vol1 = new Volunteer("Erkis", "Nicole", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
-    				"nikwik@gmail.com", "volunteer",  "",
-        			"Wed:5,Fri:3","","", "","", "active", "", "");insert_dbVolunteers($vol1);
-        $vol1 = new Volunteer("Martinez", "Ruben", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
-    				"rmartin@bowdoin.edu", "volunteer",  "",
-        			"Wed:1,Thu:4,FI","","", "","", "active", "", "");insert_dbVolunteers($vol1);
-        $vol1 = new Volunteer("Ashe", "Madeleine", "111 Main Street", "Brunswick", "ME", "04011", "1112345678", "", 
-    				"madeleine@ashe.com", "coordinator", "",
-        			"Wed:2,Thu:5","","", "","", "active", "", "");insert_dbVolunteers($vol1);
-    */    
+	// add volunteer data  
 $vol1 = new Volunteer("Tucker", "Allen", "111 Main Street", "Brunswick", "ME", "04011", "2077298111", "", 
     				"allen@bowdoin.edu", "coordinator", "",
         			"FI","","", "","", "active", "", ""); insert_dbVolunteers($vol1);
@@ -76,7 +63,7 @@ $vol1=new Volunteer("Bailey","Rita","866 Merepoint Rd","Brunswick","ME","04011",
 $vol1=new Volunteer("Beeman","Gloria","25 Amos Way","Brunswick","ME","04011","2078093444","","nameeb@comcast.net","volunteer","","Sun:1,Sun:3,Sun:5,FI","","","","","active","",""); insert_dbVolunteers($vol1);
 $vol1=new Volunteer("Belt","Barbara","30 Oakwood Terrace","Brunswick","ME","04011","2077257035","","bbdreamtrip@gmail.com","volunteer","","Tue:3,Tue:5","","","","","active","",""); insert_dbVolunteers($vol1);
 $vol1=new Volunteer("Deshales","Denise","15 North Point Rd","Harpswell","ME","04079","2077293009","","gerryanddenise@gmail.com","volunteer","","Fri:1,Fri:3","","","","","active","",""); insert_dbVolunteers($vol1);
-$vol1=new Volunteer("Frazer","Tulle","271 Harpswell Neck Rd","Harpswell","ME","04079","2077258942","","tullef@myfairpoint.net","volunteer","","Wed:2,Wed:3 ","","","","","active","",""); insert_dbVolunteers($vol1);
+$vol1=new Volunteer("Frazer","Tulle","271 Harpswell Neck Rd","Harpswell","ME","04079","2077258942","","tullef@myfairpoint.net","coordinator","","Wed:2,Wed:3 ","","","","","active","",""); insert_dbVolunteers($vol1);
 $vol1=new Volunteer("Gorby","Judy","2 Westminster","Brunswick","ME","04011","2077255039","","irishlas123@comcast.net","volunteer","","Tues:1,Tue:2,FI","","","","","active","",""); insert_dbVolunteers($vol1);
 $vol1=new Volunteer("Hallenbeck","Tom","17 Mountain Ash Ave","Brunswick","ME","04011","2077255264","","hallentj1@myfairpoint.net","volunteer","","Fri:2,Fri:4,Fri:5","","","","","active","",""); insert_dbVolunteers($vol1);
 $vol1=new Volunteer("Moody","Patricia","12 Wood Landing Rd","Harpswell","ME","04079","2078335535","","pbmoody@comcast.net","volunteer","","Mon:2,Mon:5,Wed:5,Sat:2,FI","","","","","active","",""); insert_dbVolunteers($vol1);
@@ -90,19 +77,7 @@ $vol1=new Volunteer("Goan","Terry","","Brunswick","ME","04011","2077256621","","
 $vol1=new Volunteer("Moeller","Sonia","","Brunswick","ME","04011","2077256621","","smoeller@brunswickpd.org","dispatch","","","","","","","active","",""); insert_dbVolunteers($vol1);
 $vol1=new Volunteer("Smith","Mari","","Brunswick","ME","04011","2077256621","","mmsmith@brunswickpd.org","dispatch","","","","","","","active","",""); insert_dbVolunteers($vol1);
         
-	// add some participant data
-	    $part1 = new Participant("Smith", "John", "111 Main Street", "Brunswick", "ME", "04011", 2071234567, "", "name@domain1.com",
-                         "yes", "Contact:Relationship:555-5555", "Physician 111-1111", "yes", "service1,service2", "need1,need2",
-                         "no", "Person with other key", "yes - Blue Sedan, License Plate FFF44", "01-01-01", "completed", 
-						 "01-01-01", "", "active", "log entries", "notes"); insert_dbParticipants($part1);
-		$part1 = new Participant("Doe", "Jane", "222 Park", "Topsham", "ME", "11111", 2072345678, "", "jane@doe.com",
-                         "no - lives with John Doe, husband", "Contact,Relationship,555-5555", "Physician 222-2222", "yes", 
-                         "service1,service2", "need1,need2", "yes-under doormat", "Person with other key", "no", "04-04-04", 
-						 "authorized", "04-15-06", "", "away", "log entries", "notes");insert_dbParticipants($part1);
-		$part1 = new Participant("Blah", "Blah", "33 Center Street", "Bowdoinham", "ME", "04011", 2074567890, "", "blah@blah.com",
-                         "yes", "Contact,Relationship,555-5555", "Physician 333-3333", "yes", "service1,service2", "need1,need2",
-                         "no", "Person with other key", "no", "05-05-05", "completed", "05-30-99", "", "active", "log entries", "notes"); insert_dbParticipants($part1);
-        $vol1 = new Participant("BENGTSSON","MARIE","","Brunswick","ME","","2071234567","","","","","","","","","","","","","","","","active","",""); insert_dbParticipants($vol1);
+	// add participant data
 $vol1 = new Participant("BLACK","MARJORIE","","Harpswell","ME","","2071234568","","","","","","","","","","","","","","","","active","",""); insert_dbParticipants($vol1);
 $vol1 = new Participant("BRANN","TERESA","","Freeport","ME","","2071234569","","","","","","","","","","","","","","","","active","",""); insert_dbParticipants($vol1);
 $vol1 = new Participant("COOPER","ARTHUR","","Freeport","ME","","2071234570","","","","","","","","","","","","","","","","active","",""); insert_dbParticipants($vol1);

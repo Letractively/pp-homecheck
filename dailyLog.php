@@ -230,9 +230,8 @@
 	    	<img src="images/vl.png" height="320" width="3"/>
 		</DIV>
 		<BR clear="all">
-		<?PHP include('footer.inc');?>	
-		<BR>
-        </DIV>     
+		<</DIV> 
+		<?PHP include('footer.inc');?>    
         </DIV>     
     </BODY>     
 </HTML>

@@ -84,9 +84,8 @@
 				echo "</div>";	
 ?>
 			</div>
-				
-			<?PHP include('footer.inc');?>
 			</p>
+			<?PHP include('footer.inc');?>
 		</div>
 	</body>
 </html>
