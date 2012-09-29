@@ -129,7 +129,7 @@ function process_form($id)      {
                         if (!$result){
 				echo('<p>Unable to delete. ' .$first_name.' '.$last_name. ' is not in the database. <br>Please report this error to the Program Coordinator .');		
 				echo('<p><a href="http://'.$_SERVER['SERVER_NAME'].'/viewVolunteers.php">Return to Volunteer List.</a></p>');
-			}
+                        }
                         else {
                                 //What if they're the last remaining manager account?
                                 if(strpos($type,'coordinator')!==false){
@@ -159,7 +159,7 @@ function process_form($id)      {
                 else if($_POST['reset_pass']=="RESET"){
                                 $id = $_POST['old_id'];
                                 $result = delete_dbVolunteers($id);
-                                $pass = md5($first_name . $phone1);
+                                $password = md5($first_name . $phone1);
                 $newperson = new Volunteer($last_name, $first_name, $address, $city, $state, $zip, $clean_phone1, $clean_phone2, $email, $type,
 			$contacts, $availability, $schedule, $history, $start_date, $end_date, $status, $new_notes, $password);
 				$result = insert_dbVolunteers($newperson);
@@ -229,6 +229,7 @@ function process_form($id)      {
 }
 ?>
     </div>
+    <?PHP include('footer.inc');?>
   </div>
 </body>
 </html>

@@ -62,8 +62,8 @@ session_cache_expire(30);
 	      echo '<input type="submit" STYLE="HEIGHT:40; WIDTH:140;" value="Add New Participant" align="center" />';
 	      echo '</FORM>';
 	  }?>
-      <?php include('footer.inc');?>
       </DIV>
+      <?PHP include('footer.inc');?>
     </DIV>
   </BODY>
 </HTML>

@@ -30,8 +30,8 @@ session_cache_expire(30);
 	    }
 	  ?>
 	</DIV>
-	<?php include('footer.inc');?>
-      </DIV>
+	</DIV>
+	<?PHP include('footer.inc');?>
     </DIV>
   </BODY>
 </HTML>

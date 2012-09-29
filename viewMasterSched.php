@@ -627,8 +627,8 @@ session_cache_expire(30);
   <INPUT STYLE="WIDTH:auto;HEIGHT:auto;" TYPE="submit" VALUE="Go!"/>
   </DIV>
   </FORM>
-  <?php include('footer.inc');?>	
 </DIV>
+<?PHP include('footer.inc');?>
 </DIV>
 </BODY>
 </HTML>

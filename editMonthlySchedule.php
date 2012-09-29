@@ -187,8 +187,8 @@ session_cache_expire(30);
 	<DIV ALIGN="center">
 	  <INPUT STYLE="height:30px; WIDTH:auto;" TYPE="button" VALUE="Discard changes" ONCLICK="confirm_discard()"/>
 	</DIV>
-	<?php include('footer.inc');?>
-</DIV>
+	</DIV>
+	<?PHP include('footer.inc');?>
 </DIV>
 </BODY>
 </HTML>
