@@ -59,7 +59,7 @@ $states = array("AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID"
 	  <FORM name="ParticipantInfo" METHOD="post" ACTION="writeParticipant.php" ONSUBMIT="">
 	    <fieldset>
 	      <legend>Personal Information</legend>
-	      <table border="">
+	      <table>
 		<tr>
 		  <?php
 		    echo '<td>';

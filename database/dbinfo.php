@@ -17,7 +17,7 @@ function connect() {
         $host = "localhost";
         $database = "pphomecheckDB";
         $user = "pphomecheckDB";
-        $password = "pphomecheckDB";
+        $password = "foodyWr1";
 
         $connected = mysql_connect($host,$user,$password);
         if (!$connected) return mysql_error();

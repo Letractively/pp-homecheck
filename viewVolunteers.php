@@ -20,8 +20,8 @@
 		<title>Volunteers</title>
 		<link rel="stylesheet" href="styles.css" type="text/css"/>
 		<style>
-			.floatLeft { width: 50%; float: left; }
-			.floatRight {width: 50%; float: right; }
+			.floatLeft { width: 25%; float: left; }
+			.floatRight {width: 75%; float: right; }
 			.container { overflow: hidden; }
 		</style>
 
@@ -45,7 +45,7 @@
 			<?PHP include('header.php');?>
 			<div id="content">
 			<div class="floatLeft">
-				<p><strong>Volunteer List</strong><br />
+				<br><b>Volunteer List</b><br>
 
 				<?PHP
 				include_once('database/dbVolunteers.php');
@@ -57,7 +57,7 @@
 					echo "There are no volunteers in the database.";
 				}
 				else {
-					echo "<select id=volunteer_list size=15 width='350' style='width: 350px' onchange='updateID(this);'></option>";
+					echo "<br><select id=volunteer_list size=15 style='width:120px' onchange='updateID(this);'></option>";
 					foreach ($allVolunteers as $vol) {
 						echo ('<option value="'.$vol->get_id().'">');
 						echo(''.$vol->get_first_name()." ".$vol->get_last_name().'');
@@ -67,24 +67,20 @@
 					echo "</select>";  
 				}
 	
-				echo('<br><td class="searchResults"><a href="volunteerEdit.php?id=new"> &nbsp; &nbsp; &nbsp; &nbsp; Add New Volunteer</a</td>');
-
-
-				if($_SESSION['access_level']==1){
-					echo('<td class="searchResults"><a href="volunteerEdit.php?id='.$_SESSION['_id'].'">&nbsp; &nbsp; Edit Your Information</a></td>');
-				}
-				else if ($_SESSION['access_level']==2){
-					echo('<td class="searchResults"><a href="volunteerEdit.php?id='.$onePerson->get_id().'" id="edit">&nbsp; &nbsp; &nbsp; &nbsp; Edit Volunteer</a></td>');
-  				}
-		
+				echo('<br><br><td class="searchResults"><a href="volunteerEdit.php?id=new"> &nbsp; &nbsp; Add New Volunteer</a</td>');
 				echo "</div>";
 
 				echo "<div class='floatRight'>";
-				echo('<Iframe id="info" src="" width="450" height="350"></Iframe>');
+				echo('<br><Iframe id="info" src="" width="450" height="300"></Iframe>');
+				if($_SESSION['access_level']==1){
+					echo('<td class="searchResults"><a href="volunteerEdit.php?id='.$_SESSION['_id'].'"><br><br>&nbsp; &nbsp; Edit Your Information</a></td>');
+				}
+				else if ($_SESSION['access_level']==2){
+					echo('<td class="searchResults"><a href="volunteerEdit.php?id='.$onePerson->get_id().'" id="edit"><br><br>&nbsp; &nbsp;  Edit Volunteer</a></td>');
+  				}
 				echo "</div>";	
 ?>
 			</div>
-			</p>
 			<?PHP include('footer.inc');?>
 		</div>
 	</body>

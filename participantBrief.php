@@ -8,7 +8,7 @@ $participant = retrieve_dbParticipants($id);
 <HTML>
   <head>
     <title>
-      Viewing <?php echo($participant->get_first_name()." ".$participant->get_last_name()); ?>
+      Viewing a Participant
     </title>
     <style>
       body{
@@ -83,7 +83,6 @@ $participant = retrieve_dbParticipants($id);
 		}
 	?>
       </div>
-      <?PHP include('footer.inc');?>
     </div>
   </body>
 </HTML>
