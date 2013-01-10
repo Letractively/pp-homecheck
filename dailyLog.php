@@ -66,23 +66,23 @@
    			background:url(images/button_submit.png) no-repeat;
    			border: none;
    			height: 32px;
-   			width: 99px;
+   			width: 180px;
 		}
 	    .button_info {
    			background:url(images/button_info.png) no-repeat;
    			border: none;
    			height: 32px;
-   			width: 99px;
+   			width: 180px;
 		}
 		.button_save {
    			background:url(images/button_save.png) no-repeat;
    			border: none;
    			height: 32px;
-   			width: 99px;
+   			width: 180px;
 		}
-        </STYLE>
+     </STYLE>
 
-        <SCRIPT LANGUAGE="JavaScript">
+     <SCRIPT LANGUAGE="JavaScript">
         function moveOnMax(field,nextFieldID){
         	if(field.value.length >= field.maxLength){
         		document.getElementById(nextFieldID).focus();
@@ -111,12 +111,8 @@
     	<?PHP include('header.php');?>
 		<DIV ID="content" align="left">
 		<FORM ID="FORM1" METHOD="POST" ACTION="insertDL.php" AUTOCOMPLETE="off">
-			<DIV STYLE=" TOP: 175px; MARGIN-LEFT: 15px; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-            	<TABLE CLASS="tbl"><TR STYLE="vertical-align: top"><TD>
-            		<IMG SRC="images/DailyLogLogo.png" WIDTH="59" HEIGHT="73"/>
-            		</TD><TD>
-	        		<IMG SRC="images/DailyLog.png"/>
-	        		</TD>
+			<DIV STYLE=" TOP: 175px; MARGIN-LEFT: 15px; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">    	
+	        		<h1>Daily Log
 	        		<?php 
 						if ($submitted != null){
 							echo "<TH STYLE=\"min-width: 500px;\">";
@@ -127,21 +123,18 @@
             	    		echo $name;
             	    		echo "</H2></TH>";
             			}
-            		?>
-            		</TR>
-	        	</TABLE> 
+            		echo "</h1><h2>".date('F j, Y')."</h2>";?>
         	</DIV>
         	<!--All images with text use Ariel 14pt font-->
-        	<DIV STYLE="TOP: 242px; MARGIN-LEFT: 105px; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
-            	<?PHP echo date('F d, Y');?>
-        	</DIV><BR><BR><BR><BR><BR><BR><BR>
+        	<BR><BR><BR><BR><BR><BR><BR><BR>
         	
-        	<TABLE CLASS="tbl"><TR STYLE="vertical-align: top"><TD>
+        <TABLE CLASS="tbl"><TR STYLE="vertical-align: top"><TD>
         	<TABLE><TR><TD>
 			<IMG SRC="images/time.png" TITLE="Enter a valid time entry, such as 09:00 or 12:00"/>
 			</TD><TD>
 			<INPUT TYPE="hidden" NAME="Date" STYLE="WIDTH:0px; " MAXLENGTH="8" TITLE="Enter Date" Value="<?php echo $dt ?>"/>
-            <INPUT REQUIRED="" TYPE="text" NAME="Time1" ID="Time1" STYLE="WIDTH:30px; " MAXLENGTH="2" ONCHANGE="validateTime();" TITLE="Enter Time, HH" ONKEYUP="moveOnMax(this,'Time2')"/>:<INPUT REQUIRED="" TYPE="text" NAME="Time2" ID="Time2" STYLE="WIDTH:30px; " MAXLENGTH="2" ONCHANGE="validateTime();" TITLE="Enter Time, MM"/>
+            <INPUT TYPE="text" NAME="Time1" ID="Time1" STYLE="WIDTH:30px; " MAXLENGTH="2" ONCHANGE="validateTime();" TITLE="Enter Time, HH" ONKEYUP="moveOnMax(this,'Time2')"/>:
+            <INPUT TYPE="text" NAME="Time2" ID="Time2" STYLE="WIDTH:30px; " MAXLENGTH="2" ONCHANGE="validateTime();" TITLE="Enter Time, MM"/>
 			<SELECT NAME = "AP" TITLE="Select AM or PM">
     		    <OPTION VALUE = A>AM</OPTION>
     		    <OPTION VALUE = P>PM</OPTION>
@@ -149,7 +142,7 @@
             </TD></TR><TR><TD>
             <IMG SRC="images/participant.png" TITLE="Begin typing participant last name for fast searching"/>
             </TD><TD>
-			<SELECT REQUIRED="" NAME = "Participant" STYLE = "WIDTH: 187" TITLE="Begin typing participant last name for fast searching">
+			<SELECT NAME = "Participant" STYLE = "WIDTH: 187" TITLE="Begin typing participant last name for fast searching">
                 <OPTION SELECTED VALUE = "">Select Participant...</OPTION>
 		    	<?PHP
 		    		$allParticipants = getall_participants();
@@ -168,15 +161,15 @@
             <IMG SRC="images/result.png" TITLE="Choose 'H' for 'Had to Call', 'C' for 'Called Contact', 'D' for 'Called Dispatch', else leave blank"/>
             </TD><TD>
 			<SELECT NAME = "Result" TITLE="Choose 'H' for 'Had to Call', 'C' for 'Called Contact', 'D' for 'Called Dispatch', else leave blank">
-    			<OPTION VALUE = OK></OPTION>
-    			<OPTION VALUE = C>C</OPTION>
-   			   	<OPTION VALUE = H>H</OPTION>
-   			    <OPTION VALUE = D>D</OPTION>
+    			<OPTION VALUE = OK>I'm Okay</OPTION>
+    			<OPTION VALUE = H>H - had to call</OPTION>
+   			    <OPTION VALUE = C>C - called contact</OPTION>
+   			   	<OPTION VALUE = D>D - referred to Police Dispatch</OPTION>
             </SELECT>
             </TD></TR><TR><TD STYLE="vertical-align: top">
             <IMG SRC="images/note.png" TITLE="Enter Notes in textbox."/>
             </TD><TD>
-			<TEXTAREA NAME="Notes" COLS="28" ROWS="5" STYLE="font-family:arial; resize: none;" TITLE="Enter Notes Here"></TEXTAREA><BR><BR>
+			<TEXTAREA NAME="Notes" COLS="30" ROWS="5" STYLE="font-family:arial; resize: none;" TITLE="Enter Notes Here"></TEXTAREA><BR><BR>
 			<INPUT TYPE="submit" onmouseover="this.style.cursor = 'hand';" CLASS="button_submit" VALUE="" TITLE="Submit this Participant Entry"/>
 			</TD></TR>
 			<?php
@@ -184,7 +177,7 @@
 				echo "<INPUT TYPE='hidden' NAME='Volunteer' TITLE='Volunteer' ";
 				echo "VALUE='", $vol, "'/>";
 			?>	
-			</TD></TR></TABLE>
+			</TABLE>
         </FORM>
         </TD><TD>
         <TABLE><TR><TD style = "vertical-align: top">
@@ -201,8 +194,9 @@
 				}
 				else echo "No notes today.";
     		?><BR><BR>
-    		<TEXTAREA NAME="dNotes" COLS="28" ROWS="3" MAXLENGTH="180" STYLE="font-family:arial; resize: none;" TITLE="Enter Daily Notes Here"></TEXTAREA><BR><BR>
-			<INPUT TYPE="submit" ONMOUSEOVER="this.style.cursor = 'hand';" CLASS="button_save" TITLE="Save this note" VALUE=""/>
+    		<TEXTAREA NAME="dNotes" COLS="30" ROWS="3" MAXLENGTH="180" STYLE="font-family:arial; resize: none;" TITLE="Enter Daily Notes Here"></TEXTAREA><BR><BR>
+			<INPUT TYPE="submit" ONMOUSEOVER="this.style.cursor = 'hand';" CLASS="button_save" TITLE="Save this note" VALUE="">
+			<?php echo "<br><br><A HREF='notepad.php?date=".$dt."' TITLE='See Daily Notepad' ONMOUSEOVER='this.style.cursor = 'hand';'><img border=0 src='images/button_notes.png'/></A>"; ?>
 			</TD></TR>
 		</FORM>
 		<TR><TD style = "vertical-align: top">
@@ -223,14 +217,13 @@
        		</SELECT><BR><BR>
        		<?php echo "<INPUT TYPE=\"submit\" ONMOUSEOVER=\"this.style.cursor = 'hand';\" STYLE=\"FLOAT: LEFT;\" CLASS=\"button_info\" VALUE=\"\" TITLE=\"See Selected Participant's Log\"/>"; ?> 
 		</FORM>
-        <?php echo "<A STYLE='FLOAT: RIGHT;' HREF='notepad.php?date=".$dt."' TITLE='See Daily Notepad' ONMOUSEOVER='this.style.cursor = 'hand';'><img border=0 src='images/button_notes.png'/></A>"; ?>
         </TD></TR></TABLE>
         </TD></TR></TABLE>
         <DIV STYLE=" TOP: 275; MARGIN-LEFT: 390; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">
 	    	<img src="images/vl.png" height="320" width="3"/>
 		</DIV>
 		<BR clear="all">
-		<</DIV> 
+		</DIV> 
 		<?PHP include('footer.inc');?>    
         </DIV>     
     </BODY>     

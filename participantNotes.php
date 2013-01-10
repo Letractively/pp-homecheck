@@ -54,7 +54,7 @@ $dayInc =86400;
 		    <INPUT TYPE="submit" VALUE="Next Week" STYLE="HEIGHT:40;WIDTH:150;"/>
 	    </FORM>
 	  </DIV>
-	  <h1 align="center">Participant Daily Notes</h1>
+	  <h1 align="center">Participant Notes</h1>
 	  <?php 
 		  echo('<h2 align="center">For '.$participant->get_first_name().' '.$participant->get_last_name().'</h2>');
 		  echo('<h2 align="center">Phone: '.$participant->get_phone1().'</h2>');

@@ -43,7 +43,7 @@
 					if($volunteer->get_phone2() !== "")
 						$nice_phone_2 = substr($volunteer->get_phone2(),0,3)."-".substr($volunteer->get_phone2(),3,3)."-".substr($volunteer->get_phone2(),6,4);;
 					echo("<h3>".$volunteer->get_first_name()." ".$volunteer->get_last_name()."</h3>");						
-					echo("<fieldset><legend>Scheduling Information</legend>");
+				  echo("<fieldset><legend>Scheduling Information</legend>");
 					echo("<b>Status: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>".$volunteer->get_status()."<br />");
 					echo("<b>Volunteer Type:  </b>".$volunteer->get_type()."<br />");
 					echo("<b>Availability: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>");
@@ -56,25 +56,11 @@
 						$days = $avail[0];
 						$weeks = $avail[1];
 						echo $days.'';
-						echo ', week ';
-						echo $weeks.';&nbsp';
+						echo ' week '.$weeks;
+						if ($j<$counting-1) echo '; ';
 					}
 					echo("<br />");
-					
-					/*echo("<b>Schedule: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>");
-					$schedule = $volunteer->get_schedule();
-					$count = count($schedule);
-					for($i = 0; $i < $count; $i++)
-					{	
-						$shift = $schedule[$i];
-						$shift = explode(':', $shift);
-						$day = $shift[0];
-						$week = $shift[1];
-						echo $day.'';
-						echo ', week ';
-						echo $week.';&nbsp';
-					} */
-					echo("</fieldset><br />");
+				  echo("</fieldset><br />");
 					
 					echo('<fieldset><legend>Contact Information</legend>');
 					echo("<b>Address: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>".$volunteer->get_address()."<br />");
@@ -82,17 +68,11 @@
 					echo("<b>Primary Phone: &nbsp; </b>".$nice_phone_1."<br />");
 					echo("<b>Alternate Phone: </b>".$nice_phone_2."<br />");
 					echo("<b>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b><a href=\"mailto:".$volunteer->get_email()."\">".$volunteer->get_email()."</a><br />");
-					echo("</table></fieldset><br />");
-
-					//echo("<fieldset><legend>Emergency Contacts</legend>");
-
-					//echo("</fieldset><br />");
-
-					echo("<fieldset><legend>Notes:</legend>".$volunteer->get_notes()."</fieldset>");
-						}
+					echo("</fieldset><br />");
+                    echo("<fieldset><legend>Notes:</legend>".$volunteer->get_notes()."</fieldset>");
+				}
 				?>
 			</div>
-			<?PHP include('footer.inc');?>
 		</div>
 	</body>
 </html>

@@ -43,589 +43,72 @@ session_cache_expire(30);
 	    include_once('domain/Volunteer.php');
 	    include_once('database/dbVolunteers.php');
 	    $volList=getall_dbVolunteers();
+	    $days = array("Sun"=>"Sunday", "Mon"=>"Monday", "Tue"=>"Tuesday", "Wed"=>"Wednesday", 
+	    				"Thu"=>"Thursday", "Fri"=>"Friday", "Sat"=>"Saturday");
+	    $weeks = array(1 => "1st", 2 => "2nd", 3 => "3rd", 4 => "4th", 5 => "5th", )
 	?>
-      <h1 align="center">Master Schedule</h1>
+      <h2 align="center">Master Schedule</h2>
       <FORM ID="MasterSchedule" ACTION = "writeMasterSched.php" METHOD="post" ONSUBMIT="return checkRequired(this);">
-	<DIV STYLE="TOP:75 ;LEFT:75 Position:ABSOLUTE; Z-INDEX: 1; VISIBILITY: show;">
-	  <table border="2" align="center">
-	    <tr>
-	      <th width="100" align="center">  Sunday  </th>
-	      <th width="100" align="center">  Monday  </th>
-	      <th width="100" align="center">  Tuesday  </th>
-	      <th width="100" align="center">  Wednesday  </th>
-	      <th width="100" align="center">  Thursday  </th>
-	      <th width="100" align="center">  Friday  </th>
-	      <th width="100" align="center">  Saturday  </th>
-	    </tr>
-	    <tr STYLE="HEIGHT:100;">
-	      <td valign="top">
-		<SELECT NAME="Sun:1" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sun:1");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Mon:1" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Mon:1");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Tue:1" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Tue:1");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Wed:1" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Wed:1");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Thu:1" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Thu:1");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Fri:1" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Fri:1");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Sat:1" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sat:1");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	    </tr>
-	    <tr STYLE="HEIGHT:100;">
-	      <td valign="top">
-		<SELECT NAME="Sun:2" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sun:2");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Mon:2" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Mon:2");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Tue:2" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Tue:2");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Wed:2" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Wed:2");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Thu:2" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Thu:2");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Fri:2" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Fri:2");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Sat:2" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sat:2");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	    </tr>
-	    <tr STYLE="HEIGHT:100;">
-	      <td valign="top">
-		<SELECT NAME="Sun:3" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sun:3");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Mon:3" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Mon:3");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Tue:3" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Tue:3");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Wed:3" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Wed:3");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Thu:3" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Thu:3");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Fri:3" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Fri:3");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Sat:3" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sat:3");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	    </tr>
-	    <tr STYLE="HEIGHT:100;">
-	      <td valign="top">
-		<SELECT NAME="Sun:4" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sun:4");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Mon:4" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Mon:4");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Tue:4" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Tue:4");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Wed:4" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Wed:4");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Thu:4" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Thu:4");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Fri:4" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Fri:4");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Sat:4" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sat:4");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	    </tr>
-	    <tr STYLE="HEIGHT:100;">
-	      <td valign="top">
-		<SELECT NAME="Sun:5" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sun:5");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Mon:5" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Mon:5");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Tue:5" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Tue:5");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Wed:5" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Wed:5");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Thu:5" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Thu:5");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Fri:5" TITLE="Select a volunteer for this shift.">
-		  <OPTION  VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Fri:5");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
-			echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
-		      else
-			echo "<OPTION VALUE='",$row->get_id(),"'>";
-		      echo $row->get_first_name()," ",$row->get_last_name();
-		      echo "</OPTION>";}
-		  ?>
-		</SELECT>
-	      </td>
-	      <td valign="top">
-		<SELECT NAME="Sat:5" TITLE="Select a volunteer for this shift.">
-		  <OPTION VALUE = "">Select Volunteer...</OPTION>
-		  <?php
-		    foreach($volList as $row){
-		      $checkEntry=retrieve_dbScheduleEntry("Sat:5");
-		      if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id()){
-			echo('<OPTION SELECTED VALUE ="');
-			echo($row->get_id());
-			echo('">');}
-		      else
-			echo('Test');
-		      echo($row->get_first_name()." ".$row->get_last_name());
-		      echo("</OPTION>");}
-		  ?>
-		</SELECT>
-	      </td>
-	    </tr>
-</table>
-</DIV>
-<br/>
+	
+	  <table border="2" align="left" width=100%>
+	    <?php
+	    echo '<tr><td align="center">  Week  </td>';
+	    foreach ($days as $dayid =>$dayname) 
+	    	echo '<td align="center">'.$dayname.'</td>';
+	    echo '</tr>';
+	    foreach ($weeks as $tablerow => $weekname) { 	
+	      echo '<tr STYLE="HEIGHT:50;"><td align="center">'.$weekname.'</td>';
+	      foreach ($days as $dayid =>$dayname) {
+	    		echo '<td valign="center">';
+	    		echo '<SELECT NAME="'.$dayid.':'.$tablerow. '" TITLE="Select a volunteer for this shift.">';
+	    		echo '<OPTION  VALUE = "">Select ...</OPTION>';
+	    		foreach($volList as $row){
+		      		$checkEntry=retrieve_dbScheduleEntry($dayid.':'.$tablerow);
+		      		if($checkEntry && $checkEntry->get_volunteer_id() == $row->get_id())
+						echo "<OPTION SELECTED VALUE = '",$row->get_id(),"'>";
+		      		else
+						echo "<OPTION VALUE='",$row->get_id(),"'>";
+		      		echo $row->get_first_name()," ",$row->get_last_name();
+		      		echo "</OPTION>";
+	    		}
+	    		echo '</OPTION></SELECT></td>';
+	    	}
+	      echo '</tr>';
+	    }
+	    echo '</table></DIV>';
+	    ?>
+	    <br/>
 <DIV ALIGN="center">
-  <INPUT STYLE="WIDTH:auto; HEIGHT:auto;" TYPE="submit" VALUE="Save" align="center"/>
+  <INPUT STYLE="WIDTH:auto; HEIGHT:auto;" TYPE="submit" VALUE="Save Changes" align="center"/>
   </DIV>
   </FORM>
   <FORM ID="CreateMonthly" ACTION="editMonthlySchedule.php" METHOD="get" ONSUBMIT="return checkRequired(this);">
   <DIV ALIGN="center">
-  Create Schedule for: 
-  <SELECT NAME="Month" > 
-  <OPTION VALUE = "01">January</OPTION>
-  <OPTION VALUE = "02">February</OPTION>
-  <OPTION VALUE = "03">March</OPTION>
-  <OPTION VALUE = "04">April</OPTION>
-  <OPTION VALUE = "05">May</OPTION>
-  <OPTION VALUE = "06">June</OPTION>
-  <OPTION VALUE = "07">July</OPTION>
-  <OPTION VALUE = "08">August</OPTION>
-  <OPTION VALUE = "09">September</OPTION>
-  <OPTION VALUE = "10">October</OPTION>
-  <OPTION VALUE = "11">November</OPTION>
-  <OPTION VALUE = "12">December</OPTION>
-  </SELECT>
-  <SELECT NAME="Year">
-  <OPTION VALUE = "12">2012</OPTION>
-  <OPTION VALUE = "13">2013</OPTION>
-  <OPTION VALUE = "14">2014</OPTION>
-  <OPTION VALUE = "15">2015</OPTION>
+  <br>Create Monthly Schedule for: 
+  <SELECT NAME="Month" >
+  <?php
+  	$todaysmonth = date("m");
+  	$todaysyear = date("Y");
+    $months = array("January","February","March","April","May","June",
+    				"July","August","September","October","November","December");
+    for ($i=0; $i<12; $i++) {
+        if ($i+1<10)
+            echo "<OPTION VALUE = 0".($i+1);
+    	else echo "<OPTION VALUE = ".($i+1);
+    	if ($i==$todaysmonth-1) echo " SELECTED";
+    	echo ">".$months[$i]."</OPTION>";
+    }
+ 
+  	echo '</SELECT>&nbsp;&nbsp;<SELECT NAME="Year">'; 
+    for ($i=$todaysyear; $i<$todaysyear+8; $i++){
+    	echo "<OPTION VALUE = ".$i;
+    		if ($i==$todaysyear) echo " SELECTED";
+    	echo ">".$i."</OPTION>";
+    }
+  ?>
   </SELECT>
   <INPUT STYLE="WIDTH:auto;HEIGHT:auto;" TYPE="submit" VALUE="Go!"/>
-  </DIV>
+
   </FORM>
 </DIV>
 <?PHP include('footer.inc');?>

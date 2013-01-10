@@ -23,8 +23,8 @@ class Month {
 	function __construct($id, $status, $notes) {
 		$this->id = $id;
 		$this->status = $status;
-		$this->first_day = date('w', mktime(0,0,0,substr($id,3,2),'01',substr($id,0,2)));
-		$this->no_days = date('t', mktime(0,0,0,substr($id,3,2),'01',substr($id,0,2)));
+		$this->first_day = date('w', mktime(0,0,0,substr($id,5,2),'01',substr($id,0,4)));
+		$this->no_days = date('t', mktime(0,0,0,substr($id,5,2),'01',substr($id,0,4)));
 		$this->shift_ids = array();
 		for ($d=1; $d<=$this->no_days; $d++) {
 			if ($d<10) 
