@@ -38,17 +38,16 @@ h1 {padding-left: 0px; padding-right:165px;}
 		$permission_array['index.php']=0;
 		$permission_array['about.php']=0;
 		//pages volunteers and dispatcher can view
-		$permission_array['viewDailyLog.php']=1;
+		$permission_array['dailyLog.php']=1;
 		$permission_array['viewParticipants.php']=1;
+		$permission_array['editMonthlySchedule.php']=1;
 		$permission_array['participantInfo.php']=1;
 		$permission_array['participantBrief.php']=1;
 		//additional pages the coordinator can view
 		$permission_array['volunteerEdit.php']=2;
-		$permission_array['editMonthlySchedule.php']=2;
-		$permission_array['searchVolunteers.php']=2;
-		$permission_array['searchParticipants.php']=2;
-		$permission_array['generateReports.php']=2;
-		$permission_array['exportData.php']=2;
+		$permission_array['viewMasterSched.php']=2;
+		$permission_array['viewVolunteers.php']=2;
+		$permission_array['viewReport.php']=2;
 		
 
 		//Check if they're at a valid page for their access level.

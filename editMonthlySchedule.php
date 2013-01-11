@@ -1,3 +1,7 @@
+<?php 
+session_start();
+session_cache_expire(30);
+?>
 <!--
     /*
     * Copyright 2012 by Alex Edison, Nicole Erkis, Ruben Martinez, and Allen
@@ -7,10 +11,6 @@
     * (see <http://www.gnu.org/licenses/).
     */
 -->
-<?php 
-session_start();
-session_cache_expire(30);
-?>
 <HTML>     
   <HEAD>  
     <TITLE>Edit Monthly Schedule</TITLE>   
@@ -55,21 +55,22 @@ session_cache_expire(30);
 	  $volList=getall_dbVolunteers();
 	  $thisMonth = $_GET['Month'];
 	  $thisMonth=retrieve_dbMonths($_GET['Year'].'-'.$thisMonth);
-	  if ($_SESSION['access_level']==2) {
-	    if(!$thisMonth) {  // create a new month with empty shifts
-	      $thisMonth = new Month($_GET['Year'].'-'.$thisMonth,"working","");
-	      insert_dbMonths($thisMonth);
-	      $shiftList = $thisMonth->get_shift_ids();
-          foreach($shiftList as $shiftID){
-            $tempShift = new Shift($shiftID, $_POST[$shiftID],"",$_POST['notes:'.$shiftID]);
-            if(update_dbShifts($tempShift))
-              continue;
-            else
-              insert_dbShifts($tempShift);
-          }
-	    }
-	  }
-	  else if (!$thisMonth || $thisMonth->get_status()!="published") {
+	  if (!$thisMonth) { // month doesn't exist
+	      if ($_SESSION['access_level']<2) {
+	          echo "<br>This month is not available for viewiing."; 
+	          die();
+	      }
+	      else {
+	          $thisMonth = new Month($_GET['Year'].'-'.$_GET['Month'],"working","");
+	          insert_dbMonths($thisMonth);
+	          $shiftList = $thisMonth->get_shift_ids();
+              foreach($shiftList as $shiftID){
+                 $tempShift = new Shift($shiftID, $_POST[$shiftID],"",$_POST['notes:'.$shiftID]);
+                 update_dbShifts($tempShift);
+              } 
+	      }    
+	  }  
+	  else if ($_SESSION['access_level']<2 && $thisMonth->get_status()!="published") {
 	    echo "<br>This month is not available for viewiing."; 
 	    die();
 	  }
