@@ -1,3 +1,7 @@
+<?php 
+session_start();
+session_cache_expire(30);
+?>
 <!--
     /*
     * Copyright 2012 by Alex Edison, Nicole Erkis, Ruben Martinez, and Allen
@@ -7,10 +11,7 @@
     * (see <http://www.gnu.org/licenses/).
     */
 -->
-<?php 
-session_start();
-session_cache_expire(30);
-?>
+
 <HTML>
   <HEAD>
     <TITLE>Participant List</TITLE>   

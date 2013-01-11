@@ -110,9 +110,9 @@
     	<DIV ID="container">
     	<?PHP include('header.php');?>
 		<DIV ID="content" align="left">
-		<FORM ID="FORM1" METHOD="POST" ACTION="insertDL.php" AUTOCOMPLETE="off">
+		<FORM ID="FORM1" METHOD="POST" ACTION="insertDL.php">
 			<DIV STYLE=" TOP: 175px; MARGIN-LEFT: 15px; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">    	
-	        		<h1>Daily Log
+	        		<h1>Daily Log</h1>
 	        		<?php 
 						if ($submitted != null){
 							echo "<TH STYLE=\"min-width: 500px;\">";
@@ -123,10 +123,10 @@
             	    		echo $name;
             	    		echo "</H2></TH>";
             			}
-            		echo "</h1><h2>".date('F j, Y')."</h2>";?>
+            		echo "<h2>".date('F j, Y')."</h2>";?>
         	</DIV>
         	<!--All images with text use Ariel 14pt font-->
-        	<BR><BR><BR><BR><BR><BR><BR><BR>
+        	<BR><BR><BR><BR><BR><BR><BR>
         	
         <TABLE CLASS="tbl"><TR STYLE="vertical-align: top"><TD>
         	<TABLE><TR><TD>
@@ -169,7 +169,7 @@
             </TD></TR><TR><TD STYLE="vertical-align: top">
             <IMG SRC="images/note.png" TITLE="Enter Notes in textbox."/>
             </TD><TD>
-			<TEXTAREA NAME="Notes" COLS="30" ROWS="5" STYLE="font-family:arial; resize: none;" TITLE="Enter Notes Here"></TEXTAREA><BR><BR>
+			<TEXTAREA NAME="Notes" COLS="22" ROWS="4" STYLE="font-family:arial; resize: none;" TITLE="Enter Notes Here"></TEXTAREA><BR><BR>
 			<INPUT TYPE="submit" onmouseover="this.style.cursor = 'hand';" CLASS="button_submit" VALUE="" TITLE="Submit this Participant Entry"/>
 			</TD></TR>
 			<?php
@@ -194,7 +194,7 @@
 				}
 				else echo "No notes today.";
     		?><BR><BR>
-    		<TEXTAREA NAME="dNotes" COLS="30" ROWS="3" MAXLENGTH="180" STYLE="font-family:arial; resize: none;" TITLE="Enter Daily Notes Here"></TEXTAREA><BR><BR>
+    		<TEXTAREA NAME="dNotes" COLS="22" ROWS="3" MAXLENGTH="180" STYLE="font-family:arial; resize: none;" TITLE="Enter Daily Notes Here"></TEXTAREA><BR><BR>
 			<INPUT TYPE="submit" ONMOUSEOVER="this.style.cursor = 'hand';" CLASS="button_save" TITLE="Save this note" VALUE="">
 			<?php echo "<br><br><A HREF='notepad.php?date=".$dt."' TITLE='See Daily Notepad' ONMOUSEOVER='this.style.cursor = 'hand';'><img border=0 src='images/button_notes.png'/></A>"; ?>
 			</TD></TR>

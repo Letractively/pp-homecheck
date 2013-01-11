@@ -1,3 +1,7 @@
+<?php 
+session_start();
+session_cache_expire(30);
+?>
 <!--
     /*
     * Copyright 2012 by Alex Edison, Nicole Erkis, Ruben Martinez, and Allen
@@ -7,10 +11,6 @@
     * (see <http://www.gnu.org/licenses/).
     */
 -->
-<?php 
-session_start();
-session_cache_expire(30);
-?>
 <HTML>     
   <HEAD>  
     <TITLE>Master Schedule</TITLE>   
@@ -30,8 +30,6 @@ session_cache_expire(30);
 	  }
 
 	</STYLE>
-      </link>
-    </link>
   </HEAD>     
   <BODY> 
     <DIV id="container">
@@ -48,10 +46,9 @@ session_cache_expire(30);
 	    $weeks = array(1 => "1st", 2 => "2nd", 3 => "3rd", 4 => "4th", 5 => "5th", )
 	?>
       <h2 align="center">Master Schedule</h2>
-      <FORM ID="MasterSchedule" ACTION = "writeMasterSched.php" METHOD="post" ONSUBMIT="return checkRequired(this);">
-	
-	  <table border="2" align="left" width=100%>
-	    <?php
+<FORM ID="MasterSchedule" ACTION = "writeMasterSched.php" METHOD="post" ONSUBMIT="return checkRequired(this);">
+	<?php
+	echo '<table border="2" align="left" width=100%>';
 	    echo '<tr><td align="center">  Week  </td>';
 	    foreach ($days as $dayid =>$dayname) 
 	    	echo '<td align="center">'.$dayname.'</td>';
@@ -75,17 +72,17 @@ session_cache_expire(30);
 	    	}
 	      echo '</tr>';
 	    }
-	    echo '</table></DIV>';
-	    ?>
-	    <br/>
-<DIV ALIGN="center">
-  <INPUT STYLE="WIDTH:auto; HEIGHT:auto;" TYPE="submit" VALUE="Save Changes" align="center"/>
+	echo '</table>';
+	?>
+
+  <DIV ALIGN="center">
+      <INPUT STYLE="WIDTH:auto; HEIGHT:auto;" TYPE="submit" VALUE="Save Changes"/>
   </DIV>
-  </FORM>
-  <FORM ID="CreateMonthly" ACTION="editMonthlySchedule.php" METHOD="get" ONSUBMIT="return checkRequired(this);">
+</FORM>
+<FORM ID="CreateMonthly" ACTION="editMonthlySchedule.php" METHOD="get" ONSUBMIT="return checkRequired(this);">
   <DIV ALIGN="center">
   <br>Create Monthly Schedule for: 
-  <SELECT NAME="Month" >
+  <SELECT NAME="Month">
   <?php
   	$todaysmonth = date("m");
   	$todaysyear = date("Y");
@@ -108,8 +105,8 @@ session_cache_expire(30);
   ?>
   </SELECT>
   <INPUT STYLE="WIDTH:auto;HEIGHT:auto;" TYPE="submit" VALUE="Go!"/>
-
-  </FORM>
+  </DIV>
+</FORM>
 </DIV>
 <?PHP include('footer.inc');?>
 </DIV>
