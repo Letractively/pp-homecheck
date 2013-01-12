@@ -114,16 +114,14 @@
 			<DIV STYLE=" TOP: 175px; MARGIN-LEFT: 15px; POSITION: absolute; Z-INDEX: 1; VISIBILITY: show;">    	
 	        		<h1>Daily Log</h1>
 	        		<?php 
+	        		    echo "<b>".date('F j, Y')."</b>";
 						if ($submitted != null){
-							echo "<TH STYLE=\"min-width: 500px;\">";
-            	  			$subPart = retrieve_dbParticipants($submitted);
+							$subPart = retrieve_dbParticipants($submitted);
             	    		$name = $subPart->get_first_name()." ".$subPart->get_last_name();
-            	    		echo "<BR><BR>";
-            	    		echo "<H2 style='color: red'>&#10004; Submitted Log for ";
-            	    		echo $name;
-            	    		echo "</H2></TH>";
+            	    		echo "&nbsp;&nbsp;<b style='color: red'>&#10004; Logged Call-in for ".$name;
+            	    		echo "</b>";
             			}
-            		echo "<h2>".date('F j, Y')."</h2>";?>
+                    ?>
         	</DIV>
         	<!--All images with text use Ariel 14pt font-->
         	<BR><BR><BR><BR><BR><BR>
