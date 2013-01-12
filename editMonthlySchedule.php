@@ -147,15 +147,17 @@ session_cache_expire(30);
 	      <?php
 				$dayCount=1;
 				$weekCount=1;
+				$rowCount=1;
 				while($dayCount<=$thisMonth->get_no_days()){
 				  echo('<tr STYLE="HEIGHT:100;">');
 				  for($i=0;$i<=6;++$i){
+				    //  echo "daycount, weekcount, rowcount = ".$dayCount.", ".$weekCount.", ".$rowCount;
 				    echo('<td valign="top">');
 				    if($dayCount>$thisMonth->get_no_days())
-				      continue;
-				    else if($weekCount==1 && $thisMonth->get_first_day()>$i)
-				      continue;
-				    else{
+				        continue;
+				    else if($rowCount==1 && $i<$thisMonth->get_first_day())
+				        continue;
+				    else{ 
 				      echo('<h4>'.$dayCount.'</h4>');
 				      $shiftID=$_GET['Year'].'-'.$_GET['Month'].'-'.date("d",mktime(0,0,0,$_GET['Month'],$dayCount,$_GET['Year']));
 				      $checkMaster=retrieve_dbScheduleEntry(date("D",mktime(0,0,0,$_GET['Month'],$dayCount,$_GET['Year'])).":".$weekCount);
@@ -164,16 +166,16 @@ session_cache_expire(30);
 				      echo('<SELECT NAME="'.$shiftID.'" TITLE="Select a volunteer for this shift.">');
 				      echo('<OPTION VALUE = "">VACANT</OPTION>');
 				      foreach($volList as $row){
-					if($checkMonth and $checkMonth->get_volunteer_id() == $row->get_id()){
-					  echo('<OPTION SELECTED VALUE ="');
-					  echo($row->get_id());
-					  echo('">');}
-					else if($checkMaster and $checkMaster->get_volunteer_id() == $row->get_id()){
-					  echo('<OPTION SELECTED VALUE ="');
-					  echo($row->get_id());
-					  echo('">');}
+					    if($checkMonth and $checkMonth->get_volunteer_id() == $row->get_id()){
+					      echo('<OPTION SELECTED VALUE ="');
+					      echo($row->get_id());
+					      echo('">');}
+					    else if($checkMaster and $checkMaster->get_volunteer_id() == $row->get_id()){
+					      echo('<OPTION SELECTED VALUE ="');
+					      echo($row->get_id());
+					      echo('">');}
 					else
-					  echo "<OPTION VALUE='",$row->get_id(),"'>";
+					    echo "<OPTION VALUE='",$row->get_id(),"'>";
 					echo($row->get_first_name()." ".$row->get_last_name());
 					echo("</OPTION>");}
 				      echo'</SELECT><br/>';
@@ -191,9 +193,14 @@ session_cache_expire(30);
 				        echo 'Notes:<br>'.$checkMonth->get_notes();
 				    }
 				    echo'</td>';
-				    ++$dayCount;}
+				    ++$dayCount;
+				    if ($dayCount%7==1)
+				        ++$weekCount;
+				  }
 				  echo('</tr>');
-	      $weekCount+=1;}?>
+				  $rowCount+=1;
+				}
+				?>
 	    </table>
 	  <br/>
 	  
