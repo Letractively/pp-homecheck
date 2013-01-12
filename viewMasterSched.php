@@ -49,7 +49,7 @@ session_cache_expire(30);
 <FORM ID="MasterSchedule" ACTION = "writeMasterSched.php" METHOD="post" ONSUBMIT="return checkRequired(this);">
 	<?php
 	echo '<table border="2" align="left" width=100%>';
-	    echo '<tr><td align="center">  Week  </td>';
+	    echo '<tr><td align="center"> </td>';
 	    foreach ($days as $dayid =>$dayname) 
 	    	echo '<td align="center">'.$dayname.'</td>';
 	    echo '</tr>';

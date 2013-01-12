@@ -126,7 +126,7 @@
             		echo "<h2>".date('F j, Y')."</h2>";?>
         	</DIV>
         	<!--All images with text use Ariel 14pt font-->
-        	<BR><BR><BR><BR><BR><BR><BR>
+        	<BR><BR><BR><BR><BR><BR>
         	
         <TABLE CLASS="tbl"><TR STYLE="vertical-align: top"><TD>
         	<TABLE><TR><TD>
