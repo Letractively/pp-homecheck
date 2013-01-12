@@ -128,15 +128,30 @@
         	
         <TABLE CLASS="tbl"><TR STYLE="vertical-align: top"><TD>
         	<TABLE><TR><TD>
-			<IMG SRC="images/time.png" TITLE="Enter a valid time entry, such as 09:00 or 12:00"/>
+			<IMG SRC="images/time.png" TITLE="Enter a valid time entry, such as 9:00 or 12:00"/>
 			</TD><TD>
 			<INPUT TYPE="hidden" NAME="Date" STYLE="WIDTH:0px; " MAXLENGTH="8" TITLE="Enter Date" Value="<?php echo $dt ?>"/>
-            <INPUT TYPE="text" NAME="Time1" ID="Time1" STYLE="WIDTH:30px; " MAXLENGTH="2" ONCHANGE="validateTime();" TITLE="Enter Time, HH" ONKEYUP="moveOnMax(this,'Time2')"/>:
-            <INPUT TYPE="text" NAME="Time2" ID="Time2" STYLE="WIDTH:30px; " MAXLENGTH="2" ONCHANGE="validateTime();" TITLE="Enter Time, MM"/>
-			<SELECT NAME = "AP" TITLE="Select AM or PM">
+            <SELECT NAME = "Time1" TITLE="Hour of call-in">
+		    	<?PHP
+		    		for ($hour = 1; $hour<=12; $hour++) {
+		    			echo "<OPTION VALUE='".$hour."'>".$hour."</OPTION>";	
+		    		}
+               	?>
+            </SELECT>
+            <SELECT NAME = "Time2" TITLE="Minute of call-in">
+    		    <?PHP
+		    		for ($minute = 0; $minute<60; $minute+=5) {
+		    			if ($minute<10) 
+		    			    echo "<OPTION VALUE='0".$minute."'>0".$minute."</OPTION>";
+		    			else 
+		    			   echo "<OPTION VALUE='".$minute."'>".$minute."</OPTION>"; 	
+		    		}
+               	?>
+            </SELECT>
+            <SELECT NAME = "AP" TITLE="Select AM or PM">
     		    <OPTION VALUE = A>AM</OPTION>
     		    <OPTION VALUE = P>PM</OPTION>
-            </SELECT><I><FONT COLOR="333333"> e.g. 09:15</FONT></I><BR>
+            </SELECT><BR>
             </TD></TR><TR><TD>
             <IMG SRC="images/participant.png" TITLE="Begin typing participant last name for fast searching"/>
             </TD><TD>
